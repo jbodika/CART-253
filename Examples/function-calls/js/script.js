@@ -1,24 +1,22 @@
 /**
- * Title of Project
- * Author Name
+ * Function Calls
+ * Jolene Bodika
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Function calls examples for CART 253
  */
 
 "use strict";
 
-/**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
+// executes on load
 function setup() {
-
+    // begining 
+    createCanvas(640,480);
 }
 
 
-/**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
-*/
+// captures every frame 
 function draw() {
+    background(255,100,100);
+    rect(200,80,240,320);
 
 }
