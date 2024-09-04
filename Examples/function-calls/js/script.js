@@ -19,7 +19,8 @@ function setup() {
 
 function draw() {
     // pink desktop
-    background(255,100,100);
+    background(150,230,176);
+    
     // blank piece of paper
     rect(200,80,240,320);
 
