@@ -3,20 +3,24 @@
  * Jolene Bodika
  * 
  * Function calls examples for CART 253
+ * these are comments lol :))
  */
 
 "use strict";
 
-// executes on load
+// creates the canvas 
+
 function setup() {
-    // begining 
+    // standard res canvas
     createCanvas(640,480);
 }
 
 
-// captures every frame 
+
 function draw() {
+    // pink desktop
     background(255,100,100);
+    // blank piece of paper
     rect(200,80,240,320);
 
 }
