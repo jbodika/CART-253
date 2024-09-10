@@ -1,16 +1,10 @@
 /**
- * Title of Project
- * Author Name
- * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Jolene Bodika
+ * Intro to Variables
  */
 
 "use strict";
 
-/**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
 function setup() {
     // Create the canvas
     createCanvas(640, 640);
@@ -22,7 +16,8 @@ function draw() {
     // Draw a circle in the centre of the canvas
     push();
     noStroke();
-    fill(255, 255, 0);
-    ellipse(width/2, height/2, 100, 100);
+    fill(255, 0, 0);
+    //changed the width and height to always keep the circle in the center and changed the numbers to use mouseX and mouseY variables in order to change the size of the circle based on where the mouse is placed
+    ellipse(width/2, height/2, mouseX, mouseY);
     pop();
 }
