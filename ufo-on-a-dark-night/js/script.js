@@ -1,7 +1,8 @@
 /**
  * UFO on a Dark Night
- * Pippin Barr
+ * Jolene Bodika
  * 
+ * Examples on changing varibales
  * A UFO. On a dark night. It just sits there?
  */
 
