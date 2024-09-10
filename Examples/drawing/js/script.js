@@ -9,19 +9,24 @@
 "use strict";
 
 // creates the canvas 
-
 function setup() {
-    // standard res canvas
-    createCanvas(640,480);
+    createCanvas(640, 640);
 }
 
 
-
+// draws every frame 
 function draw() {
-    // pink desktop
-    background(150,230,176);
-    
-    // blank piece of paper
-    rect(200,80,240,320);
+    background(150, 230, 176);
+
+    push();
+    fill("pink");
+    stroke("blue")
+    ellipse(320, 320, 480);
+    pop();
+
+    push();
+    fill("hotpink")
+    stroke("red")
+    ellipse(320,320,40)
 
 }
