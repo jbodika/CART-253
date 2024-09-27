@@ -7,25 +7,48 @@
 
 // CONSTANT VARIABLES
 
-const claw = {}
+const claw = {
+  left:{
+    x:380,
+    y:290
+  },
+  right:{
+    x:410,
+    y:290
+  }
+}
 
-const joystick = {}
+
+const handle = {
+  x: 435,
+  y: 480,
+  size: 45,
+
+  bottom:{
+    x:Number,
+    y:Number
+  }
+}
 
 
 const colours = {
-  mainBlue:"#6b82e0",
-  secondaryBlue:"#1f3694",
-  shadingBlue:"#415fd7",
-  lightGray:"#D3D3D3",
-  darkGray:"#808080",
-  lightGreen:"#90EE90",
-  groundColour:"#c0caf2",
-  black:"#000",
-  white:"#fff",
+  mainBlue: "#6b82e0",
+  secondaryBlue: "#1f3694",
+  shadingBlue: "#415fd7",
+  lightGray: "#D3D3D3",
+  darkGray: "#808080",
+  lightGreen: "#90EE90",
+  groundColour: "#c0caf2",
+  black: "#000",
+  white: "#fff",
   backgroundColour: "#eaedfb"
 
 }
+const clawChain = { x: 395, y: 110 };
+// GLOBAL VARIABLES
 
+
+let mouseIsOverlapping;
 
 // FUNCTIONS
 
@@ -41,35 +64,40 @@ function draw() {
   background(colours.backgroundColour);
 
   drawMachine();
-
+  moveHandle();
 }
 
 
 function drawMachine() {
 
 
-  //ground
+  //Ground area
   push()
   noStroke()
   fill(colours.groundColour)
   rect(0, 700, 800, 100)
   pop()
 
-  //machine base
+  //Claw machine base
   push();
   noStroke()
   fill(colours.mainBlue)
   rect(200, 50, 400, 700)
   rect(175, 720, 450, 40)
   rect(175, 500, 450, 50)
-  rect(175, 40, 450, 70)
+
+  rect(175, 20, 450, 70)
 
   triangle(175, 500, 150, 580, 215, 580)
   triangle(625, 500, 580, 580, 650, 580)
-  
+
   fill(colours.shadingBlue)
   rect(200, 580, 400, 10)
   pop();
+
+
+  //toy slot
+  //TODO: CODE IT 
 
 
   //white screen
@@ -109,7 +137,7 @@ function drawMachine() {
   fill(colours.black)
   ellipse(435, 510, 10, 70);
   fill(colours.secondaryBlue)
-  ellipse(435, 480, 45, 45);
+  ellipse(handle.x, handle.y, handle.size);
 
   //Green machine button
   fill(colours.secondaryBlue)
@@ -120,4 +148,52 @@ function drawMachine() {
   ellipse(520, 540, 20, 20)
   pop();
 
-} 
+  //claw
+  push()
+  noStroke()
+  fill(colours.lightGray)
+  rect(250, 80, 300, 20)
+  ellipse(clawChain.x + 5, 100, 15, 15)
+  // clawchain
+  for (let x = clawChain.y; x < 300; x += 15) {
+    rect(clawChain.x, x, 10, 10)
+  }
+  rect(claw.left.x, claw.left.y, 10, 30);
+  rect(claw.right.x, claw.right.y, 10, 30);
+  pop();
+
+ 
+}
+
+
+function mousePressed(){
+  console.log('pressed')
+}
+
+
+function moveHandle() {
+  const distance = dist(mouseX,mouseY,handle.x,handle.y)
+  mouseIsOverlapping = (distance<handle.size/2)
+  console.log(mouseIsOverlapping)
+
+  if( mouseIsOverlapping){
+    console.log('ummm')
+  }
+  // handle.x= mouseX
+  // handle.y= mouseY
+}
+
+function moveClaw(){
+  //if moving right 
+  claw.left.x += 1;
+  claw.right.x += 1
+  //if moving left
+  //claw.leftX-=1;
+  //claw.rightX-=1
+
+  clawChain.x += 1
+  clawChain.x = constrain(clawChain.x, 265, 525)
+  claw.left.x = constrain(claw.left.x, 250, 510)
+
+  claw.right.x = constrain(claw.right.x, 280, 540)
+}
