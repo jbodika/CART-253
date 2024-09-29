@@ -8,13 +8,13 @@
 // CONSTANT VARIABLES
 
 const claw = {
-  left:{
-    x:380,
-    y:290
+  left: {
+    x: 380,
+    y: 290
   },
-  right:{
-    x:410,
-    y:290
+  right: {
+    x: 410,
+    y: 290
   }
 }
 
@@ -24,11 +24,12 @@ const handle = {
   y: 480,
   size: 45,
 
-  bottom:{
-    x:Number,
-    y:Number
+  bottom: {
+    x: Number,
+    y: Number
   }
 }
+
 
 
 const colours = {
@@ -65,6 +66,7 @@ function draw() {
 
   drawMachine();
   moveHandle();
+  //drawPlushies()
 }
 
 
@@ -104,9 +106,10 @@ function drawMachine() {
   push();
   noStroke();
   fill(colours.white);
-  rect(250, 80, 300, 420);
+  rect(250, 80, 300, 410);
   pop();
 
+  drawPlushies();
   // air vents
   push();
   noStroke();
@@ -162,28 +165,27 @@ function drawMachine() {
   rect(claw.right.x, claw.right.y, 10, 30);
   pop();
 
- 
+
 }
 
 
-function mousePressed(){
+function mousePressed() {
   console.log('pressed')
 }
 
 
 function moveHandle() {
-  const distance = dist(mouseX,mouseY,handle.x,handle.y)
-  mouseIsOverlapping = (distance<handle.size/2)
+  const distance = dist(mouseX, mouseY, handle.x, handle.y)
+  mouseIsOverlapping = (distance < handle.size / 2)
   console.log(mouseIsOverlapping)
 
-  if( mouseIsOverlapping){
-    console.log('ummm')
+  if (mouseIsOverlapping) {
   }
   // handle.x= mouseX
   // handle.y= mouseY
 }
 
-function moveClaw(){
+function moveClaw() {
   //if moving right 
   claw.left.x += 1;
   claw.right.x += 1
@@ -196,4 +198,33 @@ function moveClaw(){
   claw.left.x = constrain(claw.left.x, 250, 510)
 
   claw.right.x = constrain(claw.right.x, 280, 540)
+}
+
+
+function drawPlushies() {
+  let colourArray = ['#baffab', '#9dfbd3', '#aaa8f9', '#deb0ff', '#eeb8cb']
+  push()
+  noStroke()
+  let linejump = 0
+  for (let i = 265; i < 550; i += 30) {
+    for (let j = 350; j < 500; j += 30) {
+      fill(colourArray.slice(-1))
+      ellipse(i, j, 30);
+      // added functionality to change the colours of the toys
+      //every toy the linejump varibale gets incremented 
+      // once it reaches 10 in removes the last colour from the colourArray
+      linejump++
+      if (linejump == 10) {
+        linejump = 0
+        colourArray.pop()
+
+      }
+
+    }
+  }
+
+  pop()
+
+
+
 }
