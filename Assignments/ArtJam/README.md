@@ -6,6 +6,11 @@ Jolene Bodika
 ## Description
 Ah, the arcade! A place where people from all age groups come to play video games and have some good laughs. You’ll need to wait in a long line before you can try out this arcade claw machine. Don't be intimidated by the long wait times, I believe it's your turn now!
 
+### Controls
+* Insert a coin by clicking on the coin slot
+* Press and hold on the machine joystick to move the claw around
+* Press and hold on the colour changing button to claim your prize
+
 ## Credits
 This project uses [p5.js](https://p5js.org).
 
