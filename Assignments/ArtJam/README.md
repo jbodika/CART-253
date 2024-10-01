@@ -12,5 +12,7 @@ This project uses [p5.js](https://p5js.org).
 ## Attribution
 - Out of order image flyer based on the Wreck it Ralph movie made by graphic artist aki5 [Out of order](https://www.deviantart.com/aki5/art/Wreck-It-Ralph-Out-of-Order-336189999)
 
-- Condition to check if the cursor overlaps an object, taken from example in week 4's Conditionals Challenge 
- by Pippin Barr [Link to the challenge](https://pippinbarr.com/cart253/topics/conditionals/conditionals-in-practice-part-2.html)
+- Condition to check if the cursor overlaps an object, taken from example in week 4's Conditionals in practice: Part 2: Massage 
+ by Pippin Barr [Link to the module](https://pippinbarr.com/cart253/topics/conditionals/conditionals-in-practice-part-2.html)
+
+- CSS Properties from Intro to Events module [Link to module](https://pippinbarr.com/cart253/topics/events/introducing-events.html)

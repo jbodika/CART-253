@@ -128,13 +128,18 @@ function draw() {
 
 }
 
+// checks if the mouse overlaps with an object
+function checkOverlap(firstValPosX,firstValPosY,secondValPosX,secondValPosY,size){
+  const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
+  // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
+  return isMouseOverlapping = (distance < size / 2);//checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
+
+}
+
 // When the machine's button is pressed
 function buttonPressed(){
-  const distance = dist(mouseX, mouseY, convexBtn.x, convexBtn.y); // code snippet taken from the conditionals challenge
-  // calculates the distance between the mouse's x and y positions and the machine's button x and y positions
-  isMouseOverlapping = (distance < convexBtn.size / 2);//checks if the distance is lower than the radius if yes then it is overlapping if no then it is not overlapping
-
-  if (isMouseOverlapping && mouseIsPressed){
+    // returns true or false if the mouse is overlapping with the machine's button and the mouse is pressed
+  if(checkOverlap(mouseX, mouseY, convexBtn.x, convexBtn.y,convexBtn.size) && mouseIsPressed){
     isClicked = true
     plushies.y +=1 // removes the plushies row by row once the user presses on the button
     brokenGame();
@@ -318,26 +323,20 @@ function drawCoin() {
 }
 
 // checks if the user clicked on the coin slot with the coin
-function insertCoin() {// code snippet taken from the conditionals challenge
-  const distance = dist(coin.x, coin.y, 257, 525);  // calculates the distance between the coin's x and y positions and the coin slot hardcodded x and y positions
-  isMouseOverlapping = (distance < coin.size / 2); //checks if the distance is lower than the radius if yes then it is overlapping if no then it is not overlapping
-
-  if (isMouseOverlapping && mouseIsPressed) {
+function insertCoin() {
+  // returns true or false if the mouse is overlapping on the coin slot and the mouse is pressed
+  if(checkOverlap(coin.x, coin.y, 257, 525,coin.size) && mouseIsPressed){
     isCoinVisible = false; // sets the flag to false once the user presses on the coin slot
   }
 }
 
 // moves the joystick based on the direction that the user is pointing towards
 function moveJoystick() {
-// code snippet taken from the conditionals challenge
-  const distance = dist(mouseX, mouseY, joystick.top.x, joystick.top.y); // calculates the distance between the mouse x and y positions and the joystick's x and y positions
-  isMouseOverlapping = (distance < joystick.top.size / 2);//checks if the distance is lower than the radius if yes then it is overlapping if no then it is not overlapping
 
-
-  if (isMouseOverlapping && mouseIsPressed) { //when the user has the mouse hovering on the top of the joystick while pressing down this code block will execute
-    // moves the joystick top and bottom parts in relation to the position of the mouseX and mouseY properties
+  //returns true or false if the user has the mouse hovering on the top of the joystick while pressing down with the mouse
+  if (checkOverlap(mouseX, mouseY, joystick.top.x, joystick.top.y,joystick.top.size) && mouseIsPressed) {
     joystick.top.x = mouseX;
-    joystick.bottom.x = mouseX;
+    joystick.bottom.x = mouseX;// moves the joystick top and bottom parts in relation to the position of the mouseX and mouseY properties
     joystick.top.y = mouseY;
 
     //added constraints to not exaggerate the movements 
@@ -352,13 +351,8 @@ function moveJoystick() {
 function moveClaw() {
   let axisX; //declare variables
   let axisY;
-  // code snippet taken from the conditionals challenge
-  const distance = dist(mouseX, mouseY, joystick.top.x, joystick.top.y); // calculates the distance between the mouse x and y positions and the joystick's x and y positions
-  isMouseOverlapping = (distance < joystick.top.size / 2);//checks if the distance is lower than the radius if yes then it is overlapping if no then it is not overlapping
-
-
-  if (isMouseOverlapping && mouseIsPressed) {//when the user has the mouse hovering on the top of the joystick while pressing down this code block will execute
-
+    //returns true or false if the user has the mouse hovering on the top of the joystick while pressing down with the mouse
+  if (checkOverlap(mouseX, mouseY, joystick.top.x, joystick.top.y,joystick.top.size) && mouseIsPressed) {
     //added constraints to not exaggerate the movements 
     clawChain.x = constrain(clawChain.x, 265, 525);
     clawChain.y = constrain(clawChain.y, 110, 270);
