@@ -59,10 +59,10 @@ const plushies = {
   y: 350
 }
 
-const convexBtn ={
-  x:520,
-  y:540,
-  size:20
+const convexBtn = {
+  x: 520,
+  y: 540,
+  size: 20
 }
 
 const colours = {
@@ -103,7 +103,7 @@ function draw() {
   background(colours.backgroundColour);
 
   //draws all the key components of the arcade machine
-  drawGround(); 
+  drawGround();
   drawMachine();
   drawClawChainBase();
   drawClawChain();
@@ -119,7 +119,7 @@ function draw() {
     moveJoystick();
     moveClaw();
     buttonPressed();
-  } 
+  }
   else {
     drawCoin();
   }
@@ -129,7 +129,7 @@ function draw() {
 }
 
 // checks if the cursor overlaps with an object
-function checkOverlap(firstValPosX,firstValPosY,secondValPosX,secondValPosY,size){
+function checkOverlap(firstValPosX, firstValPosY, secondValPosX, secondValPosY, size) {
   const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
   // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
   return isMouseOverlapping = (distance < size / 2);//checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
@@ -137,27 +137,27 @@ function checkOverlap(firstValPosX,firstValPosY,secondValPosX,secondValPosY,size
 }
 
 // When the machine's button is pressed
-function buttonPressed(){
-    // returns true or false if the cursor is overlapping with the machine's button and the cursor is pressed
-  if(checkOverlap(mouseX, mouseY, convexBtn.x, convexBtn.y,convexBtn.size) && mouseIsPressed){
+function buttonPressed() {
+  // returns true or false if the cursor is overlapping with the machine's button and the cursor is pressed
+  if (checkOverlap(mouseX, mouseY, convexBtn.x, convexBtn.y, convexBtn.size) && mouseIsPressed) {
     isClicked = true
-    plushies.y +=1 // removes the plushies row by row once the user presses on the button
+    plushies.y += 1 // removes the plushies row by row once the user presses on the button
     brokenGame();
-  }else{
+  } else {
     isClicked = false
   }
-   
+
 }
 
 // Displays the broken game sign and darkens the room
-function brokenGame(){
+function brokenGame() {
   push();
-  image(img,340,230, 150, 200);
+  image(img, 340, 230, 150, 200);
   noStroke();
-  fill(0, 0, 0,127);
-  rect(0,0,800,800);
+  fill(0, 0, 0, 127);
+  rect(0, 0, 800, 800);
   pop();
-  
+
 }
 
 // draws the floor area
@@ -180,8 +180,8 @@ function drawMachine() {
   drawMachineBackground();
   drawPlushies();
   rect(175, 490, 450, 60);
- 
-  
+
+
   //top section
   rect(175, 20, 450, 70);
 
@@ -192,7 +192,7 @@ function drawMachine() {
   fill(colours.shadingBlue);
   rect(200, 580, 400, 10);
   pop();
-  
+
 }
 //draws the toy slot 
 function drawToySlot() {
@@ -246,10 +246,10 @@ function drawConvexButton() {
   ellipse(518, 540, 20);
 
   // uses p5's map function to change the colour of the game button based on mouseX and mouseY positions
-  let blue = map(mouseX, 0, width, 0, 255); 
+  let blue = map(mouseX, 0, width, 0, 255);
   let green = map(mouseY, 0, height, 0, 255);
-  
-  fill(0, green, blue); 
+
+  fill(0, green, blue);
   ellipse(convexBtn.x, convexBtn.y, 20, 20);
   pop();
 }
@@ -325,7 +325,7 @@ function drawCoin() {
 // checks if the user clicked on the coin slot with the coin
 function insertCoin() {
   // returns true or false if the cursor is overlapping on the coin slot and the cursor is pressed
-  if(checkOverlap(coin.x, coin.y, 257, 525,coin.size) && mouseIsPressed){
+  if (checkOverlap(coin.x, coin.y, 257, 525, coin.size) && mouseIsPressed) {
     isCoinVisible = false; // sets the flag to false once the user presses on the coin slot
   }
 }
@@ -334,7 +334,7 @@ function insertCoin() {
 function moveJoystick() {
 
   //returns true or false if the user has the cursor hovering on the top of the joystick while pressing down with the mouse
-  if (checkOverlap(mouseX, mouseY, joystick.top.x, joystick.top.y,joystick.top.size) && mouseIsPressed) {
+  if (checkOverlap(mouseX, mouseY, joystick.top.x, joystick.top.y, joystick.top.size) && mouseIsPressed) {
     joystick.top.x = mouseX;
     joystick.bottom.x = mouseX;// moves the joystick top and bottom parts in relation to the position of the mouseX and mouseY properties
     joystick.top.y = mouseY;
@@ -351,8 +351,8 @@ function moveJoystick() {
 function moveClaw() {
   let axisX; //declare variables
   let axisY;
-    //returns true or false if the user has the cursor hovering on the top of the joystick while pressing down with the mouse
-  if (checkOverlap(mouseX, mouseY, joystick.top.x, joystick.top.y,joystick.top.size) && mouseIsPressed) {
+  //returns true or false if the user has the cursor hovering on the top of the joystick while pressing down with the mouse
+  if (checkOverlap(mouseX, mouseY, joystick.top.x, joystick.top.y, joystick.top.size) && mouseIsPressed) {
     //added constraints to not exaggerate the movements 
     clawChain.x = constrain(clawChain.x, 265, 525);
     clawChain.y = constrain(clawChain.y, 110, 270);
@@ -365,8 +365,8 @@ function moveClaw() {
 
     axisX = joystick.top.x - 395; // gets the position of the top of the joystick's x position and substracts it from the hardcoded value of the clawchain's x position
     axisY = joystick.top.y - 110 // gets the position of the top of the joystick's y position and substracts it from the hardcoded value of the clawchain's y position
-  
-    
+
+
     // moves the claw left/right pieces as well as the chain in relation to the position of the mouseX and mouseY properties
     clawChain.x += (axisX > 40 ? 0.5 : -0.5); //ternary conditional operator they work exactly the same as an 'if' statement but they're just displayed in one line
     clawChain.y += (axisY > 370 ? -0.5 : 0.5); // for example: axis > 40 if yes increment by 1 if no decrement by 1
