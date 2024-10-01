@@ -32,7 +32,7 @@ const claw = {
     y: 290
   }
 }
-// the chain attcahed to the claw
+// the chain attached to the claw
 const clawChain = {
   x: 395,
   y: 110
@@ -140,13 +140,12 @@ function draw() {
 * @param firstValPosY - Object 1's value Y position
 * @param secondValPosX - Object 2's value X position
 * @param secondValPosY - Object 2's value Y position
-* @param size - Object 2's size value
+* @param secondValSize - Object 2's size value
 */
-
-function checkOverlap(firstValPosX, firstValPosY, secondValPosX, secondValPosY, size) {
+function checkOverlap(firstValPosX, firstValPosY, secondValPosX, secondValPosY, secondValSize) {
   const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
   // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
-  return isMouseOverlapping = (distance < size / 2);//checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
+  return isMouseOverlapping = (distance < secondValSize / 2);//checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
 
 }
 
@@ -380,10 +379,12 @@ function moveClaw() {
     axisX = joystick.top.x - 395; // gets the position of the top of the joystick's x position and substracts it from the hardcoded value of the clawchain's x position
     axisY = joystick.top.y - 110 // gets the position of the top of the joystick's y position and substracts it from the hardcoded value of the clawchain's y position
 
-
-    // moves the claw left/right pieces as well as the chain in relation to the position of the mouseX and mouseY properties
-    clawChain.x += (axisX > 40 ? 0.5 : -0.5); //ternary conditional operator they work exactly the same as an 'if' statement but they're just displayed in one line
-    clawChain.y += (axisY > 370 ? -0.5 : 0.5); // for example: axis > 40 if yes increment by 1 if no decrement by 1
+  /*
+    this code block moves the claw's left/right pieces as well as the chain in relation to the position of the mouseX and mouseY properties
+    it uses ternary conditional operators, these work exactly the same as an 'if' statement but they're just displayed in one line
+  */
+    clawChain.x += (axisX > 40 ? 0.5 : -0.5); //for example: axis > 40 if yes increment by 0.5 if no decrement by 0.5
+    clawChain.y += (axisY > 370 ? -0.5 : 0.5);  
     claw.left.y += (axisY > 370 ? -0.5 : 0.5);
     claw.right.y += (axisY > 370 ? -0.5 : 0.5);
 
