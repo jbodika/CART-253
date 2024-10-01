@@ -4,7 +4,7 @@
 *
 * Controls:
 * - you must pay before using the machine! insert a coin in the coin slot to start the game
-* - press and hold on the machine handle to move around
+* - press and hold on the machine joystick to move around
 *
 * Uses:
 * p5.js library
@@ -23,11 +23,13 @@ const claw = {
     y: 290
   }
 }
-//FLAG VARIABLES 
-let isClicked = false
-let isCoinVisible = true;
 
-const handle = {
+const clawChain = {
+  x: 395,
+  y: 110
+};
+
+const joystick = {
   top: {
     x: 435,
     y: 480,
@@ -59,131 +61,148 @@ const colours = {
 
 }
 
-const clawChain = {
-  x: 395,
-  y: 110
-};
-
-// GLOBAL VARIABLES
-let mouseIsOverlapping;
+//FLAG VARIABLES 
+let isClicked = false
+let isCoinVisible = true;
+let isMouseOverlapping;
 
 // FUNCTIONS
 function setup() {
   createCanvas(800, 800);
 }
 
-// displays the content on the canvas
+// Continously gets called to display content on the canvas
 function draw() {
   background(colours.backgroundColour);
 
+  //draws all the key components of the arcade machine
+  drawGround();
   drawMachine();
+  drawMachineBackground();
+  drawPlushies();
+  drawClawChainBase();
+  drawClawChain();
+  drawReflectiveGlass();
+  drawToySlot();
+  drawConvexButton();
+  drawCoinSlot();
+  drawAirVents();
+  drawJoystick();
+  
+  // flag to check if the coin is on the screen or not
   if (!isCoinVisible) {
-    moveHandle();
+    moveJoystick();
     moveClaw();
   } else {
     drawCoin();
   }
-  insertCoin();
+  insertCoin(); //sets isCoinVisible to false
 
 }
 
-function drawMachine() {
-  //Ground area
-  noStroke();
+function drawGround(){ 
   push();
+  noStroke();
   fill(colours.groundColour);
   rect(0, 700, 800, 100);
   pop();
+};
 
-  //Claw machine base
+
+function drawMachine() {
   push();
   noStroke();
   fill(colours.mainBlue);
   rect(200, 50, 400, 700);
   rect(175, 720, 450, 40);
   rect(175, 500, 450, 50);
-
+ 
+  //top section
   rect(175, 20, 450, 70);
 
   triangle(175, 500, 150, 580, 215, 580);
   triangle(625, 500, 580, 580, 650, 580);
 
+  //shading area
   fill(colours.shadingBlue);
   rect(200, 580, 400, 10);
   pop();
+}
 
-
-  //toy slot
+function drawToySlot(){
   push();
   noStroke();
-  rect(460, 600, 80, 70);
   fill(colours.lightGray);
+  rect(460, 620, 80, 70);
   pop();
+}
 
-
-
-  //white screen
+function drawMachineBackground(){
   push();
   noStroke();
   fill(colours.white);
   rect(250, 80, 300, 410);
   pop();
 
-  drawPlushies();
+}
 
-
-
-  // air vents
+function drawAirVents(){
   push();
   noStroke();
   fill(colours.secondaryBlue);
   rect(280, 520, 50, 10);
   rect(280, 535, 50, 10);
   rect(280, 550, 50, 10);
+  pop();
+ 
+}
 
-  //coin slot
+function drawCoinSlot(){
+  push();
+  noStroke();
   fill(colours.lightGray);
   rect(250, 515, 20, 40);
   fill(colours.black);
   rect(257, 525, 5, 20);
-
-  //handle bottom
-  fill(colours.secondaryBlue);
-  rect(400, 520, 70, 40);
-  fill(colours.black);
-  rect(257, 525, 5, 20);
-
-  //handle base
-  fill(colours.darkGray);
-  ellipse(435, 540, 30, 30);
-  fill(colours.secondaryBlue)
+  pop();
+}
 
 
-  //Green machine button
+
+function drawConvexButton(){
+  push();
+  noStroke();
   fill(colours.secondaryBlue);
   rect(500, 520, 40, 40);
-  fill(colours.lightGray);
+  fill(colours.darkGray);
   ellipse(518, 540, 20, 20);
   fill(colours.lightGreen);
   ellipse(520, 540, 20, 20);
   pop();
+}
 
-  //claw
+function drawClawChainBase(){
   push();
   noStroke();
   fill(colours.black);
   rect(250, 80, 300, 20);
   ellipse(clawChain.x + 5, 100, 15, 15);
-  // clawchain
-  rect(clawChain.x, clawChain.y, 10, 180);
+  pop();
+}
 
+function drawClawChain(){
+  push();
+  noStroke();
+  fill(colours.black);
+  rect(clawChain.x, clawChain.y, 10, 180);
   rect(claw.left.x, claw.left.y, 10, 30);
   rect(claw.right.x, claw.right.y, 10, 30);
   pop();
+}
 
-  // //reflective glass
-  push()
-
+function drawReflectiveGlass(){
+  push();
+  noStroke();
   fill(167, 199, 203, 127);
   rect(250, 80, 300, 410);
 
@@ -192,19 +211,34 @@ function drawMachine() {
   triangle(250, 100, 550, 490, 550, 100);
 
   pop();
+}
 
-  //handle ball
+function drawJoystick(){
+  push();
+  noStroke();
+  //joystick base bottom
+  fill(colours.secondaryBlue);
+  rect(400, 520, 70, 40);
+  fill(colours.black);
+  rect(257, 525, 5, 20);
 
-  push()
+  //joystick base bottom circle
+  fill(colours.darkGray);
+  ellipse(435, 540, 30, 30);
+  fill(colours.secondaryBlue);
+
+  // joystick
   ellipse(435, 540, 20, 20);
   fill(colours.black);
-  ellipse(handle.bottom.x, handle.bottom.y, 10, 70);
+  ellipse(joystick.bottom.x, joystick.bottom.y, 10, 70);
   fill(colours.secondaryBlue);
-  ellipse(handle.top.x, handle.top.y, handle.top.size);
-  pop()
+  ellipse(joystick.top.x, joystick.top.y, joystick.top.size);
+  pop();
+
 
 
 }
+
 
 function drawCoin() {
   push()
@@ -220,32 +254,31 @@ function drawCoin() {
 
 function insertCoin() {
   const distance = dist(coin.x, coin.y, 257, 525); // code snippet taken from the conditionals challenge
-  mouseIsOverlapping = (distance < coin.size / 2);
+  isMouseOverlapping = (distance < coin.size / 2);
 
-  if (mouseIsOverlapping && mouseIsPressed) {
+  if (isMouseOverlapping && mouseIsPressed) {
     isClicked = false
     isCoinVisible = false;
-   
   }
 }
 
 
-function moveHandle() {
+function moveJoystick() {
 
-  const distance = dist(mouseX, mouseY, handle.top.x, handle.top.y); // code snippet taken from the conditionals challenge
-  mouseIsOverlapping = (distance < handle.top.size / 2);
+  const distance = dist(mouseX, mouseY, joystick.top.x, joystick.top.y); // code snippet taken from the conditionals challenge
+  isMouseOverlapping = (distance < joystick.top.size / 2);
 
 
 
-  if (mouseIsOverlapping && mouseIsPressed) {
+  if (isMouseOverlapping && mouseIsPressed) {
 
-    handle.top.x = mouseX;
-    handle.bottom.x = mouseX;
-    handle.top.y = mouseY;
+    joystick.top.x = mouseX;
+    joystick.bottom.x = mouseX;
+    joystick.top.y = mouseY;
 
-    handle.top.x = constrain(handle.top.x, 425, 450);
-    handle.top.y = constrain(handle.top.y, 465, 490);
-    handle.bottom.x = constrain(handle.bottom.x, 430, 443);
+    joystick.top.x = constrain(joystick.top.x, 425, 450);
+    joystick.top.y = constrain(joystick.top.y, 465, 490);
+    joystick.bottom.x = constrain(joystick.bottom.x, 430, 443);
 
   }
 
@@ -254,11 +287,11 @@ function moveHandle() {
 function moveClaw() {
   let axisX;
   let axisY;
-  const distance = dist(mouseX, mouseY, handle.top.x, handle.top.y); // code snippet taken from the conditionals challenge
-  mouseIsOverlapping = (distance < handle.top.size / 2);
+  const distance = dist(mouseX, mouseY, joystick.top.x, joystick.top.y); // code snippet taken from the conditionals challenge
+  isMouseOverlapping = (distance < joystick.top.size / 2);
 
 
-  if (mouseIsOverlapping && mouseIsPressed) {
+  if (isMouseOverlapping && mouseIsPressed) {
 
     clawChain.x = constrain(clawChain.x, 265, 525);
     clawChain.y = constrain(clawChain.y, 110, 270);
@@ -270,8 +303,8 @@ function moveClaw() {
     claw.right.x = constrain(claw.right.x, 280, 540);
 
 
-    axisX = handle.top.x - 395;
-    axisY = handle.top.y - 110
+    axisX = joystick.top.x - 395;
+    axisY = joystick.top.y - 110
 
     //ternary conditional operator they work exactly the same as an 'if' statement but they're just displayed in one line
     // for example: axis > 40 if yes increment by 1 if no decrement by 1
