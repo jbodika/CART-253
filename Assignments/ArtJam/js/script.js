@@ -128,7 +128,7 @@ function draw() {
 
 }
 
-// checks if the mouse overlaps with an object
+// checks if the cursor overlaps with an object
 function checkOverlap(firstValPosX,firstValPosY,secondValPosX,secondValPosY,size){
   const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
   // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
@@ -138,7 +138,7 @@ function checkOverlap(firstValPosX,firstValPosY,secondValPosX,secondValPosY,size
 
 // When the machine's button is pressed
 function buttonPressed(){
-    // returns true or false if the mouse is overlapping with the machine's button and the mouse is pressed
+    // returns true or false if the cursor is overlapping with the machine's button and the cursor is pressed
   if(checkOverlap(mouseX, mouseY, convexBtn.x, convexBtn.y,convexBtn.size) && mouseIsPressed){
     isClicked = true
     plushies.y +=1 // removes the plushies row by row once the user presses on the button
@@ -324,7 +324,7 @@ function drawCoin() {
 
 // checks if the user clicked on the coin slot with the coin
 function insertCoin() {
-  // returns true or false if the mouse is overlapping on the coin slot and the mouse is pressed
+  // returns true or false if the cursor is overlapping on the coin slot and the cursor is pressed
   if(checkOverlap(coin.x, coin.y, 257, 525,coin.size) && mouseIsPressed){
     isCoinVisible = false; // sets the flag to false once the user presses on the coin slot
   }
@@ -333,7 +333,7 @@ function insertCoin() {
 // moves the joystick based on the direction that the user is pointing towards
 function moveJoystick() {
 
-  //returns true or false if the user has the mouse hovering on the top of the joystick while pressing down with the mouse
+  //returns true or false if the user has the cursor hovering on the top of the joystick while pressing down with the mouse
   if (checkOverlap(mouseX, mouseY, joystick.top.x, joystick.top.y,joystick.top.size) && mouseIsPressed) {
     joystick.top.x = mouseX;
     joystick.bottom.x = mouseX;// moves the joystick top and bottom parts in relation to the position of the mouseX and mouseY properties
@@ -351,7 +351,7 @@ function moveJoystick() {
 function moveClaw() {
   let axisX; //declare variables
   let axisY;
-    //returns true or false if the user has the mouse hovering on the top of the joystick while pressing down with the mouse
+    //returns true or false if the user has the cursor hovering on the top of the joystick while pressing down with the mouse
   if (checkOverlap(mouseX, mouseY, joystick.top.x, joystick.top.y,joystick.top.size) && mouseIsPressed) {
     //added constraints to not exaggerate the movements 
     clawChain.x = constrain(clawChain.x, 265, 525);
