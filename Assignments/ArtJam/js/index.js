@@ -3,6 +3,7 @@
 * Jolene Bodika
 *
 * Controls:
+* - you must pay before using the machine! insert a coin in the coin slot to start the game
 * - press and hold on the machine handle to move around
 *
 * Uses:
@@ -10,6 +11,7 @@
 * https://p5js.org
 */
 
+"use strict";
 // CONSTANT VARIABLES
 const claw = {
   left: {
@@ -21,7 +23,9 @@ const claw = {
     y: 290
   }
 }
-
+//FLAG VARIABLES 
+let isClicked = false
+let isCoinVisible = true;
 
 const handle = {
   top: {
@@ -35,7 +39,11 @@ const handle = {
   }
 }
 
-
+const coin = {
+  x: undefined,
+  y: undefined,
+  size: 25
+}
 
 const colours = {
   mainBlue: "#6b82e0",
@@ -64,20 +72,20 @@ function setup() {
   createCanvas(800, 800);
 }
 
-
-
-// displays the canvas
+// displays the content on the canvas
 function draw() {
   background(colours.backgroundColour);
 
   drawMachine();
-  moveHandle();
-  moveClaw();
-  //drawPlushies()
+  if (!isCoinVisible) {
+    moveHandle();
+    moveClaw();
+  } else {
+    drawCoin();
+  }
+  insertCoin();
+
 }
-
-
-
 
 function drawMachine() {
   //Ground area
@@ -123,7 +131,7 @@ function drawMachine() {
 
   drawPlushies();
 
- 
+
 
   // air vents
   push();
@@ -167,47 +175,63 @@ function drawMachine() {
   rect(250, 80, 300, 20);
   ellipse(clawChain.x + 5, 100, 15, 15);
   // clawchain
- rect(clawChain.x, clawChain.y, 10, 180);
-  // for (let x = clawChain.y; x < 450; x += 15) {
-  //   rect(clawChain.x, x, 10, 10);
-  // }
+  rect(clawChain.x, clawChain.y, 10, 180);
+
   rect(claw.left.x, claw.left.y, 10, 30);
   rect(claw.right.x, claw.right.y, 10, 30);
   pop();
 
-   // //reflective glass
-   push()
+  // //reflective glass
+  push()
 
-   fill(167, 199, 203, 127);
-   rect(250, 80, 300, 410);
- 
-   fill(219, 225, 227, 127);
-   noStroke();
-   triangle(250, 100, 550, 490, 550, 100);
- 
-   pop();
+  fill(167, 199, 203, 127);
+  rect(250, 80, 300, 410);
 
-     //handle ball
+  fill(219, 225, 227, 127);
+  noStroke();
+  triangle(250, 100, 550, 490, 550, 100);
+
+  pop();
+
+  //handle ball
 
   push()
   ellipse(435, 540, 20, 20);
-  fill(colours.black);      
+  fill(colours.black);
   ellipse(handle.bottom.x, handle.bottom.y, 10, 70);
   fill(colours.secondaryBlue);
   ellipse(handle.top.x, handle.top.y, handle.top.size);
   pop()
- 
+
+
+}
+
+function drawCoin() {
+  push()
+  fill('#eeb501');
+  ellipse(coin.x, coin.y, coin.size);
+  coin.x = mouseX
+  coin.y = mouseY
+  pop()
+
 
 }
 
 
+function insertCoin() {
+  const distance = dist(coin.x, coin.y, 257, 525); // code snippet taken from the conditionals challenge
+  mouseIsOverlapping = (distance < coin.size / 2);
 
-
-
+  if (mouseIsOverlapping && mouseIsPressed) {
+    isClicked = false
+    isCoinVisible = false;
+   
+  }
+}
 
 
 function moveHandle() {
- 
+
   const distance = dist(mouseX, mouseY, handle.top.x, handle.top.y); // code snippet taken from the conditionals challenge
   mouseIsOverlapping = (distance < handle.top.size / 2);
 
@@ -223,7 +247,18 @@ function moveHandle() {
     handle.top.y = constrain(handle.top.y, 465, 490);
     handle.bottom.x = constrain(handle.bottom.x, 430, 443);
 
+  }
 
+}
+
+function moveClaw() {
+  let axisX;
+  let axisY;
+  const distance = dist(mouseX, mouseY, handle.top.x, handle.top.y); // code snippet taken from the conditionals challenge
+  mouseIsOverlapping = (distance < handle.top.size / 2);
+
+
+  if (mouseIsOverlapping && mouseIsPressed) {
 
     clawChain.x = constrain(clawChain.x, 265, 525);
     clawChain.y = constrain(clawChain.y, 110, 270);
@@ -238,44 +273,24 @@ function moveHandle() {
     axisX = handle.top.x - 395;
     axisY = handle.top.y - 110
 
-    //ternary conditional operator they work exactly the same as an if function but they're just displayed in one line
-    // axis > 40 if yes increment by 1 if not decrement by 1
-    clawChain.x += (axisX > 40 ? 1 : -1);
-    clawChain.y +=(axisY > 370 ? -1 : 1);
-    claw.left.y +=(axisY > 370 ? -1 : 1);
-    claw.right.y +=(axisY > 370 ? -1 : 1);
+    //ternary conditional operator they work exactly the same as an 'if' statement but they're just displayed in one line
+    // for example: axis > 40 if yes increment by 1 if no decrement by 1
+    clawChain.x += (axisX > 40 ? 0.5 : -0.5);
+    clawChain.y += (axisY > 370 ? -0.5 : 0.5);
+    claw.left.y += (axisY > 370 ? -0.5 : 0.5);
+    claw.right.y += (axisY > 370 ? -0.5 : 0.5);
 
-    claw.left.x += (axisX > 40 ? 1 : -1);
-    claw.right.x += (axisX > 40 ? 1 : -1);
-
-
+    claw.left.x += (axisX > 40 ? 0.5 : -0.5);
+    claw.right.x += (axisX > 40 ? 0.5 : -0.5);
   }
-
-
-
 }
-
-function moveClaw() {
-
-  // let axisX = Number;
-  //   clawChain.x = constrain(clawChain.x, 265, 525);
-  //   claw.left.x = constrain(claw.left.x, 250, 510);
-  //   claw.right.x = constrain(claw.right.x, 280, 540);
-
-
-  //   axisX = handle.top.x - 395;
-
-  //   clawChain.x += (axisX > 40 ? 1 : -1);
-  //   claw.left.x += (axisX > 40 ? 1 : -1);
-  //   claw.right.x += (axisX > 40 ? 1 : -1);
-  }
 
 
 function drawPlushies() {
   let colourArray = ['#f920aa', '#20aaf9', '#aaf920', '#ad03de', '#FF7518']
   push();
   noStroke();
-  let linejump = 0;
+  let lineJump = 0;
   for (let i = 265; i < 550; i += 30) {
     for (let j = 350; j < 500; j += 30) {
       fill(colourArray.slice(-1));
@@ -283,9 +298,9 @@ function drawPlushies() {
       // added functionality to change the colours of the toys
       //every toy the linejump varibale gets incremented
       // once it reaches 10 in removes the last colour from the colourArray
-      linejump++;
-      if (linejump == 10) {
-        linejump = 0;
+      lineJump++;
+      if (lineJump == 10) {
+        lineJump = 0;
         colourArray.pop();
 
       }
@@ -294,7 +309,5 @@ function drawPlushies() {
   }
 
   pop()
-
-
 
 }
