@@ -20,6 +20,8 @@
 "use strict";
 
 // DECLARE CONSTANT VARIABLES
+
+// arcade machine's claw 
 const claw = {
   left: {
     x: 380,
@@ -30,12 +32,13 @@ const claw = {
     y: 290
   }
 }
-
+// the chain attcahed to the claw
 const clawChain = {
   x: 395,
   y: 110
 };
 
+// joystick to control the claw/clawchain
 const joystick = {
   top: {
     x: 435,
@@ -48,23 +51,26 @@ const joystick = {
   }
 }
 
+// coin to pay to use the machine
 const coin = {
   x: undefined,
   y: undefined,
   size: 25
 }
 
+// toys inside the machine
 const plushies = {
   x: 265,
   y: 350
 }
-
+// button to pick up your prize
 const convexBtn = {
   x: 520,
   y: 540,
   size: 20
 }
 
+// all colours used in the program
 const colours = {
   mainBlue: "#6b82e0",
   secondaryBlue: "#1f3694",
@@ -128,7 +134,15 @@ function draw() {
 
 }
 
-// checks if the cursor overlaps with an object
+/* Checks if the cursor overlaps with an object
+*
+* @param firstValPosX - Object 1's value X position
+* @param firstValPosY - Object 1's value Y position
+* @param secondValPosX - Object 2's value X position
+* @param secondValPosY - Object 2's value Y position
+* @param size - Object 2's size value
+*/
+
 function checkOverlap(firstValPosX, firstValPosY, secondValPosX, secondValPosY, size) {
   const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
   // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
