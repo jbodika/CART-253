@@ -5,7 +5,7 @@
 * Controls:
 * - you must pay before using the machine! insert a coin in the coin slot to start the game
 * - press and hold on the machine joystick to move around
-*
+* - press and hold on the green button to claim your prize
 * Uses:
 * p5.js library
 * https://p5js.org
@@ -47,6 +47,17 @@ const coin = {
   size: 25
 }
 
+const plushies = {
+  x: 265,
+  y: 350
+}
+
+const convexBtn ={
+  x:520,
+  y:540,
+  size:20
+}
+
 const colours = {
   mainBlue: "#6b82e0",
   secondaryBlue: "#1f3694",
@@ -65,6 +76,12 @@ const colours = {
 let isClicked = false
 let isCoinVisible = true;
 let isMouseOverlapping;
+let img;
+
+
+function preload() {
+  img = loadImage('./images/wreck_it_ralph___out_of_order_by_aki5-d5k5pv3.jpg');
+}
 
 // FUNCTIONS
 function setup() {
@@ -73,13 +90,13 @@ function setup() {
 
 // Continously gets called to display content on the canvas
 function draw() {
+  
   background(colours.backgroundColour);
 
   //draws all the key components of the arcade machine
   drawGround();
+   
   drawMachine();
-  drawMachineBackground();
-  drawPlushies();
   drawClawChainBase();
   drawClawChain();
   drawReflectiveGlass();
@@ -88,19 +105,48 @@ function draw() {
   drawCoinSlot();
   drawAirVents();
   drawJoystick();
-  
+
+
+
   // flag to check if the coin is on the screen or not
   if (!isCoinVisible) {
     moveJoystick();
     moveClaw();
-  } else {
+    buttonPressed();
+ 
+  } 
+  else {
     drawCoin();
   }
   insertCoin(); //sets isCoinVisible to false
 
 }
 
-function drawGround(){ 
+function buttonPressed(){
+  const distance = dist(mouseX, mouseY, convexBtn.x, convexBtn.y); // code snippet taken from the conditionals challenge
+  isMouseOverlapping = (distance < convexBtn.size / 2);
+
+  if (isMouseOverlapping && mouseIsPressed){
+    isClicked = true
+     plushies.y +=1
+    brokenGame();
+  }else{
+    isClicked = false
+  }
+   
+}
+
+function brokenGame(){
+
+    image(img,340,230, 150, 200)
+  noStroke()
+  fill(0, 0, 0,127)
+  rect(0,0,800,800)
+ 
+  
+}
+
+function drawGround() {
   push();
   noStroke();
   fill(colours.groundColour);
@@ -115,8 +161,11 @@ function drawMachine() {
   fill(colours.mainBlue);
   rect(200, 50, 400, 700);
   rect(175, 720, 450, 40);
-  rect(175, 500, 450, 50);
+  drawMachineBackground();
+  drawPlushies();
+  rect(175, 490, 450, 60);
  
+  
   //top section
   rect(175, 20, 450, 70);
 
@@ -127,9 +176,10 @@ function drawMachine() {
   fill(colours.shadingBlue);
   rect(200, 580, 400, 10);
   pop();
+  
 }
 
-function drawToySlot(){
+function drawToySlot() {
   push();
   noStroke();
   fill(colours.lightGray);
@@ -137,7 +187,7 @@ function drawToySlot(){
   pop();
 }
 
-function drawMachineBackground(){
+function drawMachineBackground() {
   push();
   noStroke();
   fill(colours.white);
@@ -146,7 +196,7 @@ function drawMachineBackground(){
 
 }
 
-function drawAirVents(){
+function drawAirVents() {
   push();
   noStroke();
   fill(colours.secondaryBlue);
@@ -154,10 +204,10 @@ function drawAirVents(){
   rect(280, 535, 50, 10);
   rect(280, 550, 50, 10);
   pop();
- 
+
 }
 
-function drawCoinSlot(){
+function drawCoinSlot() {
   push();
   noStroke();
   fill(colours.lightGray);
@@ -169,19 +219,23 @@ function drawCoinSlot(){
 
 
 
-function drawConvexButton(){
+function drawConvexButton() {
   push();
   noStroke();
   fill(colours.secondaryBlue);
   rect(500, 520, 40, 40);
   fill(colours.darkGray);
-  ellipse(518, 540, 20, 20);
-  fill(colours.lightGreen);
-  ellipse(520, 540, 20, 20);
+  ellipse(518, 540, 20);
+
+  let blue = map(mouseX, 0, width, 0, 255); 
+  let green = map(mouseY, 0, height, 0, 255);
+  
+  fill(0, green, blue); 
+  ellipse(convexBtn.x, convexBtn.y, 20, 20);
   pop();
 }
 
-function drawClawChainBase(){
+function drawClawChainBase() {
   push();
   noStroke();
   fill(colours.black);
@@ -190,7 +244,7 @@ function drawClawChainBase(){
   pop();
 }
 
-function drawClawChain(){
+function drawClawChain() {
   push();
   noStroke();
   fill(colours.black);
@@ -200,7 +254,7 @@ function drawClawChain(){
   pop();
 }
 
-function drawReflectiveGlass(){
+function drawReflectiveGlass() {
   push();
   noStroke();
   fill(167, 199, 203, 127);
@@ -213,7 +267,7 @@ function drawReflectiveGlass(){
   pop();
 }
 
-function drawJoystick(){
+function drawJoystick() {
   push();
   noStroke();
   //joystick base bottom
@@ -242,7 +296,7 @@ function drawJoystick(){
 
 function drawCoin() {
   push()
-  fill('#eeb501');
+  fill("#eeb501")
   ellipse(coin.x, coin.y, coin.size);
   coin.x = mouseX
   coin.y = mouseY
@@ -257,7 +311,6 @@ function insertCoin() {
   isMouseOverlapping = (distance < coin.size / 2);
 
   if (isMouseOverlapping && mouseIsPressed) {
-    isClicked = false
     isCoinVisible = false;
   }
 }
@@ -302,7 +355,6 @@ function moveClaw() {
     claw.left.x = constrain(claw.left.x, 250, 510);
     claw.right.x = constrain(claw.right.x, 280, 540);
 
-
     axisX = joystick.top.x - 395;
     axisY = joystick.top.y - 110
 
@@ -319,15 +371,20 @@ function moveClaw() {
 }
 
 
+
 function drawPlushies() {
   let colourArray = ['#f920aa', '#20aaf9', '#aaf920', '#ad03de', '#FF7518']
-  push();
-  noStroke();
+
   let lineJump = 0;
-  for (let i = 265; i < 550; i += 30) {
-    for (let j = 350; j < 500; j += 30) {
-      fill(colourArray.slice(-1));
+  for (let i = plushies.x; i < 550; i += 30) {
+    for (let j = plushies.y; j < 500; j += 30) {
+      push();
+      noStroke();
+      //fill('black')
+
+     fill(colourArray.slice(-1));
       ellipse(i, j, 30);
+      pop()
       // added functionality to change the colours of the toys
       //every toy the linejump varibale gets incremented
       // once it reaches 10 in removes the last colour from the colourArray
@@ -341,6 +398,6 @@ function drawPlushies() {
     }
   }
 
-  pop()
+
 
 }
