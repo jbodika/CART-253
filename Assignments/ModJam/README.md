@@ -12,3 +12,8 @@ Listed below are the
 - [Planning](./planning.md)
 - [Pseudocode](./pseudocode.md)
 - [New Features Brainstorming](./new-features-ideas.md)
+
+
+Attributions
+Heart Image from Pixabay [Link to image](https://pixabay.com/illustrations/pixel-heart-heart-pixel-symbol-red-2779422/)
+Blank Heart Image from PNG EGG [Link to image](https://www.pngegg.com/en/png-cwvxw)

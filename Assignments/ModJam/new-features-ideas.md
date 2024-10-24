@@ -8,4 +8,4 @@ Here are the ideas
 5. **3 Lives? if the frog misses 3 times the game is over**
 6. As the frog eats more flies it gets bigger and bigger 
 7. As the game gets harder maybe a snake tries to eat it or when it gets at a certain number like 30?
-8. **Add sound when flies are caught**
+8. ~~**Add sound when flies are caught**~~

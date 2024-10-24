@@ -44,10 +44,15 @@ const fly = {
 };
 //declare gloabal variable 
 let frogSound;
+let heartImg;
+let blankHeartImg;
+let fliesSkipped = 0
 
 //function to load assets before the page is loaded
 function preload() {
-    frogSound = loadSound("assets/sounds/frogCroaking.wav")
+    frogSound = loadSound("assets/sounds/frogCroaking.wav");
+    heartImg = loadImage("assets/images/pixel-heart-2779422_1280.png")
+    blankHeartImg = loadImage("assets/images/blankHeart.png")
 }
 
 /**
@@ -62,17 +67,42 @@ function setup() {
 }
 
 function draw() {
-    //frameRate(60)
     background("#87ceeb");
-    moveFly();
-    drawFly();
-    moveFrog();
-    moveTongue();
-    drawFrog();
-    checkTongueFlyOverlap();
+    if (gameOver()) {
+        moveFly();
+        drawFly();
+        moveFrog();
+        moveTongue();
+        drawFrog();
+        drawHearts();
+        checkTongueFlyOverlap();
+        moveHearts()
+    }
+
 
 }
 
+let yOffset = 0; // Variable to control the y-position of the image
+let speed = 0.02; // Speed of the movement
+
+
+function drawHearts() {
+
+    if (fliesSkipped == 1) {
+        image(blankHeartImg, 60, 15 + yOffset);
+    }
+    // Create the up-down movementwith the sin() function
+    yOffset = sin(frameCount * speed) * 5; // Adjust the amplitude by 5
+    image(heartImg, 0, 15 + yOffset);
+    image(heartImg, 30, 15 + yOffset);
+    image(heartImg, 60, 15 + yOffset);
+
+
+}
+
+function moveHearts() {
+    // heart1.x += 2
+}
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
@@ -83,7 +113,18 @@ function moveFly() {
     // Handle the fly going off the canvas
     if (fly.x > width) {
         resetFly();
+        fliesSkipped++
+        console.log(fliesSkipped)
     }
+}
+
+function gameOver() {
+    if (fliesSkipped == 3) {
+        textSize(20)
+        text('its over', width / 2, height / 2)
+        return false
+    }
+    return true
 }
 
 /**
