@@ -42,18 +42,27 @@ const fly = {
     size: 10,
     speed: 3
 };
+//declare gloabal variable 
+let frogSound;
+
+//function to load assets before the page is loaded
+function preload() {
+    frogSound = loadSound("assets/sounds/frogCroaking.wav")
+}
 
 /**
  * Creates the canvas and initializes the fly
  */
 function setup() {
     createCanvas(640, 480);
-
+    // Suspending the audio to wait for user input
+    getAudioContext().suspend();
     // Give the fly its first random position
     resetFly();
 }
 
 function draw() {
+    //frameRate(60)
     background("#87ceeb");
     moveFly();
     drawFly();
@@ -61,6 +70,7 @@ function draw() {
     moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
+
 }
 
 /**
@@ -118,6 +128,7 @@ function moveTongue() {
         // The tongue bounces back if it hits the top
         if (frog.tongue.y <= 0) {
             frog.tongue.state = "inbound";
+
         }
     }
     // If the tongue is inbound, it moves down
@@ -163,12 +174,13 @@ function checkTongueFlyOverlap() {
     // Get distance from tongue to fly
     const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
     // Check if it's an overlap
-    const eaten = (d < frog.tongue.size/2 + fly.size/2);
+    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
     if (eaten) {
         // Reset the fly
         resetFly();
         // Bring back the tongue
         frog.tongue.state = "inbound";
+        frogSound.play() // play the frog sound
     }
 }
 
@@ -177,6 +189,8 @@ function checkTongueFlyOverlap() {
  */
 function mousePressed() {
     if (frog.tongue.state === "idle") {
+        //Allow audio after user input
+        userStartAudio();
         frog.tongue.state = "outbound";
     }
 }
