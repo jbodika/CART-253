@@ -77,6 +77,7 @@ function draw() {
         drawHearts();
         checkTongueFlyOverlap();
         moveHearts()
+        drawScore()
     }
 
 
@@ -85,18 +86,42 @@ function draw() {
 let yOffset = 0; // Variable to control the y-position of the image
 let speed = 0.02; // Speed of the movement
 
+function drawScore() {
+    push();
+    textAlign(RIGHT, TOP);
+    fill('white');
+    text('Score', width - 10, 10);
+    pop();
+    textSize(20);
+}
+
 
 function drawHearts() {
-
-    if (fliesSkipped == 1) {
-        image(blankHeartImg, 60, 15 + yOffset);
-    }
-    // Create the up-down movementwith the sin() function
+    // // Create the up-down movementwith the sin() function
     yOffset = sin(frameCount * speed) * 5; // Adjust the amplitude by 5
-    image(heartImg, 0, 15 + yOffset);
-    image(heartImg, 30, 15 + yOffset);
-    image(heartImg, 60, 15 + yOffset);
+    switch (fliesSkipped) {
+        case 1:
+            image(heartImg, width - 100, 30 + yOffset);
+            image(heartImg, width - 70, 30 + yOffset);
+            image(blankHeartImg, width - 40, 30 + yOffset);
+            break;
+        case 2:
+            image(heartImg, width - 100, 30 + yOffset);
+            image(blankHeartImg, width - 70, 30 + yOffset);
+            image(blankHeartImg, width - 40, 30 + yOffset);
+            break;
 
+        case 3:
+            image(blankHeartImg, width - 100, 30 + yOffset);
+            image(blankHeartImg, width - 70, 30 + yOffset);
+            image(blankHeartImg, width - 40, 30 + yOffset);
+            break;
+
+        default:
+            image(heartImg, width - 100, 30 + yOffset);
+            image(heartImg, width - 70, 30 + yOffset);
+            image(heartImg, width - 40, 30 + yOffset);
+    }
 
 }
 
@@ -119,7 +144,7 @@ function moveFly() {
 }
 
 function gameOver() {
-    if (fliesSkipped == 3) {
+    if (fliesSkipped == 4) {
         textSize(20)
         text('its over', width / 2, height / 2)
         return false
