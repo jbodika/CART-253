@@ -78,11 +78,14 @@ let blankHeartImg;
 let fliesSkipped = 0
 let score = 0
 let fly;
+let expansionFrames = 0
 let yOffset = 0; // Variable to control the y-position of the image
 let speed = 0.02; // Speed of the movement
 
+//DECLARE FLAG VARIABLES
+let expanding = false;
 
-//function to load assets before the page is loaded
+/**Function to load assets before the page is loaded*/
 function preload() {
     frogSound = loadSound("assets/sounds/frogCroaking.wav");
     heartImg = loadImage("assets/images/pixel-heart-2779422_1280.png")
@@ -105,7 +108,7 @@ function setup() {
 
 function draw() {
     background("#87ceeb");
-    if (gameOver()) {
+    if (gameInProgress()) {
         moveFly(fly);
         drawFly(fly);
         moveFrog();
@@ -114,11 +117,24 @@ function draw() {
         drawHearts();
         checkTongueFlyOverlap();
         drawScore()
+
     }
+    frogOverload();
 
 
 }
 
+
+function frogOverload() {
+    if (expanding && expansionFrames < 100) {
+        frog.body.size += 100; // Increase the size of the frog
+        textSize(20);
+        text('Oh no! You ate too much...', width / 2, height / 2);
+        expansionFrames++; // Increment the frames
+    }
+
+
+}
 /*randomize the type of fly to appear*/
 function randomizeFly() {
     let flyArray = [houseFlies, craneFlies, fruitFlies]
@@ -142,6 +158,11 @@ function drawHearts() {
     //  Create the up-down movement with the sin() function
     yOffset = sin(frameCount * speed) * 5; // Adjust the amplitude by 5
     switch (fliesSkipped) {
+        case 0:
+            image(heartImg, width - 100, 30 + yOffset);
+            image(heartImg, width - 70, 30 + yOffset);
+            image(heartImg, width - 40, 30 + yOffset);
+            break;
         case 1:
             image(heartImg, width - 100, 30 + yOffset);
             image(heartImg, width - 70, 30 + yOffset);
@@ -158,11 +179,6 @@ function drawHearts() {
             image(blankHeartImg, width - 70, 30 + yOffset);
             image(blankHeartImg, width - 40, 30 + yOffset);
             break;
-
-        default:
-            image(heartImg, width - 100, 30 + yOffset);
-            image(heartImg, width - 70, 30 + yOffset);
-            image(heartImg, width - 40, 30 + yOffset);
     }
 
 }
@@ -190,13 +206,32 @@ function moveFly(fly) {
 }
 
 
-function gameOver() {
-    if (fliesSkipped == 4) {
-        textSize(20)
-        text('its over', width / 2, height / 2)
-        return false
+function gameInProgress() {
+
+    if (fliesSkipped == 4) { //End game if 4 flies have been skipped
+        textSize(20);
+        text('Game over!', width / 2, height / 2);
+        return false;
     }
-    return true
+
+    // If the score is over 100 the frog will expand
+    if (score > 100 && !expanding) {
+        expanding = true; // flag to expand the frog
+    }
+
+    // While the frog is expanding the game will keep running to show the animation
+    if (expanding && expansionFrames < 100) {
+        return true; //flag to expand the frog
+    }
+
+    // If expansionFrames reaches 100, the game ends
+    if (expansionFrames >= 100) {
+        textSize(20);
+        text('Game over!', width / 2, height / 2);
+        return false;
+    }
+
+    return true;
 }
 
 /**
@@ -278,6 +313,7 @@ function drawFrog() {
     noStroke();
     ellipse(frog.body.x, frog.body.y, frog.body.size);
     pop();
+
 }
 
 /**
@@ -296,6 +332,8 @@ function checkTongueFlyOverlap() {
         // Bring back the tongue
         frog.tongue.state = "inbound";
         score += fly.pointVal // increment the score based on the point value of the fly
+        frog.body.size += fly.pointVal // increase the size of the frog
+        console.log(frog.body.size)
         frogSound.play() // play the frog sound
     }
 }
