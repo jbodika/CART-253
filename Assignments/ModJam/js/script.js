@@ -16,6 +16,15 @@
 "use strict";
 
 //DECLARE CONSTANT VARIABLES
+const snake = {
+    body: {
+
+        x: 90,
+        y: 300,
+        size: 100
+    }
+}
+
 // Our frog
 const frog = {
     // The frog's body has a position and size
@@ -116,14 +125,34 @@ function draw() {
         drawFrog();
         drawHearts();
         checkTongueFlyOverlap();
-        drawScore()
+        drawScore();
+
+        // Harder level with snake starts
+        if (score > 50) {
+            drawSnake();
+            moveSnake();
+        }
+
 
     }
     frogOverload();
 
 
 }
+/** Draws snake*/
+function drawSnake() {
+    // Draw snake body
+    push();
+    stroke("#7E825D");
+    strokeWeight(snake.body.size);
+    line(snake.body.x, 20, snake.body.x, snake.body.y);
+    pop();
 
+}
+
+function moveSnake() {
+    snake.body.y += 5 // makes the snake go down the y axis of the canvas
+}
 
 function frogOverload() {
     if (expanding && expansionFrames < 100) {
@@ -231,6 +260,12 @@ function gameInProgress() {
         return false;
     }
 
+    if (checkOverlap(snake.body.x, snake.body.y, frog.body.x, frog.body.y, frog.body.size)) {
+        textSize(20);
+        text('You got eaten by a snake :(', width / 2, height / 2);
+        return false;
+    }
+
     return true;
 }
 
@@ -250,7 +285,10 @@ function drawFly(fly) {
  */
 function resetFly() {
     fly.x = 0;
-    fly.y = random(70, 300);
+    fly.y = random(70, 300); // random position on y axis for the fly to appear on
+
+    snake.body.x = random(70, width - 200); // picks a random position for the snake to appear from
+    snake.body.y = 0
 }
 
 /**
@@ -336,6 +374,20 @@ function checkTongueFlyOverlap() {
         console.log(frog.body.size)
         frogSound.play() // play the frog sound
     }
+}
+
+/* Checks if the cursor overlaps with an object
+ *
+ * @param firstValPosX - Object 1's value X position
+ * @param firstValPosY - Object 1's value Y position
+ * @param secondValPosX - Object 2's value X position
+ * @param secondValPosY - Object 2's value Y position
+ * @param secondValSize - Object 2's size value
+ */
+function checkOverlap(firstValPosX, firstValPosY, secondValPosX, secondValPosY, secondValSize) {
+    const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
+    // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
+    return (distance < secondValSize / 2); //checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
 }
 
 /**
