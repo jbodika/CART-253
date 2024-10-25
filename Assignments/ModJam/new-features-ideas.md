@@ -9,3 +9,4 @@ Here are the ideas
 6. As the frog eats more flies it gets bigger and bigger 
 7. As the game gets harder maybe a snake tries to eat it or when it gets at a certain number like 30?
 8. ~~**Add sound when flies are caught**~~
+9. ~~**Add scoring system**~~

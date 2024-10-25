@@ -47,12 +47,14 @@ let frogSound;
 let heartImg;
 let blankHeartImg;
 let fliesSkipped = 0
+let score = 0
 
 //function to load assets before the page is loaded
 function preload() {
     frogSound = loadSound("assets/sounds/frogCroaking.wav");
     heartImg = loadImage("assets/images/pixel-heart-2779422_1280.png")
     blankHeartImg = loadImage("assets/images/blankHeart.png")
+
 }
 
 /**
@@ -89,9 +91,11 @@ let speed = 0.02; // Speed of the movement
 function drawScore() {
     push();
     textAlign(RIGHT, TOP);
+    textStyle(BOLD);
     fill('white');
-    text('Score', width - 10, 10);
+    text('Score: ' + score, width - 10, 10);
     pop();
+
     textSize(20);
 }
 
@@ -246,6 +250,7 @@ function checkTongueFlyOverlap() {
         resetFly();
         // Bring back the tongue
         frog.tongue.state = "inbound";
+        score++ // increment the score
         frogSound.play() // play the frog sound
     }
 }
