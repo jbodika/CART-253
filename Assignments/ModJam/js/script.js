@@ -18,7 +18,6 @@
 //DECLARE CONSTANT VARIABLES
 const snake = {
     body: {
-
         x: 90,
         y: 300,
         size: 100
@@ -47,23 +46,72 @@ const frog = {
 
 // Has a position, size, and speed of horizontal movement
 const houseFlies = {
-    x: 0,
-    y: 200, // Will be random
-    size: 10,
-    speed: 3,
-    colour: '#181C14',
+    body: {
+        x: 0,
+        y: 200, // Will be random
+        size: 10,
+        colour: '#181C14',
+    },
+    speed: 5,
     pointVal: 1,
     minShake: -0.5,
     maxShake: 0.35
 };
 
+
+// Has a position, size, and speed of horizontal movement
+const apples = {
+    body: {
+        x: 0,
+        y: 200, // Will be random
+        size: 10,
+        colour: 'red',
+    },
+    speed: 8,
+    pointVal: -3,
+    minShake: 0,
+    maxShake: 0
+};
+
+// Has a position, size, and speed of horizontal movement
+const watermelon = {
+    body: {
+        x: 0,
+        y: 200, // Will be random
+        size: 20,
+        colour: 'green',
+    },
+    speed: 12,
+    pointVal: -7,
+    minShake: 0,
+    maxShake: 0
+};
+
+// Has a position, size, and speed of horizontal movement
+const orange = {
+    body: {
+        x: 0,
+        y: 200, // Will be random
+        size: 15,
+        colour: 'orange',
+    },
+    speed: 3,
+    pointVal: -5,
+    minShake: 0,
+    maxShake: 0
+};
+
 // Has a position, size, and speed of horizontal movement
 const craneFlies = {
-    x: 0,
-    y: 200, // Will be random
-    size: 7,
+    body: {
+        x: 0,
+        y: 200, // Will be random
+        size: 7,
+        colour: '#697565',
+    },
+
     speed: 4,
-    colour: '#697565',
+
     pointVal: 3,
     minShake: -0.10,
     maxShake: 0.40
@@ -71,11 +119,15 @@ const craneFlies = {
 
 // Has a position, size, and speed of horizontal movement
 const fruitFlies = {
-    x: 0,
-    y: 200, // Will be random
-    size: 5,
+    body: {
+        x: 0,
+        y: 200, // Will be random
+        size: 5,
+        colour: '#3C3D37',
+    },
+
     speed: 5,
-    colour: '#3C3D37',
+
     pointVal: 7,
     minShake: -0.50,
     maxShake: 0.80
@@ -110,6 +162,7 @@ function setup() {
     // Suspending the audio to wait for user input
     getAudioContext().suspend();
     fly = randomizeFly() // assign the first random fly type to the fly variable
+    randomItem = randomizeItem()
         // Give the fly its first random position
     resetFly();
 }
@@ -126,6 +179,8 @@ function draw() {
         drawHearts();
         checkTongueFlyOverlap();
         drawScore();
+        drawElement(randomItem)
+        moveItems(randomItem)
 
         // Harder level with snake starts
         if (score > 50) {
@@ -158,6 +213,7 @@ function frogOverload() {
     if (expanding && expansionFrames < 100) {
         frog.body.size += 100; // Increase the size of the frog
         textSize(20);
+        textAlign(CENTER);
         text('Oh no! You ate too much...', width / 2, height / 2);
         expansionFrames++; // Increment the frames
     }
@@ -219,27 +275,29 @@ function drawHearts() {
  */
 function moveFly(fly) {
     // Move the fly
-    fly.x += fly.speed;
+    fly.body.x += fly.speed;
 
     // Add random shaking motion to both x and y values
-    fly.x += random(fly.minShake, fly.maxShake); // Horizontal shake
-    fly.y += random(fly.minShake, fly.maxShake); // Vertical shake 
+    fly.body.x += random(fly.minShake, fly.maxShake); // Horizontal shake
+    fly.body.y += random(fly.minShake, fly.maxShake); // Vertical shake 
     // Handle the fly going off the canvas
-    if (fly.x > width) {
+    if (fly.body.x > width) {
         // Select a random fly type
         fly = randomizeFly()
         resetFly(fly); // Reset the fly
         fliesSkipped++
-        console.log(fliesSkipped)
     }
 }
+
 
 
 function gameInProgress() {
 
     if (fliesSkipped == 4) { //End game if 4 flies have been skipped
         textSize(20);
-        text('Game over!', width / 2, height / 2);
+        textAlign(CENTER);
+
+        text('Game over \n Your score is: ' + score, width / 2, height / 2);
         return false;
     }
 
@@ -256,13 +314,15 @@ function gameInProgress() {
     // If expansionFrames reaches 100, the game ends
     if (expansionFrames >= 100) {
         textSize(20);
-        text('Game over!', width / 2, height / 2);
+        textAlign(CENTER);
+        text('Game over \n Your score is: ' + score, width / 2, height / 2);
         return false;
     }
 
     if (checkOverlap(snake.body.x, snake.body.y, frog.body.x, frog.body.y, frog.body.size)) {
         textSize(20);
-        text('You got eaten by a snake :(', width / 2, height / 2);
+        textAlign(CENTER);
+        text('You got eaten by a snake :( \nYour score is: ' + score, width / 2, height / 2);
         return false;
     }
 
@@ -275,17 +335,44 @@ function gameInProgress() {
 function drawFly(fly) {
     push();
     noStroke();
-    fill(fly.colour);
-    ellipse(fly.x, fly.y, fly.size);
+    fill(fly.body.colour);
+    ellipse(fly.body.x, fly.body.y, fly.body.size);
     pop();
+}
+
+function drawElement(element) {
+    push();
+    noStroke();
+    fill(element.body.colour);
+    ellipse(element.body.x, element.body.y, element.body.size);
+    pop();
+}
+
+let randomItem = randomizeItem()
+
+function moveItems() {
+    if (checkOverlap(randomItem.body.x, randomItem.body.y, frog.tongue.x, frog.tongue.y, frog.tongue.size)) {
+        score += randomItem.pointVal
+        fliesSkipped += 1
+        randomItem = randomizeItem()
+    }
+
+    randomItem.body.x += randomItem.speed
+
+
+}
+
+function randomizeItem() {
+    let foodArray = [apples, watermelon, orange]
+    return foodArray[Math.floor(Math.random() * foodArray.length)]
 }
 
 /**
  * Resets the fly to the left with a random y
  */
 function resetFly() {
-    fly.x = 0;
-    fly.y = random(70, 300); // random position on y axis for the fly to appear on
+    fly.body.x = 0;
+    fly.body.y = random(70, 300); // random position on y axis for the fly to appear on
 
     snake.body.x = random(70, width - 200); // picks a random position for the snake to appear from
     snake.body.y = 0
@@ -359,20 +446,21 @@ function drawFrog() {
  */
 function checkTongueFlyOverlap() {
     // Get distance from tongue to fly
-    const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
+    const d = dist(frog.tongue.x, frog.tongue.y, fly.body.x, fly.body.y);
     // Check if it's an overlap
-    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
+    const eaten = (d < frog.tongue.size / 2 + fly.body.size / 2);
     if (eaten) {
-        // Select a random fly type
-        fly = randomizeFly()
+        fly = randomizeFly() // Select a random fly type
             // Reset the fly
         resetFly(fly);
+        randomItem = randomizeItem()
+
         // Bring back the tongue
         frog.tongue.state = "inbound";
         score += fly.pointVal // increment the score based on the point value of the fly
         frog.body.size += fly.pointVal // increase the size of the frog
-        console.log(frog.body.size)
         frogSound.play() // play the frog sound
+
     }
 }
 
