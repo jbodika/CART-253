@@ -1,7 +1,6 @@
 # Potential features to implement
-Here are the ideas 
 
-1. **Add a scoring system based on the flies caught (assign different points based on the type of fly?)** -> houseflies (1) , fruit flies(3), and crane flies (7)
+1. ~~**Add a scoring system based on the flies caught (assign different points based on the type of fly?)** -> houseflies (1) , fruit flies(3), and crane flies (7)~~
 2. **Add items that frogs can't eat (do research)** ->  human food
 3. **Add a shaking feature to the flies moving around**
 4. Display the flies falling with the frog's tongue

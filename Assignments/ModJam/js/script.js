@@ -1,6 +1,6 @@
 /**
- * Frogfrogfrog
- * Pippin Barr
+ * Frogfrogfrog Mod Jam
+ * Jolene Bodika
  * 
  * A game of catching flies with your frog-tongue
  * 
@@ -15,6 +15,7 @@
 
 "use strict";
 
+//DECLARE CONSTANT VARIABLES
 // Our frog
 const frog = {
     // The frog's body has a position and size
@@ -34,20 +35,46 @@ const frog = {
     }
 };
 
-// Our fly
+
 // Has a position, size, and speed of horizontal movement
-const fly = {
+const houseFlies = {
     x: 0,
     y: 200, // Will be random
     size: 10,
-    speed: 3
+    speed: 3,
+    colour: '#181C14',
+    pointVal: 1
 };
-//declare gloabal variable 
+
+// Has a position, size, and speed of horizontal movement
+const craneFlies = {
+    x: 0,
+    y: 200, // Will be random
+    size: 7,
+    speed: 4,
+    colour: '#697565',
+    pointVal: 3
+};
+
+// Has a position, size, and speed of horizontal movement
+const fruitFlies = {
+    x: 0,
+    y: 200, // Will be random
+    size: 5,
+    speed: 5,
+    colour: '#3C3D37',
+    pointVal: 7
+};
+//DECLARE GLOABAL VARIABLES
 let frogSound;
 let heartImg;
 let blankHeartImg;
 let fliesSkipped = 0
 let score = 0
+let fly;
+let yOffset = 0; // Variable to control the y-position of the image
+let speed = 0.02; // Speed of the movement
+
 
 //function to load assets before the page is loaded
 function preload() {
@@ -64,29 +91,34 @@ function setup() {
     createCanvas(640, 480);
     // Suspending the audio to wait for user input
     getAudioContext().suspend();
-    // Give the fly its first random position
+    fly = randomizeFly() // assign the first random fly type to the fly variable
+        // Give the fly its first random position
     resetFly();
 }
+
 
 function draw() {
     background("#87ceeb");
     if (gameOver()) {
-        moveFly();
-        drawFly();
+        moveFly(fly);
+        drawFly(fly);
         moveFrog();
         moveTongue();
         drawFrog();
         drawHearts();
         checkTongueFlyOverlap();
-        moveHearts()
         drawScore()
     }
 
 
 }
 
-let yOffset = 0; // Variable to control the y-position of the image
-let speed = 0.02; // Speed of the movement
+/*randomize the type of fly to appear*/
+function randomizeFly() {
+    let flyArray = [houseFlies, craneFlies, fruitFlies]
+    return flyArray[Math.floor(Math.random() * flyArray.length)]
+}
+
 
 function drawScore() {
     push();
@@ -101,7 +133,7 @@ function drawScore() {
 
 
 function drawHearts() {
-    // // Create the up-down movementwith the sin() function
+    //  Create the up-down movement with the sin() function
     yOffset = sin(frameCount * speed) * 5; // Adjust the amplitude by 5
     switch (fliesSkipped) {
         case 1:
@@ -129,23 +161,24 @@ function drawHearts() {
 
 }
 
-function moveHearts() {
-    // heart1.x += 2
-}
+
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
  */
-function moveFly() {
+function moveFly(fly) {
     // Move the fly
     fly.x += fly.speed;
     // Handle the fly going off the canvas
     if (fly.x > width) {
-        resetFly();
+        // Select a random fly type
+        fly = randomizeFly()
+        resetFly(fly); // Reset the fly
         fliesSkipped++
         console.log(fliesSkipped)
     }
 }
+
 
 function gameOver() {
     if (fliesSkipped == 4) {
@@ -159,10 +192,10 @@ function gameOver() {
 /**
  * Draws the fly as a black circle
  */
-function drawFly() {
+function drawFly(fly) {
     push();
     noStroke();
-    fill("#000000");
+    fill(fly.colour);
     ellipse(fly.x, fly.y, fly.size);
     pop();
 }
@@ -172,7 +205,7 @@ function drawFly() {
  */
 function resetFly() {
     fly.x = 0;
-    fly.y = random(0, 300);
+    fly.y = random(70, 300);
 }
 
 /**
@@ -246,11 +279,13 @@ function checkTongueFlyOverlap() {
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
     if (eaten) {
-        // Reset the fly
-        resetFly();
+        // Select a random fly type
+        fly = randomizeFly()
+            // Reset the fly
+        resetFly(fly);
         // Bring back the tongue
         frog.tongue.state = "inbound";
-        score++ // increment the score
+        score += fly.pointVal // increment the score based on the point value of the fly
         frogSound.play() // play the frog sound
     }
 }
