@@ -43,7 +43,9 @@ const houseFlies = {
     size: 10,
     speed: 3,
     colour: '#181C14',
-    pointVal: 1
+    pointVal: 1,
+    minShake: -0.5,
+    maxShake: 0.35
 };
 
 // Has a position, size, and speed of horizontal movement
@@ -53,7 +55,9 @@ const craneFlies = {
     size: 7,
     speed: 4,
     colour: '#697565',
-    pointVal: 3
+    pointVal: 3,
+    minShake: -0.10,
+    maxShake: 0.40
 };
 
 // Has a position, size, and speed of horizontal movement
@@ -63,7 +67,9 @@ const fruitFlies = {
     size: 5,
     speed: 5,
     colour: '#3C3D37',
-    pointVal: 7
+    pointVal: 7,
+    minShake: -0.50,
+    maxShake: 0.80
 };
 //DECLARE GLOABAL VARIABLES
 let frogSound;
@@ -169,6 +175,10 @@ function drawHearts() {
 function moveFly(fly) {
     // Move the fly
     fly.x += fly.speed;
+
+    // Add random shaking motion to both x and y values
+    fly.x += random(fly.minShake, fly.maxShake); // Horizontal shake
+    fly.y += random(fly.minShake, fly.maxShake); // Vertical shake 
     // Handle the fly going off the canvas
     if (fly.x > width) {
         // Select a random fly type
