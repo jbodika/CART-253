@@ -2,9 +2,9 @@
 
 Jolene Bodika
 
-[Link to the original game](https://pippinbarr.github.io/cart253-examples/topics/making/frogfrogfrog/index.html)
+## [Link to the original game](https://pippinbarr.github.io/cart253-examples/topics/making/frogfrogfrog/index.html)
 
-[Link to the modified game](https://jbodika.github.io/CART-253/Assignments/ModJam/)
+## [Link to the modified game](https://jbodika.github.io/CART-253/Assignments/ModJam/)
 
 Listed below are the extra project files
 
