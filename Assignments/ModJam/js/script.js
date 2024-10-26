@@ -11,7 +11,7 @@
  * Instructions:
  * - Move the frog with your mouse
  * - Click to launch the tongue
- * - Catch flies
+ * - Catch as many flies possible
  * - Once you reach a score of 50 avoid touching the snake or you will get eaten
  * - Avoid eating fruits (red circles,green circles,orange circles)
  * 
