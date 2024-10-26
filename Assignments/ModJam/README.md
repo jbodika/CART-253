@@ -17,9 +17,9 @@ Listed below are the extra project files
 
 A modification of an original game about catching flies made by Pippin Barr.
 
-Frog loves to eat and grows bigger with each meal.
-However, Frog can't eat fruit, or it will get a stomach ache.
-Frog is also afraid of snakes.
+Frog loves to eat and grows bigger with each meal.</br>
+However, Frog can't eat fruit, or it will get a stomach ache.</br>
+Frog is also afraid of snakes.</br>
 Frog needs to be careful not to eat too much.
 
 ### Controls
