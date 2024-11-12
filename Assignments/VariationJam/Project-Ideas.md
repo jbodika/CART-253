@@ -12,3 +12,9 @@ Flappy bird game
 2. mode where the player moves the obstacles and not the bird
 3. flappy bird controlled by sound from user's microphone
 
+#### Cooking/Baking sim
+1. reverse-cooking (instead of starting with nothing you start with the actual meal and deconstruct it)
+2. gravity mode (ingredients are floating everywhere)
+3. black and white mode ??
+
+
