@@ -4,7 +4,6 @@
 Papa's Pizeria game or cooking simulation game <br/>
 Flappy bird game
 
-
 ### Variations Brainstorm
 
 #### Flappy Bird
@@ -15,6 +14,4 @@ Flappy bird game
 #### Cooking/Baking sim
 1. reverse-cooking (instead of starting with nothing you start with the actual meal and deconstruct it)
 2. gravity mode (ingredients are floating everywhere)
-3. black and white mode ??
-
-
+~~3. black and white mode ??~~ N/A since the game built from scratch counts as a variation
