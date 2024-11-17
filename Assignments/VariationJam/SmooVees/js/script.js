@@ -90,7 +90,7 @@ function setup() {
 function preload() {
     vee = loadImage('./assets/images/Vee.png')
     veeTalking = loadJSON("./assets/data/veeTalking.json")
-    font = loadFont('../js/libraries/BagelFatOne-Regular.ttf');
+    font = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
     blender = loadImage("./assets/images/blender.png")
     cherrySmoothie = loadImage("./assets/images/cherrySmoothie.png")
     limeSmoothie = loadImage("./assets/images/limeSmoothie.png")
