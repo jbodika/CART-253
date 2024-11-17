@@ -174,6 +174,19 @@ function mouseClicked() {
     }
 }
 
+
+function keyPressed() {
+    if (key.toUpperCase() === 'O') {
+        console.log('orignal')
+    } else if (key.toUpperCase() === 'R') {
+        console.log('reverse')
+
+    } else if (key.toUpperCase() === 'Z') {
+        console.log('z gravity')
+
+    }
+}
+
 /**
  * Draws Vee's speech bubble
  */
