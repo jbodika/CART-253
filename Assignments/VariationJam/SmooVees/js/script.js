@@ -15,15 +15,14 @@
 "use strict"
 
 
-let vee;
-let font;
+let veeImg;
+let bagelFatOneFont;
 let veeTalking;
-let strawberrySmoothie;
 let currSpeechIndex = 0; // starts at the first speech 
-let orangeSmoothie;
-let cherrySmoothie;
-let limeSmoothie;
-let blender;
+let orangeSmoothieImg;
+let cherrySmoothieImg;
+let limeSmoothieImg;
+let blenderImg;
 
 let cabinets = {
     x: 0,// starting position for the first cabinet, this will change for the others
@@ -88,13 +87,13 @@ function setup() {
  * Function to load assets before the page is loaded
  */
 function preload() {
-    vee = loadImage('./assets/images/Vee.png')
+    veeImg = loadImage('./assets/images/Vee.png')
     veeTalking = loadJSON("./assets/data/veeTalking.json")
-    font = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
-    blender = loadImage("./assets/images/blender.png")
-    cherrySmoothie = loadImage("./assets/images/cherrySmoothie.png")
-    limeSmoothie = loadImage("./assets/images/limeSmoothie.png")
-    orangeSmoothie = loadImage("./assets/images/orangeSmoothie.png")
+    bagelFatOneFont = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
+    blenderImg = loadImage("./assets/images/blender.png")
+    cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png")
+    limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png")
+    orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png")
 
 }
 
@@ -107,7 +106,7 @@ function draw() {
     drawReflectiveGlass()
     drawBackgroundCounter()
 
-    image(vee, width / 2, 150)
+    image(veeImg, width / 2, 150)
     drawFloor();
 
 
@@ -128,10 +127,10 @@ function draw() {
  */
 function drawDecorations() {
     // image(strawberrySmoothie, 520, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
-    image(cherrySmoothie, 720, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
-    image(limeSmoothie, 130, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
-    image(orangeSmoothie, 330, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
-    image(blender, 700, 285, 40, 70)
+    image(cherrySmoothieImg, 720, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
+    image(limeSmoothieImg, 130, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
+    image(orangeSmoothieImg, 330, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
+    image(blenderImg, 700, 285, 40, 70)
 
 }
 
@@ -147,7 +146,7 @@ function drawWelcomeMessage() {
     stroke('pink')
     strokeWeight(5)
 
-    textFont(font)
+    textFont(bagelFatOneFont)
     textSize(80)
     text('Vee\'s \nSmooVees', 50, 205 + yOffset);
     //text(test, 50, 205 + yOffset);
@@ -160,7 +159,7 @@ function drawWelcomeMessage() {
     strokeWeight(5)
 
     fill('#c27ba0')
-    textFont(font)
+    textFont(bagelFatOneFont)
     textSize(80)
     text('Vee\'s \nSmooVees', 55, 200 + yOffset);
 
