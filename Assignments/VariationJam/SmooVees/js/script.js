@@ -4,7 +4,7 @@
 "use strict"
 
 function setup() {
-    createCanvas(640, 640);
+    createCanvas(800, 800);
 }
 
 let vee;
@@ -27,7 +27,7 @@ function draw() {
     drawWindow()
     drawReflectiveGlass()
     drawBackgroundCounter()
-    image(vee, width / 2, 100)
+    image(vee, width / 2, 150)
     drawFloor();
 
 
@@ -44,18 +44,20 @@ function draw() {
 function drawWelcomeMessage() {
     // display shading green for the text
     push()
-    fill('#B9FF66')
+    fill('#a64d79')
+    
     textFont(font)
-    textSize(60)
-    text('Vee\'s \nSmooVees', 70, 100);
+    textSize(80)
+    text('Vee\'s \nSmooVees', 50, 65);
     pop()
 
     // displays the main pink for the text
     push()
-    fill('pink')
+    
+fill('#c27ba0')
     textFont(font)
-    textSize(60)
-    text('Vee\'s \nSmooVees', 75, 100);
+    textSize(80)
+    text('Vee\'s \nSmooVees', 55, 70);
     pop()
     
 }
@@ -85,21 +87,24 @@ push();
 //bottom half of the effect
 noStroke();
 fill(219, 225, 227, 127);
-rect(50,170,500,100);
+rect(50,170,700,140);
 
 // top half of the effect
 fill(167, 199, 203, 127);
-triangle(50, 170, 50, 270, 550, 170);
+triangle(50, 170, 50, 310, 750, 170);
 pop();
 
 }
 
+/**
+ * Draws background window
+ */
 function drawWindow(){
     push()
     strokeWeight(5)
     stroke('white')
     fill('#CAE9F5')
-    rect(50,170,500,100)
+    rect(50,170,700,140)
     pop()
 
     
@@ -113,13 +118,13 @@ function drawBackgroundCounter(){
     push();
     noStroke();
     fill('#fffff2');
-    rect(0,300,width,50);
+    rect(0,340,width,50);
     pop();
 
     push();
     noStroke();
     fill('#D4D4D4');
-    rect(0,320,width,30);
+    rect(0,380,width,30);
     pop();
 
 }
@@ -131,7 +136,7 @@ function drawCabinets(){
     rect(0,0,width,115)
     pop()
     // draws the cabinets at the top to fill up space
-    for (let i = 10; i < 600; i += 95) {
+    for (let i = 300; i < 600; i += 120) {
     // draws the square cabinet
     push()
     noStroke()
@@ -152,29 +157,28 @@ function drawCabinets(){
 function drawChairs() {
 
 
-    for (let i = 0; i < 500; i += 200) {
+    for (let i = 0; i < 800; i += 200) {
         // base of the chair ring
         push();
         strokeWeight(0.1)
-        //noStroke()
-        fill("#636363")
+   
+        fill("#D4D4D4")
 
-        ellipse(100 + i, 595, 60, 20);
+        ellipse(100 + i, 740, 60, 20);
         pop();
         // base of the chair
         push();
-        // noStroke()
         strokeWeight(0.1)
         fill('#c0c0c0')
-        rect(87 + i, 460, 25, 130);
+        rect(87 + i, 540, 25, 200);
         pop();
 
         // seat of the chair
         push();
-        fill('#c0c0c0')
+        fill('#D4D4D4')
         strokeWeight(0.1)
 
-        ellipse(100 + i, 450, 80, 30);
+        ellipse(100 + i, 530, 120, 30);
         pop();
     }
 
@@ -187,7 +191,7 @@ function drawStoreCounter() {
     push()
     noStroke()
     fill('#b4a7d6')
-    rect(0, 420, width, 130)
+    rect(0, 420, width, 200)
     pop()
 
 
@@ -195,21 +199,21 @@ function drawStoreCounter() {
     push();
     noStroke();
     fill('#fffff2');
-    rect(0, height - 300, width, 50);
+    rect(0, height - 400, width, 50);
     pop();
 
     //WHITE BORDER 
     push();
     noStroke();
     fill('#D4D4D4');
-    rect(0, height - 250, width, 20);
+    rect(0, height - 350, width, 20);
     pop();
 
     //Shade on green 
     push();
     noStroke();
     fill('#8e7cc3');
-    rect(0, height - 230, width, 10);
+    rect(0, height - 330, width, 10);
     pop();
 
 }
