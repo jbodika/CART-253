@@ -118,7 +118,6 @@ function draw() {
     drawWelcomeMessage()
     drawSpeechBubble()
     drawVeesSpeech();
-    //  drawVeesSpeech()
 
 }
 
@@ -191,7 +190,7 @@ function drawSpeechBubble() {
  * Displays text 
  */
 function drawVeesSpeech() {
-    textFont(font)
+    textFont(bagelFatOneFont)
     fill('#546DA6')
     stroke('white')
     strokeWeight(3)
@@ -303,8 +302,6 @@ function drawCabinets() {
 
 
 function drawChairs() {
-
-
     for (let i = 0; i < 800; i += 200) {
         // base of the chair ring
         push();
@@ -329,7 +326,6 @@ function drawChairs() {
         ellipse(chairs.seat.x + i, chairs.seat.y, chairs.seat.size.x, chairs.seat.size.y);
         pop();
     }
-
 
 }
 // Counter of the store 
