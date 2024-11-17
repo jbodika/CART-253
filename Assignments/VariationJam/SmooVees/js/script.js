@@ -53,13 +53,17 @@ function draw() {
 
 
 function drawWelcomeMessage() {
+//  Create the up-down movement for the hearts with the sin() function
+let speed = 0.05
+let yOffset = sin(frameCount * speed) * 5; // Adjust the amplitude by 5
+
     // display shading green for the text
     push()
     fill('#a64d79')
     
     textFont(font)
     textSize(80)
-    text('Vee\'s \nSmooVees', 50, 65);
+    text('Vee\'s \nSmooVees', 50, 205+ yOffset);
     pop()
 
     // displays the main pink for the text
@@ -68,7 +72,7 @@ function drawWelcomeMessage() {
 fill('#c27ba0')
     textFont(font)
     textSize(80)
-    text('Vee\'s \nSmooVees', 55, 70);
+    text('Vee\'s \nSmooVees', 55, 200+yOffset);
     pop()
     
 }
@@ -112,7 +116,7 @@ pop();
  */
 function drawWindow(){
     push()
-    strokeWeight(5)
+    strokeWeight(10)
     stroke('white')
     fill('#CAE9F5')
     rect(50,170,700,140)
