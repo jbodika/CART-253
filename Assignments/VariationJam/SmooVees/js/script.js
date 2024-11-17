@@ -10,10 +10,16 @@ function setup() {
     createCanvas(640, 640);
 }
 
-let img;
+let vee;
+let font;
+let animSmoothie;
+
 
 function preload() {
-    img = loadImage('./assets/images/Vee.png')
+    vee = loadImage('./assets/images/Vee.png')
+    animSmoothie = loadImage("./assets/images/animatedSmoothie.png")
+    font = loadFont('../js/libraries/BagelFatOne-Regular.ttf');
+
 }
 
 /**
@@ -21,14 +27,36 @@ function preload() {
  */
 function draw() {
     background('#b4a7d6');
-    image(img, width / 2, 100)
+    image(vee, width / 2, 100)
     drawFloor();
 
+
     drawStoreCounter();
+    image(animSmoothie, 330, 320, 50, 50)
     drawChairs();
+    drawWelcomeMessage()
 
 }
 
+
+function drawWelcomeMessage() {
+    // display shading green for the text
+    push()
+    fill('#B9FF66')
+    textFont(font)
+    textSize(60)
+    text('Vee\'s \nSmooVees', 70, 100);
+    pop()
+
+    // displays the main pink for the text
+    push()
+    fill('pink')
+    textFont(font)
+    textSize(60)
+    text('Vee\'s \nSmooVees', 75, 100);
+    pop()
+    
+}
 
 function drawFloor() {
     push();
