@@ -14,9 +14,6 @@
  */
 "use strict"
 
-function setup() {
-    createCanvas(800, 800);
-}
 
 let vee;
 let font;
@@ -25,6 +22,20 @@ let orangeSmoothie;
 let cherrySmoothie;
 let limeSmoothie;
 let blender;
+
+let cabinets = {
+    x:300,// starting position for the first cabinet, this will change for the others
+    y:10,
+    size:90
+
+}
+
+let cabinetHandles = {
+    x:75,// starting position for the first cabinet handle, this will change for the others
+    y:60,
+    size:10
+
+}
 
 // created an object that holds the default values used when displaying an image to avoid repetition in code 
 let defaultImg = {
@@ -36,7 +47,44 @@ let defaultImg = {
 
 }
 
+let chairs = {
+    baseRing:{
+        x: 100,
+        y: 740,
+        size:{
+            x:60,
+            y:20
+        }
+    },
+    seat:{
+        x: 100,
+        y: 530,
+        size:{
+            x:120,
+            y:30
+        }
+    },
+    base:{
+        x: 87,
+        y: 540,
+        size:{
+            x:25,
+            y:200
+        }
+    }
+   
 
+}
+/**
+ * Creates the canvas
+ */
+function setup() {
+    createCanvas(800, 800);
+}
+
+/*
+ * Function to load assets before the page is loaded
+ */
 function preload() {
     vee = loadImage('./assets/images/Vee.png')
     strawberrySmoothie = loadImage("./assets/images/strawberrySmoothie.png")
@@ -49,13 +97,14 @@ function preload() {
 }
 
 /**
- * 
+ * Draws elements on the canvas
  */
 function draw() {
     background('#b4a7d6');
     drawWindow()
     drawReflectiveGlass()
     drawBackgroundCounter()
+
     image(vee, width / 2, 150)
     drawFloor();
 
@@ -70,7 +119,9 @@ function draw() {
 
 }
 
-
+/**
+ * Dsiplays the pixel smoothie and blender on the countertop
+ */
 function drawDecorations() {
     image(strawberrySmoothie, 520, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
     image(cherrySmoothie, 720, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
@@ -104,15 +155,18 @@ function drawWelcomeMessage() {
     pop()
 
 }
-
+/**
+ * Draws the floor section
+ */
 function drawFloor() {
+    // Ground
     push();
     noStroke();
     fill('#c9c3bd');
     rect(0, height - 100, width, 500);
     pop();
 
-    //WHITE floor BORDER 
+    //White floor border 
     push();
     noStroke()
     fill('#fff');
@@ -171,30 +225,34 @@ function drawBackgroundCounter() {
     pop();
 
 }
-
+/**
+ * Draws the 3 cabinets at top 
+ */
 function drawCabinets() {
-    push()
-    fill('#fffff2')
-    noStroke()
+    push();
+    fill('#fffff2');
+    noStroke();
     rect(0, 0, width, 115)
-    pop()
+    pop();
     // draws the cabinets at the top to fill up space
-    for (let i = 300; i < 600; i += 120) {
-        // draws the square cabinet
-        push()
-        noStroke()
-        fill('#ECECEC')
-        rect(i, 10, 90, 90)
-        pop()
+    for (let i = cabinets.x ; i < 600; i += 120) {
+        
+        // draws the square section cabinet 
+        push();
+        noStroke();
+        fill('#ECECEC');
+        rect(i, cabinets.y, cabinets.size);
+        pop();
+    
         // draws the handle to the cabinet
         push()
-        noStroke()
-        fill('#D4D4D4')
-        ellipse(80 + i, 60, 10)
+        push();
+        stroke('#c0c0c0')
+        fill('#D4D4D4');
+        ellipse(cabinetHandles.x + i, cabinetHandles.y, cabinetHandles.size)
         pop()
     }
 }
-
 
 
 function drawChairs() {
@@ -207,13 +265,13 @@ function drawChairs() {
 
         fill("#D4D4D4")
 
-        ellipse(100 + i, 740, 60, 20);
+        ellipse(chairs.baseRing.x + i, chairs.baseRing.y, chairs.baseRing.size.x, chairs.baseRing.size.y);
         pop();
         // base of the chair
         push();
         strokeWeight(0.1)
         fill('#c0c0c0')
-        rect(87 + i, 540, 25, 200);
+        rect(chairs.base.x + i, chairs.base.y, chairs.base.size.x, chairs.base.size.y);
         pop();
 
         // seat of the chair
@@ -221,7 +279,7 @@ function drawChairs() {
         fill('#D4D4D4')
         strokeWeight(0.1)
 
-        ellipse(100 + i, 530, 120, 30);
+        ellipse(chairs.seat.x + i, chairs.seat.y, chairs.seat.size.x, chairs.seat.size.y);
         pop();
     }
 
