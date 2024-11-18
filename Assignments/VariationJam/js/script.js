@@ -30,14 +30,14 @@ let cabinets = {
     y: 10,
     size: 95
 
-}
+};
 
 let cabinetHandles = {
     x: 75, // starting position for the first cabinet handle, this will change for the others
     y: 60,
     size: 10
 
-}
+};
 
 // created an object that holds the default values used when displaying an image to avoid repetition in code 
 let defaultImg = {
@@ -47,39 +47,39 @@ let defaultImg = {
     },
     y: 400
 
-}
+};
 
 let chairs = {
-        baseRing: {
-            x: 100,
-            y: 740,
-            size: {
-                x: 60,
-                y: 20
-            }
-        },
-        seat: {
-            x: 100,
-            y: 530,
-            size: {
-                x: 120,
-                y: 30
-            }
-        },
-        base: {
-            x: 87,
-            y: 540,
-            size: {
-                x: 25,
-                y: 200
-            }
+    baseRing: {
+        x: 100,
+        y: 740,
+        size: {
+            x: 60,
+            y: 20
         }
-
-
+    },
+    seat: {
+        x: 100,
+        y: 530,
+        size: {
+            x: 120,
+            y: 30
+        }
+    },
+    base: {
+        x: 87,
+        y: 540,
+        size: {
+            x: 25,
+            y: 200
+        }
     }
-    /**
-     * Creates the canvas
-     */
+
+
+};
+/**
+ * Creates the canvas
+ */
 function setup() {
     createCanvas(800, 800);
 }
@@ -88,13 +88,13 @@ function setup() {
  * Function to load assets before the page is loaded
  */
 function preload() {
-    veeImg = loadImage('./assets/images/Vee.png')
-    veeTalking = loadJSON("./assets/data/veeTalking.json")
+    veeImg = loadImage('./assets/images/Vee.png');
+    veeTalking = loadJSON("./assets/data/veeTalking.json");
     bagelFatOneFont = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
-    blenderImg = loadImage("./assets/images/blender.png")
-    cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png")
-    limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png")
-    orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png")
+    blenderImg = loadImage("./assets/images/blender.png");
+    cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png");
+    limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png");
+    orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png");
 
 }
 
@@ -104,9 +104,9 @@ function preload() {
 function draw() {
     if (gameState == 'main') {
         background('#b4a7d6');
-        drawWindow()
-        drawReflectiveGlass()
-        drawBackgroundCounter()
+        drawWindow();
+        drawReflectiveGlass();
+        drawBackgroundCounter();
 
         image(veeImg, width / 2, 150)
         drawFloor();
@@ -115,13 +115,13 @@ function draw() {
         drawDecorations();
 
         drawChairs();
-        drawCabinets()
-        drawWelcomeMessage()
-        drawSpeechBubble()
+        drawCabinets();
+        drawWelcomeMessage();
+        drawSpeechBubble();
         drawVeesSpeech();
     } else if (gameState == 'playOriginalGame') {
         background('#b4a7d6');
-        drawMenu()
+        drawMenu();
     }
 
 
@@ -132,43 +132,43 @@ function draw() {
  */
 function drawDecorations() {
     // image(strawberrySmoothie, 520, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
-    image(cherrySmoothieImg, 720, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
-    image(limeSmoothieImg, 130, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
-    image(orangeSmoothieImg, 330, defaultImg.y, defaultImg.size.x, defaultImg.size.y)
-    image(blenderImg, 700, 285, 40, 70)
+    image(cherrySmoothieImg, 720, defaultImg.y, defaultImg.size.x, defaultImg.size.y);
+    image(limeSmoothieImg, 130, defaultImg.y, defaultImg.size.x, defaultImg.size.y);
+    image(orangeSmoothieImg, 330, defaultImg.y, defaultImg.size.x, defaultImg.size.y);
+    image(blenderImg, 700, 285, 40, 70);
 
 }
 
 
 function drawWelcomeMessage() {
     //  Create the up-down movement for the hearts with the sin() function
-    let speed = 0.05
+    let speed = 0.05;
     let yOffset = sin(frameCount * speed) * 5; // Adjust the amplitude by 5
 
     // display shading green for the text
-    push()
-    fill('#a64d79')
-    stroke('pink')
-    strokeWeight(5)
+    push();
+    fill('#a64d79');
+    stroke('pink');
+    strokeWeight(5);
 
-    textFont(bagelFatOneFont)
-    textSize(80)
+    textFont(bagelFatOneFont);
+    textSize(80);
     text('Vee\'s\nSmoothie\nShop!', 50, 205 + yOffset);
     //text(test, 50, 205 + yOffset);
 
-    pop()
+    pop();
 
     // displays the main pink for the text
-    push()
-    stroke('pink')
-    strokeWeight(5)
+    push();
+    stroke('pink');
+    strokeWeight(5);
 
-    fill('#c27ba0')
-    textFont(bagelFatOneFont)
-    textSize(80)
+    fill('#c27ba0');
+    textFont(bagelFatOneFont);
+    textSize(80);
     text('Vee\'s\nSmoothie\nShop!', 55, 200 + yOffset);
 
-    pop()
+    pop();
 
 }
 
@@ -183,13 +183,13 @@ function mouseClicked() {
 
 function keyPressed() {
     if (key.toUpperCase() === 'O') {
-        gameState = 'playOriginalGame'
-        console.log('orignal')
+        gameState = 'playOriginalGame';
+        console.log('orignal');
     } else if (key.toUpperCase() === 'R') {
-        console.log('reverse')
+        console.log('reverse');
 
     } else if (key.toUpperCase() === 'Z') {
-        console.log('z gravity')
+        console.log('z gravity');
 
     }
 }
@@ -198,28 +198,29 @@ function keyPressed() {
  * Draws Vee's speech bubble
  */
 function drawSpeechBubble() {
-    push()
-    stroke('pink')
-    fill('#FBF9D3')
-    strokeWeight(5)
+    push();
+    stroke('pink');
+    fill('#FBF9D3');
+    strokeWeight(5);
     rect(600, 120, 175, 180, 20); // rectangle speech bubble with rounded borders
-    pop()
+    pop();
 }
 
 /**
  * Displays text 
  */
 function drawVeesSpeech() {
-    textFont(bagelFatOneFont)
-    fill('#546DA6')
-    stroke('white')
-    strokeWeight(3)
-    textSize(30)
-        // if theres a value that matches the current speech index it will change the text value in the speech bubble
+    push();
+    textFont(bagelFatOneFont);
+    fill('#546DA6');
+    stroke('white');
+    strokeWeight(3);
+    textSize(30);
+    // if theres a value that matches the current speech index it will change the text value in the speech bubble
     if (veeTalking.speech[currSpeechIndex]) {
-        text(veeTalking.speech[currSpeechIndex].text, 605, 150)
+        text(veeTalking.speech[currSpeechIndex].text, 605, 150);
     }
-
+    pop();
 }
 /**
  * Draws the floor section
@@ -234,7 +235,7 @@ function drawFloor() {
 
     //White floor border 
     push();
-    noStroke()
+    noStroke();
     fill('#fff');
     rect(0, height - 100, width, 20);
     pop();
@@ -263,12 +264,12 @@ function drawReflectiveGlass() {
  * Draws background window
  */
 function drawWindow() {
-    push()
-    strokeWeight(10)
-    stroke('white')
-    fill('#CAE9F5')
-    rect(50, 170, 700, 140)
-    pop()
+    push();
+    strokeWeight(10);
+    stroke('white');
+    fill('#CAE9F5');
+    rect(50, 170, 700, 140);
+    pop();
 
 
 
@@ -298,7 +299,7 @@ function drawCabinets() {
     push();
     fill('#fffff2');
     noStroke();
-    rect(0, 0, width, 115)
+    rect(0, 0, width, 115);
     pop();
     // draws the cabinets at the top to fill up space
     for (let i = cabinets.x; i < 800; i += 100) {
@@ -311,12 +312,12 @@ function drawCabinets() {
         pop();
 
         // draws the handle to the cabinet
-        push()
         push();
-        stroke('#c0c0c0')
+        push();
+        stroke('#c0c0c0');
         fill('#D4D4D4');
-        ellipse(cabinetHandles.x + i, cabinetHandles.y, cabinetHandles.size)
-        pop()
+        ellipse(cabinetHandles.x + i, cabinetHandles.y, cabinetHandles.size);
+        pop();
     }
 }
 
@@ -325,23 +326,23 @@ function drawChairs() {
     for (let i = 0; i < 800; i += 200) {
         // base of the chair ring
         push();
-        strokeWeight(0.1)
+        strokeWeight(0.1);
 
-        fill("#D4D4D4")
+        fill("#D4D4D4");
 
         ellipse(chairs.baseRing.x + i, chairs.baseRing.y, chairs.baseRing.size.x, chairs.baseRing.size.y);
         pop();
         // base of the chair
         push();
-        strokeWeight(0.1)
-        fill('#c0c0c0')
+        strokeWeight(0.1);
+        fill('#c0c0c0');
         rect(chairs.base.x + i, chairs.base.y, chairs.base.size.x, chairs.base.size.y);
         pop();
 
         // seat of the chair
         push();
-        fill('#D4D4D4')
-        strokeWeight(0.1)
+        fill('#D4D4D4');
+        strokeWeight(0.1);
 
         ellipse(chairs.seat.x + i, chairs.seat.y, chairs.seat.size.x, chairs.seat.size.y);
         pop();
@@ -352,11 +353,11 @@ function drawChairs() {
 function drawStoreCounter() {
 
     // Drawcounter colour
-    push()
-    noStroke()
-    fill('#b4a7d6')
-    rect(0, 420, width, 200)
-    pop()
+    push();
+    noStroke();
+    fill('#b4a7d6');
+    rect(0, 420, width, 200);
+    pop();
 
 
     //WHITE COUNTER 

@@ -20,6 +20,6 @@ function testingThingsOut() {
  */
 function drawMenu() {
     push();
-    ellipse(500, 400, 30)
+    ellipse(500, height - 30, 30);
     pop();
 }
