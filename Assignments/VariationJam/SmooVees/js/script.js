@@ -1,5 +1,5 @@
 /*
-* Vee's SmooVees 
+* Vee's Smoothie Shop 
 * Jolene Bodika
 *
 * Controls:
@@ -23,16 +23,17 @@ let orangeSmoothieImg;
 let cherrySmoothieImg;
 let limeSmoothieImg;
 let blenderImg;
+let gameState = 'main';
 
 let cabinets = {
-    x: 0,// starting position for the first cabinet, this will change for the others
+    x: 0, // starting position for the first cabinet, this will change for the others
     y: 10,
     size: 95
 
 }
 
 let cabinetHandles = {
-    x: 75,// starting position for the first cabinet handle, this will change for the others
+    x: 75, // starting position for the first cabinet handle, this will change for the others
     y: 60,
     size: 10
 
@@ -49,36 +50,36 @@ let defaultImg = {
 }
 
 let chairs = {
-    baseRing: {
-        x: 100,
-        y: 740,
-        size: {
-            x: 60,
-            y: 20
+        baseRing: {
+            x: 100,
+            y: 740,
+            size: {
+                x: 60,
+                y: 20
+            }
+        },
+        seat: {
+            x: 100,
+            y: 530,
+            size: {
+                x: 120,
+                y: 30
+            }
+        },
+        base: {
+            x: 87,
+            y: 540,
+            size: {
+                x: 25,
+                y: 200
+            }
         }
-    },
-    seat: {
-        x: 100,
-        y: 530,
-        size: {
-            x: 120,
-            y: 30
-        }
-    },
-    base: {
-        x: 87,
-        y: 540,
-        size: {
-            x: 25,
-            y: 200
-        }
+
+
     }
-
-
-}
-/**
- * Creates the canvas
- */
+    /**
+     * Creates the canvas
+     */
 function setup() {
     createCanvas(800, 800);
 }
@@ -101,23 +102,28 @@ function preload() {
  * Draws elements on the canvas
  */
 function draw() {
-    background('#b4a7d6');
-    drawWindow()
-    drawReflectiveGlass()
-    drawBackgroundCounter()
+    if (gameState == 'main') {
+        background('#b4a7d6');
+        drawWindow()
+        drawReflectiveGlass()
+        drawBackgroundCounter()
 
-    image(veeImg, width / 2, 150)
-    drawFloor();
+        image(veeImg, width / 2, 150)
+        drawFloor();
 
+        drawStoreCounter();
+        drawDecorations();
 
-    drawStoreCounter();
-    drawDecorations();
+        drawChairs();
+        drawCabinets()
+        drawWelcomeMessage()
+        drawSpeechBubble()
+        drawVeesSpeech();
+    } else if (gameState == 'playOriginalGame') {
+        background('#b4a7d6');
+        drawMenu()
+    }
 
-    drawChairs();
-    drawCabinets()
-    drawWelcomeMessage()
-    drawSpeechBubble()
-    drawVeesSpeech();
 
 }
 
@@ -147,7 +153,7 @@ function drawWelcomeMessage() {
 
     textFont(bagelFatOneFont)
     textSize(80)
-    text('Vee\'s \nSmooVees', 50, 205 + yOffset);
+    text('Vee\'s\nSmoothie\nShop!', 50, 205 + yOffset);
     //text(test, 50, 205 + yOffset);
 
     pop()
@@ -160,7 +166,7 @@ function drawWelcomeMessage() {
     fill('#c27ba0')
     textFont(bagelFatOneFont)
     textSize(80)
-    text('Vee\'s \nSmooVees', 55, 200 + yOffset);
+    text('Vee\'s\nSmoothie\nShop!', 55, 200 + yOffset);
 
     pop()
 
@@ -177,6 +183,7 @@ function mouseClicked() {
 
 function keyPressed() {
     if (key.toUpperCase() === 'O') {
+        gameState = 'playOriginalGame'
         console.log('orignal')
     } else if (key.toUpperCase() === 'R') {
         console.log('reverse')
@@ -208,7 +215,7 @@ function drawVeesSpeech() {
     stroke('white')
     strokeWeight(3)
     textSize(30)
-    // if theres a value that matches the current speech index it will change the text value in the speech bubble
+        // if theres a value that matches the current speech index it will change the text value in the speech bubble
     if (veeTalking.speech[currSpeechIndex]) {
         text(veeTalking.speech[currSpeechIndex].text, 605, 150)
     }
@@ -374,6 +381,3 @@ function drawStoreCounter() {
     pop();
 
 }
-
-
-
