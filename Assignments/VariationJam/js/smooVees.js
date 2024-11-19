@@ -10,13 +10,19 @@
 * GoogleFonts API
 *https://developers.google.com/fonts
 *
-
- */
-
-
-
-let activeSmoothie;
+*/
+let activeSmoothie; // current smoothie the player has to make
 let gameInProgress = false;
+//Variables from SmooVees **I had to create them here because I cannot have a secon preload function (it would override the first one)
+let watermelonImg;
+let frozenBerriesImg;
+let cuttingBoardImg;
+let bananaImg;
+let orangeImg;
+let honeyjarImg;
+let milkImg;
+let yogurtImg;
+let smoothies;
 
 /**
  * Draws the menu circles
@@ -70,8 +76,6 @@ function drawCounterItems() {
     image(cuttingBoardImg, 500, 500)
     image(bananaImg, 520, 260)
     image(yogurtImg, 600, 300, 20, 20)
-
-
 }
 
 function drawOrder() {
@@ -91,7 +95,6 @@ function drawOrder() {
     textAlign(CENTER);
     fill('#8e7cc3')
     text(`SmooVee\n`, 200, 90);
-
 
     stroke('white');
     fill('#b4a7d6')
@@ -125,8 +128,6 @@ function drawOrder() {
 }
 
 
-
-
 function drawSmoothieCup() {
     push();
     stroke('#c0c0c0')
@@ -154,7 +155,4 @@ function drawSmoothieCup() {
     strokeWeight(0.1)
     rect(220, 370, 20, 330)
     pop()
-
-
-
 }
