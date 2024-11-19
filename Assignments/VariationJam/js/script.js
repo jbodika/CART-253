@@ -36,22 +36,22 @@ let yogurtImg;
 let smoothies;
 
 
-let cabinets = {
+const cabinets = {
     x: 0, // starting position for the first cabinet, this will change for the others
     y: 10,
     size: 95
 
 };
 
-let cabinetHandles = {
+const cabinetHandles = {
     x: 75, // starting position for the first cabinet handle, this will change for the others
     y: 60,
     size: 10
 
 };
 
-// created an object that holds the default values used when displaying an image to avoid repetition in code 
-let defaultImg = {
+// created an object that holds the default values used when displaying an image on the main screen to avoid repetition in code 
+const defaultImg = {
     size: {
         x: 50,
         y: 50
@@ -60,7 +60,7 @@ let defaultImg = {
 
 };
 
-let chairs = {
+const chairs = {
     baseRing: {
         x: 100,
         y: 740,
@@ -200,10 +200,13 @@ function drawWelcomeMessage() {
 
 
 function mouseClicked() {
-    currSpeechIndex++;
-    if (currSpeechIndex >= veeTalking.speech.length) {
-        currSpeechIndex = 0; // restarts the speech 
+    if(gameState=="main"){
+        currSpeechIndex++;
+        if (currSpeechIndex >= veeTalking.speech.length) {
+            currSpeechIndex = 0; // restarts the speech 
+        }
     }
+ 
 }
 
 
