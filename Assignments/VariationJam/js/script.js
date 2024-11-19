@@ -15,6 +15,7 @@
 "use strict"
 
 let bagelFatOneFont;
+let isMouseOverlapping;
 /**
  * Creates the canvas
  */
@@ -27,9 +28,9 @@ function setup() {
  * Function to load assets before the page is loaded
  */
 function preload() {
-    watermelonImg = loadImage('./assets/images/watermelon.png');
-    frozenBerriesImg = loadImage('./assets/images/frozenBerries.png');
-    cuttingBoardImg = loadImage('./assets/images/cuttingBoard.png')
+    watermelonImg.image = loadImage('./assets/images/watermelon.png');
+    frozenBerriesImg.image = loadImage('./assets/images/frozenBerries.png');
+    cuttingBoardImg.image = loadImage('./assets/images/cuttingBoard.png')
     veeImg = loadImage('./assets/images/Vee.png');
     veeTalking = loadJSON("./assets/data/veeTalking.json");
     bagelFatOneFont = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
@@ -37,11 +38,11 @@ function preload() {
     cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png");
     limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png");
     orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png");
-    bananaImg = loadImage('./assets/images/banana.png');
-    orangeImg = loadImage('./assets/images/orange.png');
-    honeyjarImg = loadImage('./assets/images/honeyjar.png');
-    milkImg = loadImage('./assets/images/milk.png');
-    yogurtImg = loadImage('./assets/images/yogurt.png');
+    bananaImg.image = loadImage('./assets/images/banana.png');
+    orangeImg.image = loadImage('./assets/images/orange.png');
+    honeyjarImg.image = loadImage('./assets/images/honeyjar.png');
+    milkImg.image = loadImage('./assets/images/milk.png');
+    yogurtImg.image = loadImage('./assets/images/yogurt.png');
     smoothies = loadJSON('./assets/data/smoothies.json')
 }
 
@@ -74,23 +75,22 @@ function draw() {
         drawMenu();
         drawOrder()
         drawSmoothieCup()
+        selectFoodElement();
     }
 
 
 }
 
 
-
-
 function mouseClicked() {
     // allows the user to read what Vee has to say over and over again
-    if(gameState=="main"){
+    if (gameState == "main") {
         currSpeechIndex++;
         if (currSpeechIndex >= veeTalking.speech.length) {
             currSpeechIndex = 0; // restarts the speech 
         }
     }
- 
+
 }
 
 
@@ -107,3 +107,25 @@ function keyPressed() {
     }
 }
 
+/* Checks if the cursor overlaps with an object
+*
+* @param firstValPosX - Object 1's value X position
+* @param firstValPosY - Object 1's value Y position
+* @param secondValPosX - Object 2's value X position
+* @param secondValPosY - Object 2's value Y position
+* @param secondValSize - Object 2's size value
+*/
+function checkOverlap(firstValPosX, firstValPosY, secondValPosX, secondValPosY, secondValSize) {
+    const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
+    // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
+    return isMouseOverlapping = (distance < secondValSize / 2);//checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
+
+}
+
+function randomizeElement(array) {
+    if (!gameInProgress) {
+        gameInProgress = true;
+       randomizedValue =  array[Math.floor(Math.random() * array.length)];
+    }
+    return randomizedValue; // Returns a single smoothie object 
+}

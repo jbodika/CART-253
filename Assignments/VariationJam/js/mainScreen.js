@@ -24,7 +24,9 @@ let currSpeechIndex = 0; // starts at the first speech
 let orangeSmoothieImg;
 let cherrySmoothieImg;
 let limeSmoothieImg;
-let blenderImg;
+let blenderImg={
+    image:undefined
+};
 let gameState = 'main';
 
 

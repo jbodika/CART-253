@@ -13,15 +13,67 @@
 */
 let activeSmoothie; // current smoothie the player has to make
 let gameInProgress = false;
-//Variables from SmooVees **I had to create them here because I cannot have a secon preload function (it would override the first one)
-let watermelonImg;
-let frozenBerriesImg;
-let cuttingBoardImg;
-let bananaImg;
-let orangeImg;
-let honeyjarImg;
-let milkImg;
-let yogurtImg;
+let randomizedValue;
+
+// All images 
+let watermelonImg={
+    image:undefined,
+    x:550,
+    y:210,
+    size: 125
+};
+
+let frozenBerriesImg ={
+    image:undefined,
+    x:600,
+    y:200,
+    size:125
+}
+
+
+let cuttingBoardImg={
+    image:undefined,
+    x:500,
+    y:500,
+    size:200
+};
+let bananaImg={
+    image:undefined,
+    x:520,
+    y:260,
+    size:64
+};
+let orangeImg={
+    image:undefined,
+    x:630,
+    y:310
+};
+let honeyjarImg={
+    image:undefined,
+    x:650,
+    y:290,
+    size:64
+
+};
+let milkImg={
+    image:undefined,
+    x:500,
+    y:250,
+    size:{
+        x:80,
+        y:70
+    }
+
+};
+let yogurtImg={
+    image:undefined,
+    x:600,
+    y:300,
+    size:{
+        x:20,
+        y:20
+    }
+};
 let smoothies;
 
 /**
@@ -56,26 +108,21 @@ function drawInGameCounter() {
 
 }
 
-function randomizeElement(array) {
-    if (!gameInProgress) {
-        gameInProgress = true;
-        randomizedValue = array[Math.floor(Math.random() * array.length)];
-    }
-    return randomizedValue; // Returns a single smoothie object 
-}
+
 
 
 function drawCounterItems() {
-    image(blenderImg, 400, 140, 150, 210)
-    image(frozenBerriesImg, 600, 200)
-    image(milkImg, 500, 250, 80, 70)
-    image(honeyjarImg, 650, 290)
+  //  image(blenderImg.image, blenderImg.x, blenderImg.y,blenderImg.size)
+    image(frozenBerriesImg.image, frozenBerriesImg.x, frozenBerriesImg.y,frozenBerriesImg.size)
+    image(milkImg.image, milkImg.x, milkImg.y , milkImg.size.x,milkImg.size.y)
+    image(honeyjarImg.image, honeyjarImg.x, honeyjarImg.y, honeyjarImg.size)
 
-    image(orangeImg, 630, 310)
-    image(watermelonImg, 550, 210)
-    image(cuttingBoardImg, 500, 500)
-    image(bananaImg, 520, 260)
-    image(yogurtImg, 600, 300, 20, 20)
+    image(orangeImg.image, orangeImg.x, orangeImg.y, orangeImg.size)
+    image(watermelonImg.image, watermelonImg.x, watermelonImg.y,watermelonImg.size)
+    image(cuttingBoardImg.image, cuttingBoardImg.x, cuttingBoardImg.y,cuttingBoardImg.size)
+    image(bananaImg.image, bananaImg.x, bananaImg.y, bananaImg.size)
+    image(yogurtImg.image, yogurtImg.x, yogurtImg.y, yogurtImg.size.x,yogurtImg.size.y)
+ 
 }
 
 function drawOrder() {
@@ -104,6 +151,7 @@ function drawOrder() {
 
 
     textSize(25);
+  
     fill(`${activeSmoothie.color}`);
     text(`${activeSmoothie.name}`, 200, 120);
     pop();
@@ -131,7 +179,7 @@ function drawOrder() {
 function drawSmoothieCup() {
     push();
     stroke('#c0c0c0')
-    strokeWeight(3)
+    strokeWeight(3) // the lid of the cup
     fill('#ebe6d9');
     ellipse(225, 490, 180, 100)
 
@@ -155,4 +203,10 @@ function drawSmoothieCup() {
     strokeWeight(0.1)
     rect(220, 370, 20, 330)
     pop()
+}
+
+function selectFoodElement(){
+    if(checkOverlap(mouseX, mouseY,cuttingBoardImg.x,cuttingBoardImg.y,cuttingBoardImg.size)){
+        console.log('chop chop')
+    }
 }
