@@ -85,11 +85,21 @@ function drawOrder() {
 
     push();
     textFont(bagelFatOneFont);
-    textSize(20);
+    textSize(30);
+    stroke('white');
+
     textAlign(CENTER);
-    text(`Incoming Smoothie Order\n`, 200, 90);
-    stroke('black');
+    fill('#8e7cc3')
+    text(`SmooVee\n`, 200, 90);
+
+
+    stroke('white');
+    fill('#b4a7d6')
     strokeWeight(2);
+    text(`SmooVee\n`, 203, 92);
+    stroke('white');
+
+
     textSize(25);
     fill(`${activeSmoothie.color}`);
     text(`${activeSmoothie.name}`, 200, 120);
