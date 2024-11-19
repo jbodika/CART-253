@@ -115,6 +115,36 @@ function drawOrder() {
 }
 
 
+
+
 function drawSmoothieCup() {
+    push();
+    stroke('#c0c0c0')
+    strokeWeight(3)
+    fill('#ebe6d9');
+    ellipse(225, 490, 180, 100)
+
+    pop();
+    push()
+    beginShape();
+    fill('#ebe6d9');
+    stroke('#c0c0c0')
+    strokeWeight(3)
+
+
+    vertex(150, 700); // Bottom left
+    vertex(300, 700); // Bottom right
+    vertex(315, 500); // Top right
+    vertex(135, 500); // Top left
+
+    endShape(CLOSE);
+    pop()
+
+    push()
+    strokeWeight(0.1)
+    rect(220, 370, 20, 330)
+    pop()
+
+
 
 }
