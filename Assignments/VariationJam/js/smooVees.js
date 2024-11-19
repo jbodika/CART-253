@@ -14,15 +14,17 @@
  */
 
 
-function testingThingsOut() {
-    console.log('hey')
-}
+
+let activeSmoothie;
+let gameInProgress = false;
+
 /**
  * Draws the menu circles
  */
 function drawMenu() {
 
 
+    //  console.log(smoothies.drinks)
     // background button
     push();
     stroke('#c0c0c0');
@@ -48,22 +50,69 @@ function drawInGameCounter() {
 
 }
 
-function drawCounterItems() {
-    image(blenderImg, 10, 140, 150, 210)
-    image(frozenBerriesImg, 600, 200)
-
-
-
-    image(milkImg, 400, 250, 80, 70)
-    image(honeyjarImg, 420, 290)
-    image(yogurtImg, 400, 300, 20, 20)
-    image(orangeImg, 450, 310)
-    image(watermelonImg, 550, 210)
-    image(cuttingBoardImg, 500, 500)
-    image(bananaImg, 520, 260)
+function randomizeElement(array) {
+    if (!gameInProgress) {
+        gameInProgress = true;
+        randomizedValue = array[Math.floor(Math.random() * array.length)];
+    }
+    return randomizedValue; // Returns a single smoothie object 
 }
 
 
+function drawCounterItems() {
+    image(blenderImg, 400, 140, 150, 210)
+    image(frozenBerriesImg, 600, 200)
+    image(milkImg, 500, 250, 80, 70)
+    image(honeyjarImg, 650, 290)
+
+    image(orangeImg, 630, 310)
+    image(watermelonImg, 550, 210)
+    image(cuttingBoardImg, 500, 500)
+    image(bananaImg, 520, 260)
+    image(yogurtImg, 600, 300, 20, 20)
+
+
+}
+
+function drawOrder() {
+    activeSmoothie = randomizeElement(smoothies.drinks)
+    push();
+    stroke('white');
+    strokeWeight(2);
+    fill('#c0c0c0');
+    rect(50, 50, 300, 185, 20);
+    pop();
+
+    push();
+    textFont(bagelFatOneFont);
+    textSize(20);
+    textAlign(CENTER);
+    text(`Incoming Smoothie Order\n`, 200, 90);
+    stroke('black');
+    strokeWeight(2);
+    textSize(25);
+    fill(`${activeSmoothie.color}`);
+    text(`${activeSmoothie.name}`, 200, 120);
+    pop();
+
+    push();
+    fill('black');
+    textFont(bagelFatOneFont);
+    textSize(20);
+
+    let yStartPos = 150; // default y position
+    let yIncrement = 20; // space between each line
+
+    activeSmoothie.ingredients.forEach((element, index) => {
+        fill('white')
+        stroke('black')
+
+        text(`${index+1}. ${element}`, 100, yStartPos + index * yIncrement);
+    });
+    pop()
+
+
+}
 
 
 function drawSmoothieCup() {

@@ -1,0 +1,65 @@
+{
+    "description": "Different smoothies offered at the shop",
+    "drinks": [{
+            "name": "Berry Bliss",
+            "ingredients": [
+                "Mixed Berries",
+                "Banana",
+                "Milk",
+                "Honey"
+            ],
+            "color": "#8E4585"
+        },
+        {
+            "name": "Tropical Sunshine",
+            "ingredients": [
+                "Pineapple Chunks",
+                "Orange",
+                "Coconut Water",
+                "Greek Yogurt"
+            ],
+            "color": "#F7C04A"
+        },
+        {
+            "name": "Green Glow",
+            "ingredients": [
+                "Spinach Leaves",
+                "Green Apple",
+                "Avocado",
+                "Water"
+            ],
+            "color": "#A2D149"
+        },
+        {
+            "name": "Chocolate Peanut Butter",
+            "ingredients": [
+                "Milk",
+                "Peanut Butter",
+                "Cocoa Powder",
+                "Banana"
+            ],
+            "color": "#8B5E3C"
+        },
+        {
+            "name": "Mango Cream",
+            "ingredients": [
+                "Mango Chunks",
+                "Orange Juice",
+                "Greek Yogurt",
+                "Chia Seeds"
+            ],
+            "color": "#FFC04C"
+        },
+        {
+            "name": "Strawberry Bliss",
+            "ingredients": [
+                "Strawberries",
+                "Banana",
+                "Greek Yogurt",
+                "Milk",
+                "Honey"
+            ],
+            "color": "#FF6384"
+        }
+    ]
+}

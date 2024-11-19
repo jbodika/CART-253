@@ -33,7 +33,7 @@ let orangeImg;
 let honeyjarImg;
 let milkImg;
 let yogurtImg;
-
+let smoothies;
 
 
 let cabinets = {
@@ -115,38 +115,40 @@ function preload() {
     honeyjarImg = loadImage('./assets/images/honeyjar.png');
     milkImg = loadImage('./assets/images/milk.png');
     yogurtImg = loadImage('./assets/images/yogurt.png');
+    smoothies = loadJSON('./assets/data/smoothies.json')
 }
 
 /**
  * Draws elements on the canvas
  */
 function draw() {
-    // if (gameState == 'main') {
-    //     background('#b4a7d6');
-    //     drawWindow();
-    //     drawReflectiveGlass();
-    //     drawBackgroundCounter();
+    if (gameState == 'main') {
+        background('#b4a7d6');
+        drawWindow();
+        drawReflectiveGlass();
+        drawBackgroundCounter();
 
-    //     image(veeImg, width / 2, 150)
-    //     drawFloor();
+        image(veeImg, width / 2, 150)
+        drawFloor();
 
-    //     drawStoreCounter();
-    //     drawDecorations();
+        drawStoreCounter();
+        drawDecorations();
 
-    //     drawChairs();
-    //     drawCabinets();
-    //     drawWelcomeMessage();
-    //     drawSpeechBubble();
-    //     drawVeesSpeech();
-    // } else if (gameState == 'playOriginalGame') {
-    //All functions here can be found in the smooVees.js file
-    background('#b4a7d6');
-    drawInGameCounter();
-    drawCounterItems();
-    drawMenu();
-    drawSmoothieCup()
+        drawChairs();
+        drawCabinets();
+        drawWelcomeMessage();
+        drawSpeechBubble();
+        drawVeesSpeech();
+    } else if (gameState == 'playOriginalGame') {
+        //All functions here can be found in the smooVees.js file
+        background('#b4a7d6');
+        drawInGameCounter();
+        drawCounterItems();
+        drawMenu();
 
-    //}
+        drawOrder()
+        drawSmoothieCup()
+    }
 
 
 }
