@@ -24,6 +24,17 @@ let cherrySmoothieImg;
 let limeSmoothieImg;
 let blenderImg;
 let gameState = 'main';
+//Variables from SmooVees **I had to create them here because I cannot have a secon preload function (it would override the first one)
+let watermelonImg;
+let frozenBerriesImg;
+let cuttingBoardImg;
+let bananaImg;
+let orangeImg;
+let honeyjarImg;
+let milkImg;
+let yogurtImg;
+
+
 
 let cabinets = {
     x: 0, // starting position for the first cabinet, this will change for the others
@@ -82,12 +93,16 @@ let chairs = {
  */
 function setup() {
     createCanvas(800, 800);
+
 }
 
 /*
  * Function to load assets before the page is loaded
  */
 function preload() {
+    watermelonImg = loadImage('./assets/images/watermelon.png');
+    frozenBerriesImg = loadImage('./assets/images/frozenBerries.png');
+    cuttingBoardImg = loadImage('./assets/images/cuttingBoard.png')
     veeImg = loadImage('./assets/images/Vee.png');
     veeTalking = loadJSON("./assets/data/veeTalking.json");
     bagelFatOneFont = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
@@ -95,34 +110,43 @@ function preload() {
     cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png");
     limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png");
     orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png");
-
+    bananaImg = loadImage('./assets/images/banana.png');
+    orangeImg = loadImage('./assets/images/orange.png');
+    honeyjarImg = loadImage('./assets/images/honeyjar.png');
+    milkImg = loadImage('./assets/images/milk.png');
+    yogurtImg = loadImage('./assets/images/yogurt.png');
 }
 
 /**
  * Draws elements on the canvas
  */
 function draw() {
-    if (gameState == 'main') {
-        background('#b4a7d6');
-        drawWindow();
-        drawReflectiveGlass();
-        drawBackgroundCounter();
+    // if (gameState == 'main') {
+    //     background('#b4a7d6');
+    //     drawWindow();
+    //     drawReflectiveGlass();
+    //     drawBackgroundCounter();
 
-        image(veeImg, width / 2, 150)
-        drawFloor();
+    //     image(veeImg, width / 2, 150)
+    //     drawFloor();
 
-        drawStoreCounter();
-        drawDecorations();
+    //     drawStoreCounter();
+    //     drawDecorations();
 
-        drawChairs();
-        drawCabinets();
-        drawWelcomeMessage();
-        drawSpeechBubble();
-        drawVeesSpeech();
-    } else if (gameState == 'playOriginalGame') {
-        background('#b4a7d6');
-        drawMenu();
-    }
+    //     drawChairs();
+    //     drawCabinets();
+    //     drawWelcomeMessage();
+    //     drawSpeechBubble();
+    //     drawVeesSpeech();
+    // } else if (gameState == 'playOriginalGame') {
+    //All functions here can be found in the smooVees.js file
+    background('#b4a7d6');
+    drawInGameCounter();
+    drawCounterItems();
+    drawMenu();
+    drawSmoothieCup()
+
+    //}
 
 
 }
