@@ -17,6 +17,7 @@ let randomizedValue;
 
 // All images 
 let watermelonImg={
+    name:"watermelon",
     image:undefined,
     x:550,
     y:210,
@@ -24,38 +25,46 @@ let watermelonImg={
 };
 
 let frozenBerriesImg ={
+    name:"berries",
     image:undefined,
-    x:600,
+    x:670,
     y:200,
     size:125
 }
 
-
 let cuttingBoardImg={
+    name:"board",
     image:undefined,
     x:500,
     y:500,
     size:200
 };
+
 let bananaImg={
+    name:"banana",
     image:undefined,
     x:520,
-    y:260,
+    y:300,
     size:64
 };
+
 let orangeImg={
+    name:"orange",
     image:undefined,
     x:630,
     y:310
 };
 let honeyjarImg={
+    name:"honey",
     image:undefined,
-    x:650,
-    y:290,
+    x:700,
+    y:320,
     size:64
 
 };
+
 let milkImg={
+    name:"milk",
     image:undefined,
     x:500,
     y:250,
@@ -65,24 +74,26 @@ let milkImg={
     }
 
 };
+
+
 let yogurtImg={
+    name:"yogurt",
     image:undefined,
     x:600,
-    y:300,
+    y:400,
     size:{
         x:20,
         y:20
     }
 };
+
 let smoothies;
+let foods = [watermelonImg,honeyjarImg,orangeImg,bananaImg,frozenBerriesImg]
 
 /**
  * Draws the menu circles
  */
 function drawMenu() {
-
-
-    //  console.log(smoothies.drinks)
     // background button
     push();
     stroke('#c0c0c0');
@@ -110,7 +121,6 @@ function drawInGameCounter() {
 
 
 
-
 function drawCounterItems() {
   //  image(blenderImg.image, blenderImg.x, blenderImg.y,blenderImg.size)
     image(frozenBerriesImg.image, frozenBerriesImg.x, frozenBerriesImg.y,frozenBerriesImg.size)
@@ -122,10 +132,11 @@ function drawCounterItems() {
     image(cuttingBoardImg.image, cuttingBoardImg.x, cuttingBoardImg.y,cuttingBoardImg.size)
     image(bananaImg.image, bananaImg.x, bananaImg.y, bananaImg.size)
     image(yogurtImg.image, yogurtImg.x, yogurtImg.y, yogurtImg.size.x,yogurtImg.size.y)
- 
 }
 
 function drawOrder() {
+    let yStartPos = 150; // default y position
+    let yIncrement = 20; // space between each line
     activeSmoothie = randomizeElement(smoothies.drinks)
     push();
     stroke('white');
@@ -149,7 +160,6 @@ function drawOrder() {
     text(`SmooVee\n`, 203, 92);
     stroke('white');
 
-
     textSize(25);
   
     fill(`${activeSmoothie.color}`);
@@ -157,22 +167,14 @@ function drawOrder() {
     pop();
 
     push();
-    fill('black');
-    textFont(bagelFatOneFont);
-    textSize(20);
-
-    let yStartPos = 150; // default y position
-    let yIncrement = 20; // space between each line
-
     activeSmoothie.ingredients.forEach((element, index) => {
+        textFont(bagelFatOneFont);
+        textSize(20);
         fill('white')
         stroke('black')
-
         text(`${index+1}. ${element}`, 100, yStartPos + index * yIncrement);
     });
     pop()
-
-
 }
 
 
@@ -190,7 +192,6 @@ function drawSmoothieCup() {
     stroke('#c0c0c0')
     strokeWeight(3)
 
-
     vertex(150, 700); // Bottom left
     vertex(300, 700); // Bottom right
     vertex(315, 500); // Top right
@@ -205,8 +206,12 @@ function drawSmoothieCup() {
     pop()
 }
 
+
 function selectFoodElement(){
-    if(checkOverlap(mouseX, mouseY,cuttingBoardImg.x,cuttingBoardImg.y,cuttingBoardImg.size)){
-        console.log('chop chop')
-    }
+    foods.forEach((element)=>{
+        if(mouseIsPressed && checkOverlap(mouseX, mouseY,element.x,element.y,element.size)){
+            console.log(element.name)
+        }
+    })
+
 }

@@ -76,7 +76,7 @@ function draw() {
         drawOrder()
         drawSmoothieCup()
         selectFoodElement();
-    }
+   }
 
 
 }
@@ -95,13 +95,13 @@ function mouseClicked() {
 
 
 function keyPressed() {
-    if (key.toUpperCase() === 'O') {
+    if (key.toUpperCase() === 'O' && gameState == 'main') {
         gameState = 'playOriginalGame';
         console.log('orignal');
-    } else if (key.toUpperCase() === 'R') {
+    } else if (key.toUpperCase() === 'R'&& gameState == 'main') {
         console.log('reverse');
 
-    } else if (key.toUpperCase() === 'Z') {
+    } else if (key.toUpperCase() === 'Z'&& gameState == 'main') {
         console.log('z gravity');
 
     }
@@ -118,9 +118,9 @@ function keyPressed() {
 function checkOverlap(firstValPosX, firstValPosY, secondValPosX, secondValPosY, secondValSize) {
     const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
     // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
-    return isMouseOverlapping = (distance < secondValSize / 2);//checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
-
+     return isMouseOverlapping = (distance < secondValSize / 2);//checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
 }
+
 
 function randomizeElement(array) {
     if (!gameInProgress) {
