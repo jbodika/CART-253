@@ -73,10 +73,11 @@ function draw() {
         drawInGameCounter();
         drawCounterItems();
         drawMenu();
-        drawOrder()
-        drawSmoothieCup()
-        selectFoodElement();
-   }
+        drawOrder();
+        drawSmoothieCup();
+        previewFoodSelection();
+
+    }
 
 
 }
@@ -93,39 +94,46 @@ function mouseClicked() {
 
 }
 
+function mousePressed() {
+    if (gameState == "playOriginalGame") {
+        selectFood();
+    }
+
+}
+
 
 function keyPressed() {
     if (key.toUpperCase() === 'O' && gameState == 'main') {
         gameState = 'playOriginalGame';
         console.log('orignal');
-    } else if (key.toUpperCase() === 'R'&& gameState == 'main') {
+    } else if (key.toUpperCase() === 'R' && gameState == 'main') {
         console.log('reverse');
 
-    } else if (key.toUpperCase() === 'Z'&& gameState == 'main') {
+    } else if (key.toUpperCase() === 'Z' && gameState == 'main') {
         console.log('z gravity');
 
     }
 }
 
 /* Checks if the cursor overlaps with an object
-*
-* @param firstValPosX - Object 1's value X position
-* @param firstValPosY - Object 1's value Y position
-* @param secondValPosX - Object 2's value X position
-* @param secondValPosY - Object 2's value Y position
-* @param secondValSize - Object 2's size value
-*/
+ *
+ * @param firstValPosX - Object 1's value X position
+ * @param firstValPosY - Object 1's value Y position
+ * @param secondValPosX - Object 2's value X position
+ * @param secondValPosY - Object 2's value Y position
+ * @param secondValSize - Object 2's size value
+ */
 function checkOverlap(firstValPosX, firstValPosY, secondValPosX, secondValPosY, secondValSize) {
     const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
     // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
-     return isMouseOverlapping = (distance < secondValSize / 2);//checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
+    return isMouseOverlapping = (distance < secondValSize / 2); //checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
 }
 
 
 function randomizeElement(array) {
     if (!gameInProgress) {
         gameInProgress = true;
-       randomizedValue =  array[Math.floor(Math.random() * array.length)];
+        randomizedValue = array[Math.floor(Math.random() * array.length)];
     }
     return randomizedValue; // Returns a single smoothie object 
 }
