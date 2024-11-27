@@ -16,12 +16,16 @@
 
 let bagelFatOneFont;
 let isMouseOverlapping;
+let knifeSound;
+let button;
+
+let foodBtn;
 /**
  * Creates the canvas
  */
 function setup() {
-    createCanvas(800, 800);
-
+    var canvas = createCanvas(800, 800);
+    canvas.parent("canvasDiv")
 }
 
 /*
@@ -29,8 +33,16 @@ function setup() {
  */
 function preload() {
     watermelonImg.image = loadImage('./assets/images/watermelon.png');
+    watermelonImg.openImage = loadImage('./assets/images/openWatermelon.png')
     frozenBerriesImg.image = loadImage('./assets/images/frozenBerries.png');
     cuttingBoardImg.image = loadImage('./assets/images/cuttingBoard.png')
+    bananaImg.image = loadImage('./assets/images/banana.png');
+    bananaImg.openImage = loadImage('./assets/images/openBanana.png');
+
+    orangeImg.image = loadImage('./assets/images/orange.png');
+    honeyjarImg.image = loadImage('./assets/images/honeyjar.png');
+    milkImg.image = loadImage('./assets/images/milk.png');
+    yogurtImg.image = loadImage('./assets/images/yogurt.png');
     veeImg = loadImage('./assets/images/Vee.png');
     veeTalking = loadJSON("./assets/data/veeTalking.json");
     bagelFatOneFont = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
@@ -38,18 +50,68 @@ function preload() {
     cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png");
     limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png");
     orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png");
-    bananaImg.image = loadImage('./assets/images/banana.png');
-    orangeImg.image = loadImage('./assets/images/orange.png');
-    honeyjarImg.image = loadImage('./assets/images/honeyjar.png');
-    milkImg.image = loadImage('./assets/images/milk.png');
-    yogurtImg.image = loadImage('./assets/images/yogurt.png');
-    smoothies = loadJSON('./assets/data/smoothies.json')
+
+    smoothies = loadJSON('./assets/data/smoothies.json');
+    knifeSound = loadSound('./assets/audio/knife.mp3')
 }
 
 /**
  * Draws elements on the canvas
  */
 function draw() {
+    textFont(bagelFatOneFont);
+    smooVeesLayout();
+    mainScreenLayout();
+}
+
+function smooVeesLayout() {
+    if (gameState == 'playOriginalGame') {
+        //All functions here can be found in the smooVees.js file
+        background('#b4a7d6');
+        drawInGameCounter();
+        drawCounterItems();
+        drawMenu();
+        drawOrder();
+        drawSmoothieCup();
+        previewFoodSelection();
+
+
+    }
+
+}
+
+/**
+ * Draws the menu circles
+ */
+function drawMenu() {
+    // checks if there's already a button element on the canvas
+    if (!button) {
+        button = createButton('Main Menu');
+        button.parent("canvasDiv")
+        button.position(650, 730);
+        button.addClass('btn'); //for styling purposes
+        button.mousePressed(() => {
+            if (button) {
+                button.elt.remove();
+                button = null;
+            }
+            if (foodBtn) {
+                foodBtn.elt.remove();
+                foodBtn = null;
+            }
+
+
+            gameState = "main";
+            mainScreenLayout();
+        });
+
+    }
+
+}
+
+
+
+function mainScreenLayout() {
     if (gameState == 'main') {
         background('#b4a7d6');
         drawWindow();
@@ -67,21 +129,9 @@ function draw() {
         drawWelcomeMessage();
         drawSpeechBubble();
         drawVeesSpeech();
-    } else if (gameState == 'playOriginalGame') {
-        //All functions here can be found in the smooVees.js file
-        background('#b4a7d6');
-        drawInGameCounter();
-        drawCounterItems();
-        drawMenu();
-        drawOrder();
-        drawSmoothieCup();
-        previewFoodSelection();
 
     }
-
-
 }
-
 
 function mouseClicked() {
     // allows the user to read what Vee has to say over and over again
@@ -97,10 +147,15 @@ function mouseClicked() {
 function mousePressed() {
     if (gameState == "playOriginalGame") {
         selectFood();
+
     }
 
 }
 
+
+function mouseReleased() {
+
+}
 
 function keyPressed() {
     if (key.toUpperCase() === 'O' && gameState == 'main') {
@@ -112,6 +167,12 @@ function keyPressed() {
     } else if (key.toUpperCase() === 'Z' && gameState == 'main') {
         console.log('z gravity');
 
+    } else if (key === 'C') {
+        foodAction = 'cut';
+    } else if (key === 'P') {
+        foodAction = 'pour';
+    } else if (key === 'B') {
+        foodAction = 'blend';
     }
 }
 

@@ -24,8 +24,8 @@ let currSpeechIndex = 0; // starts at the first speech
 let orangeSmoothieImg;
 let cherrySmoothieImg;
 let limeSmoothieImg;
-let blenderImg={
-    image:undefined
+let blenderImg = {
+    image: undefined
 };
 let gameState = 'main';
 
@@ -109,10 +109,8 @@ function drawWelcomeMessage() {
     stroke('pink');
     strokeWeight(5);
 
-    textFont(bagelFatOneFont);
     textSize(80);
     text('Vee\'s\nSmoothie\nShop!', 50, 205 + yOffset);
-    //text(test, 50, 205 + yOffset);
 
     pop();
 
@@ -122,7 +120,6 @@ function drawWelcomeMessage() {
     strokeWeight(5);
 
     fill('#c27ba0');
-    textFont(bagelFatOneFont);
     textSize(80);
     text('Vee\'s\nSmoothie\nShop!', 55, 200 + yOffset);
 
@@ -149,7 +146,6 @@ function drawSpeechBubble() {
  */
 function drawVeesSpeech() {
     push();
-    textFont(bagelFatOneFont);
     fill('#546DA6');
     stroke('white');
     strokeWeight(3);

@@ -16,14 +16,18 @@ let activeFoodElement; //curernt food selected
 let gameInProgress = false;
 let randomizedValue;
 let foodAction = null;
-
+let mouseWasReleased = false;
+let openWatermelon;
+let numOfChops = 0; // max amount of time the player can chop 
 // All images 
 let watermelonImg = {
     name: "watermelon",
     image: undefined,
+    openImage: undefined,
     x: 630,
     y: 280,
-    size: 125
+    size: 125,
+    action: "cut"
 };
 
 let frozenBerriesImg = {
@@ -31,7 +35,8 @@ let frozenBerriesImg = {
     image: undefined,
     x: 670,
     y: 200,
-    size: 125
+    size: 125,
+    action: "pour"
 }
 
 let cuttingBoardImg = {
@@ -45,9 +50,11 @@ let cuttingBoardImg = {
 let bananaImg = {
     name: "banana",
     image: undefined,
+    openImage: undefined,
     x: 520,
     y: 300,
-    size: 64
+    size: 64,
+    action: "cut"
 
 };
 
@@ -56,7 +63,8 @@ let orangeImg = {
     image: undefined,
     x: 630,
     y: 400,
-    size: 32
+    size: 32,
+    action: "cut"
 
 };
 let honeyjarImg = {
@@ -64,7 +72,8 @@ let honeyjarImg = {
     image: undefined,
     x: 700,
     y: 320,
-    size: 64
+    size: 64,
+    action: "pour"
 };
 
 let milkImg = {
@@ -72,7 +81,8 @@ let milkImg = {
     image: undefined,
     x: 500,
     y: 250,
-    size: 85
+    size: 85,
+    action: "pour"
 };
 
 
@@ -81,30 +91,13 @@ let yogurtImg = {
     image: undefined,
     x: 600,
     y: 400,
-    size: 20
+    size: 20,
+    action: "pour"
 };
 
 let smoothies;
 let foods = [orangeImg, yogurtImg, honeyjarImg, watermelonImg, bananaImg, frozenBerriesImg, milkImg]
 
-/**
- * Draws the menu circles
- */
-function drawMenu() {
-    // background button
-    push();
-    stroke('#c0c0c0');
-    strokeWeight(5);
-    rect(55, height - 70, 125, 40, 20);
-    pop();
-
-    // text on the button
-    push();
-    textFont(bagelFatOneFont);
-    textSize(20);
-    text('Main Menu', 70, height - 43);
-    pop();
-}
 
 
 function drawInGameCounter() {
@@ -146,7 +139,6 @@ function drawOrder() {
     pop();
 
     push();
-    textFont(bagelFatOneFont);
     textSize(30);
     stroke('white');
 
@@ -168,7 +160,6 @@ function drawOrder() {
 
     push();
     activeSmoothie.ingredients.forEach((element, index) => {
-        textFont(bagelFatOneFont);
         textSize(20);
         fill('white')
         stroke('black')
@@ -177,6 +168,31 @@ function drawOrder() {
     pop()
 }
 
+
+function foodActionBtn(action) {
+
+    if (!foodBtn) {
+        foodBtn = createButton(action);
+        foodBtn.parent("canvasDiv")
+        foodBtn.position(650, 600);
+        foodBtn.addClass('btn'); //for styling purposes
+    }
+    foodBtn.mousePressed(() => {
+        foodAction = activeFoodElement.action
+        console.log(foodAction)
+
+        numOfChops++
+        knifeSound.play();
+        if (numOfChops == 3) {
+            activeFoodElement.image = activeFoodElement.openImage;
+            foodAction = null;
+            numOfChops = 0;
+            foodBtn.elt.remove();
+            foodBtn = null;
+        }
+        console.log(numOfChops);
+    });
+}
 
 function drawSmoothieCup() {
     push();
@@ -212,25 +228,113 @@ function previewFoodSelection() {
     if (foodAction == 'preview') {
         clear();
         push();
-        background('#fffff2'); //cutting board
+        background('#fffff2'); //counter top
         pop();
 
         image(activeFoodElement.image, 200, 100, 500, 500);
 
-        textFont(bagelFatOneFont);
+        push()
+        textSize(20)
+        textAlign(CENTER)
         text('You chose the ' + activeFoodElement.name, width / 2, 700);
+        pop()
 
+        push();
+        textSize(20);
+        textAlign(CENTER);
+        text(activeFoodElement.action + ' it!', width / 2, 740);
+        pop()
+
+
+        foodActionBtn(activeFoodElement.action)
+
+        //     if (mouseWasReleased && mouseIsPressed) {
+        //         foodAction = activeFoodElement.action
+        //             // actionFoodSelection()
+        //     }
+    } else if (foodAction === 'cut' || foodAction === 'pour' || foodAction === 'blend') {
+        actionFoodSelection();
     }
 
+
 }
+
+
+/**
+ * Function to handle the 'cut' action scenery 
+ */
+function drawCuttingScreen() {
+
+    background('#BA8963');
+    rect(20, 280, 70, 300, 20);
+    image(activeFoodElement.image, 200, 100, 500, 500);
+
+}
+
+
+function actionFoodSelection() {
+    clear()
+
+    if (foodAction === 'cut') {
+        console.log('whu')
+        drawCuttingScreen();
+    } else if (foodAction === 'pour') {
+        drawPouringScreen();
+    } else if (foodAction === 'blend') {
+        drawBlendingScreen();
+    }
+    // clear();
+    // if (foodAction === 'cut') {
+    //     console.log('um')
+    //     background('#BA8963')
+    //     rect(20, 280, 70, 300, 20)
+    //     image(activeFoodElement.image, 200, 100, 500, 500);
+
+    //     // if (mouseIsPressed && mouseWasReleased) {
+    //     //     if (knifeSound.isPlaying()) {
+    //     //         knifeSound.stop(); // Stop the current sound
+    //     //         numOfChops++;
+    //     //     }
+    //     //     knifeSound.play();
+    //     //     console.log(numOfChops)
+    //     //     if (numOfChops > 15) {
+    //     //         activeFoodElement.image = activeFoodElement.openImage
+    //     //     }
+
+
+    //     //     mouseWasReleased = false;
+
+    //     // }
+    //     // mouseWasReleased = true;
+
+
+    // } else if (foodAction === 'pour') {
+    //     clear();
+    //     console.log(foodAction)
+
+
+    // } else if (foodAction === 'blend') {
+    //     clear();
+    //     console.log(foodAction)
+
+
+    // }
+
+}
+
+
+
+
 /**
  * Interaction that allows the user to select one the food elements on the counter top
  */
 function selectFood() {
     foods.forEach((element) => {
         if (checkOverlap(mouseX, mouseY, element.x, element.y, element.size) && foodAction == null) {
+            console.log(element)
             activeFoodElement = element; // assigns the selected food to the activeFoodElement variable
             foodAction = 'preview'; // focused screen for the selected food 
+
         }
     })
 
