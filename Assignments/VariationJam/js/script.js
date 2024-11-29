@@ -17,6 +17,8 @@
 let bagelFatOneFont;
 let isMouseOverlapping;
 let knifeSound;
+let pouringSound;
+
 let button;
 
 let foodBtn;
@@ -42,6 +44,7 @@ function preload() {
     orangeImg.image = loadImage('./assets/images/orange.png');
     honeyjarImg.image = loadImage('./assets/images/honeyjar.png');
     milkImg.image = loadImage('./assets/images/milk.png');
+    milkImg.openImage = loadImage('./assets/images/pouredMilk.png')
     yogurtImg.image = loadImage('./assets/images/yogurt.png');
     veeImg = loadImage('./assets/images/Vee.png');
     veeTalking = loadJSON("./assets/data/veeTalking.json");
@@ -52,7 +55,10 @@ function preload() {
     orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png");
 
     smoothies = loadJSON('./assets/data/smoothies.json');
-    knifeSound = loadSound('./assets/audio/knife.mp3')
+
+    knifeSound = loadSound('./assets/audio/knife.mp3');
+    pouringSound = loadSound('./assets/audio/pour.mp3')
+
 }
 
 /**
@@ -167,15 +173,15 @@ function keyPressed() {
     } else if (key.toUpperCase() === 'Z' && gameState == 'main') {
         console.log('z gravity');
 
-    } else if (key === 'C') {
-        foodAction = 'cut';
-    } else if (key === 'P') {
-        foodAction = 'pour';
-    } else if (key === 'B') {
-        foodAction = 'blend';
+        // } else if (key === 'C') {
+        //     foodAction = 'cut';
+        // } else if (key === 'P') {
+        //     foodAction = 'pour';
+        // } else if (key === 'B') {
+        //     foodAction = 'blend';
+        // }
     }
 }
-
 /* Checks if the cursor overlaps with an object
  *
  * @param firstValPosX - Object 1's value X position

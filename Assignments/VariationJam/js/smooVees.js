@@ -19,6 +19,7 @@ let foodAction = null;
 let mouseWasReleased = false;
 let openWatermelon;
 let numOfChops = 0; // max amount of time the player can chop 
+let numOfPours = 0;
 // All images 
 let watermelonImg = {
     name: "watermelon",
@@ -180,18 +181,41 @@ function foodActionBtn(action) {
     foodBtn.mousePressed(() => {
         foodAction = activeFoodElement.action
 
+        playActionSound()
+
+    });
+
+}
+
+
+
+function playActionSound() {
+    if (foodAction == 'cut') {
         numOfChops++
         knifeSound.play();
-        if (numOfChops == 3) {
+        if (numOfChops == 4) {
             activeFoodElement.image = activeFoodElement.openImage;
             foodAction = null;
             numOfChops = 0;
             foodBtn.elt.remove();
             foodBtn = null;
         };
-
-    });
+    } else if (foodAction == 'pour') {
+        numOfPours++
+        pouringSound.play();
+        if (numOfPours == 2) {
+            activeFoodElement.image = activeFoodElement.openImage;
+            foodAction = null;
+            numOfPours = 0;
+            foodBtn.elt.remove();
+            foodBtn = null;
+        };
+    }
 }
+
+
+
+
 
 function drawSmoothieCup() {
     push();
@@ -238,15 +262,8 @@ function previewFoodSelection() {
         text('You chose the ' + activeFoodElement.name + '\n' + activeFoodElement.action + ' it!', width / 2, 100);
         pop()
 
-
-
-
         foodActionBtn(activeFoodElement.action)
 
-        //     if (mouseWasReleased && mouseIsPressed) {
-        //         foodAction = activeFoodElement.action
-        //             // actionFoodSelection()
-        //     }
     } else if (foodAction === 'cut' || foodAction === 'pour' || foodAction === 'blend') {
         actionFoodSelection();
     }
@@ -266,54 +283,27 @@ function drawCuttingScreen() {
 
 }
 
+function drawPouringScreen() {
+    background('#fffff2');
+    push()
+    fill('#b4a7d6')
+    noStroke();
+    rect(0, 0, width, 100, 20);
+    pop()
+    image(activeFoodElement.image, 200, 100, 500, 500);
+}
 
 function actionFoodSelection() {
     clear()
 
     if (foodAction === 'cut') {
-        console.log('whu')
         drawCuttingScreen();
     } else if (foodAction === 'pour') {
         drawPouringScreen();
     } else if (foodAction === 'blend') {
         drawBlendingScreen();
     }
-    // clear();
-    // if (foodAction === 'cut') {
-    //     console.log('um')
-    //     background('#BA8963')
-    //     rect(20, 280, 70, 300, 20)
-    //     image(activeFoodElement.image, 200, 100, 500, 500);
 
-    //     // if (mouseIsPressed && mouseWasReleased) {
-    //     //     if (knifeSound.isPlaying()) {
-    //     //         knifeSound.stop(); // Stop the current sound
-    //     //         numOfChops++;
-    //     //     }
-    //     //     knifeSound.play();
-    //     //     console.log(numOfChops)
-    //     //     if (numOfChops > 15) {
-    //     //         activeFoodElement.image = activeFoodElement.openImage
-    //     //     }
-
-
-    //     //     mouseWasReleased = false;
-
-    //     // }
-    //     // mouseWasReleased = true;
-
-
-    // } else if (foodAction === 'pour') {
-    //     clear();
-    //     console.log(foodAction)
-
-
-    // } else if (foodAction === 'blend') {
-    //     clear();
-    //     console.log(foodAction)
-
-
-    // }
 
 }
 
