@@ -172,14 +172,13 @@ function drawOrder() {
 function foodActionBtn(action) {
 
     if (!foodBtn) {
-        foodBtn = createButton(action);
+        foodBtn = createButton(action.toUpperCase());
         foodBtn.parent("canvasDiv")
-        foodBtn.position(650, 600);
-        foodBtn.addClass('btn'); //for styling purposes
+        foodBtn.position(width / 2, 650);
+        foodBtn.addClass('food-action-btn'); //for styling purposes
     }
     foodBtn.mousePressed(() => {
         foodAction = activeFoodElement.action
-        console.log(foodAction)
 
         numOfChops++
         knifeSound.play();
@@ -189,8 +188,8 @@ function foodActionBtn(action) {
             numOfChops = 0;
             foodBtn.elt.remove();
             foodBtn = null;
-        }
-        console.log(numOfChops);
+        };
+
     });
 }
 
@@ -234,16 +233,12 @@ function previewFoodSelection() {
         image(activeFoodElement.image, 200, 100, 500, 500);
 
         push()
-        textSize(20)
+        textSize(40)
         textAlign(CENTER)
-        text('You chose the ' + activeFoodElement.name, width / 2, 700);
+        text('You chose the ' + activeFoodElement.name + '\n' + activeFoodElement.action + ' it!', width / 2, 100);
         pop()
 
-        push();
-        textSize(20);
-        textAlign(CENTER);
-        text(activeFoodElement.action + ' it!', width / 2, 740);
-        pop()
+
 
 
         foodActionBtn(activeFoodElement.action)
