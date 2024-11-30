@@ -16,9 +16,13 @@
 
 let bagelFatOneFont;
 let isMouseOverlapping;
+
+
 let knifeSound;
 let pouringSound;
 let blenderSound;
+let cashRegisterSound;
+let sadTromboneSound;
 
 
 let menuBtn;
@@ -65,6 +69,8 @@ function preload() {
     knifeSound = loadSound('./assets/audio/knife.mp3');
     pouringSound = loadSound('./assets/audio/pour.mp3')
     blenderSound = loadSound('./assets/audio/blender.mp3')
+    cashRegisterSound = loadSound('./assets/audio/cash-register.mp3')
+    sadTromboneSound = loadSound('./assets/audio/sad-trombone.mp3')
 }
 
 /**
@@ -149,44 +155,7 @@ function drawMenu() {
                 restartBtn.elt.remove();
                 restartBtn = null;
                 // activeSmoothie = randomizeElement(smoothies.drinks)
-                gameInProgress = false;
-                foodAction = null;
-                numOfChops = 0; // max amount of time the player can chop 
-                numOfPours = 0;
-                originalFoodData = { x: 0, y: 0, image: undefined }
-                chosenFoods = [];
-                ingredientsCount = 0
-                smoothieCup = {
-
-                        lid: {
-                            x: 400,
-                            y: 530,
-                            size: {
-                                x: 180,
-                                y: 100
-                            }
-                        },
-                        cup: {
-                            x: 310,
-                            y: 530,
-                            size: {
-                                x: 180,
-                                y: 200
-                            }
-                        },
-                        straw: {
-                            x: 390,
-                            y: 370,
-                            size: {
-                                x: 20,
-                                y: 330
-                            }
-                        },
-                        color: '#ebe6d9'
-                    }
-                    // smooVeesLayout();
-
-
+                resetGameSettings()
             }
 
         });

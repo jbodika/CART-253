@@ -461,6 +461,9 @@ function serveDrink() {
     if (equalArray && ingredientsCount == 4) {
 
         smoothieCup.color = activeSmoothie.color
+
+        cashRegisterSound.play()
+
     } else if (!equalArray && ingredientsCount == 4) {
         // simulate a spilled over cup 
         smoothieCup.cup.x = 100
@@ -478,6 +481,11 @@ function serveDrink() {
         smoothieCup.straw.size.x = 400
         smoothieCup.straw.size.y = 25
         smoothieCup.color = '#ebe6d9'
+        sadTromboneSound.play()
+
+
+
+
     }
 
 

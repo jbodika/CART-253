@@ -24,4 +24,5 @@ This project uses
 - Cut Sound Effect by floraphonic from [Pixabay]("https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=184692)
 - Pouring Sound Effect by Rahul from [Pixabay]("https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=263175")
 - Blender Sound Effect by freesound_community from [Pixabay]("https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=82391")
-- Sound Effect by Modestas123123 from [Pixabay]("https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=125042")
+- Cash Register Sound Effect by Modestas123123 from [Pixabay]("https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=125042")
+- Sad Trombone Sound Effect by freesound_community from [Pixabay]("https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6347")
