@@ -18,8 +18,12 @@ let bagelFatOneFont;
 let isMouseOverlapping;
 let knifeSound;
 let pouringSound;
+let blenderSound;
 
-let button;
+
+let menuBtn;
+let restartBtn;
+
 
 let foodBtn;
 /**
@@ -37,6 +41,8 @@ function preload() {
     watermelonImg.image = loadImage('./assets/images/watermelon.png');
     watermelonImg.openImage = loadImage('./assets/images/openWatermelon.png')
     frozenBerriesImg.image = loadImage('./assets/images/frozenBerries.png');
+    frozenBerriesImg.openImage = loadImage('./assets/images/openFrozenBerries.png');
+
     cuttingBoardImg.image = loadImage('./assets/images/cuttingBoard.png')
     bananaImg.image = loadImage('./assets/images/banana.png');
     bananaImg.openImage = loadImage('./assets/images/openBanana.png');
@@ -58,7 +64,7 @@ function preload() {
 
     knifeSound = loadSound('./assets/audio/knife.mp3');
     pouringSound = loadSound('./assets/audio/pour.mp3')
-
+    blenderSound = loadSound('./assets/audio/blender.mp3')
 }
 
 /**
@@ -90,17 +96,35 @@ function smooVeesLayout() {
  * Draws the menu circles
  */
 function drawMenu() {
-    // checks if there's already a button element on the canvas
-    if (!button) {
-        button = createButton('Main Menu');
-        button.parent("canvasDiv")
-        button.position(650, 730);
-        button.addClass('btn'); //for styling purposes
-        button.mousePressed(() => {
-            if (button) {
-                button.elt.remove();
-                button = null;
+    // checks if there's already a menuBtn element on the canvas
+    if (!menuBtn) {
+        menuBtn = createButton('Main Menu');
+        menuBtn.parent("canvasDiv")
+        menuBtn.position(650, 730);
+        menuBtn.addClass('btn'); //for styling purposes
+
+
+
+        menuBtn.mousePressed(() => {
+            if (menuBtn) {
+                menuBtn.elt.remove();
+                menuBtn = null;
+
             }
+            if (restartBtn) {
+                restartBtn.elt.remove();
+                restartBtn = null;
+                activeSmoothie = randomizeElement(smoothies.drinks)
+                gameInProgress = false;
+                foodAction = null;
+                numOfChops = 0; // max amount of time the player can chop 
+                numOfPours = 0;
+                chosenFoods = []
+                smooVeesLayout();
+
+
+            }
+
             if (foodBtn) {
                 foodBtn.elt.remove();
                 foodBtn = null;
@@ -109,6 +133,62 @@ function drawMenu() {
 
             gameState = "main";
             mainScreenLayout();
+        });
+
+    }
+
+    if (!restartBtn) {
+        restartBtn = createButton('Restart');
+        restartBtn.parent("canvasDiv")
+        restartBtn.position(500, 730);
+        restartBtn.addClass('btn'); //for styling purposes
+
+        restartBtn.mousePressed(() => {
+
+            if (restartBtn) {
+                restartBtn.elt.remove();
+                restartBtn = null;
+                // activeSmoothie = randomizeElement(smoothies.drinks)
+                gameInProgress = false;
+                foodAction = null;
+                numOfChops = 0; // max amount of time the player can chop 
+                numOfPours = 0;
+                originalFoodData = { x: 0, y: 0, image: undefined }
+                chosenFoods = [];
+                ingredientsCount = 0
+                smoothieCup = {
+
+                        lid: {
+                            x: 400,
+                            y: 530,
+                            size: {
+                                x: 180,
+                                y: 100
+                            }
+                        },
+                        cup: {
+                            x: 310,
+                            y: 530,
+                            size: {
+                                x: 180,
+                                y: 200
+                            }
+                        },
+                        straw: {
+                            x: 390,
+                            y: 370,
+                            size: {
+                                x: 20,
+                                y: 330
+                            }
+                        },
+                        color: '#ebe6d9'
+                    }
+                    // smooVeesLayout();
+
+
+            }
+
         });
 
     }
@@ -153,15 +233,12 @@ function mouseClicked() {
 function mousePressed() {
     if (gameState == "playOriginalGame") {
         selectFood();
-
+        clickToBlend();
+        serveDrink();
     }
 
 }
 
-
-function mouseReleased() {
-
-}
 
 function keyPressed() {
     if (key.toUpperCase() === 'O' && gameState == 'main') {
@@ -173,13 +250,6 @@ function keyPressed() {
     } else if (key.toUpperCase() === 'Z' && gameState == 'main') {
         console.log('z gravity');
 
-        // } else if (key === 'C') {
-        //     foodAction = 'cut';
-        // } else if (key === 'P') {
-        //     foodAction = 'pour';
-        // } else if (key === 'B') {
-        //     foodAction = 'blend';
-        // }
     }
 }
 /* Checks if the cursor overlaps with an object

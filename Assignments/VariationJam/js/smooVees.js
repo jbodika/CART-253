@@ -12,27 +12,31 @@
  *
  */
 let activeSmoothie; // current smoothie the player has to make
-let activeFoodElement; //curernt food selected
+let activeFoodElement; //current food selected
+let originalFoodData = { x: 0, y: 0, image: undefined }
 let gameInProgress = false;
 let randomizedValue;
 let foodAction = null;
-let mouseWasReleased = false;
-let openWatermelon;
 let numOfChops = 0; // max amount of time the player can chop 
 let numOfPours = 0;
+let chosenFoods = []
+let ingredientsCount = 0
+let smoothies;
+
 // All images 
 let watermelonImg = {
-    name: "watermelon",
+    name: "Watermelon",
     image: undefined,
     openImage: undefined,
-    x: 630,
+    x: 630, //630 - 280
     y: 280,
     size: 125,
-    action: "cut"
+    action: "cut",
+    colour: '#FD4659'
 };
 
 let frozenBerriesImg = {
-    name: "berries",
+    name: "Frozen Berries",
     image: undefined,
     x: 670,
     y: 200,
@@ -41,15 +45,15 @@ let frozenBerriesImg = {
 }
 
 let cuttingBoardImg = {
-    name: "board",
+    name: "Board",
     image: undefined,
-    x: 500,
-    y: 500,
+    x: 650,
+    y: 550,
     size: 200
 };
 
 let bananaImg = {
-    name: "banana",
+    name: "Banana",
     image: undefined,
     openImage: undefined,
     x: 520,
@@ -60,7 +64,7 @@ let bananaImg = {
 };
 
 let orangeImg = {
-    name: "orange",
+    name: "Orange",
     image: undefined,
     x: 630,
     y: 400,
@@ -69,7 +73,7 @@ let orangeImg = {
 
 };
 let honeyjarImg = {
-    name: "honey",
+    name: "Honey",
     image: undefined,
     x: 700,
     y: 320,
@@ -78,7 +82,7 @@ let honeyjarImg = {
 };
 
 let milkImg = {
-    name: "milk",
+    name: "Milk",
     image: undefined,
     x: 500,
     y: 250,
@@ -88,7 +92,7 @@ let milkImg = {
 
 
 let yogurtImg = {
-    name: "yogurt",
+    name: "Yogurt",
     image: undefined,
     x: 600,
     y: 400,
@@ -96,8 +100,19 @@ let yogurtImg = {
     action: "pour"
 };
 
-let smoothies;
+let gameBlender = {
+    name: "Blender",
+    image: orangeImg.image,
+    x: 150,
+    y: 400,
+    size: 300,
+    action: "blend"
+}
+
+
+
 let foods = [orangeImg, yogurtImg, honeyjarImg, watermelonImg, bananaImg, frozenBerriesImg, milkImg]
+
 
 
 
@@ -111,14 +126,11 @@ function drawInGameCounter() {
 
 }
 
-
 /**
  * Displays the pixelated foods on the counter top and centers them within their bounding box 
  */
 function drawCounterItems() {
-    //  image(blenderImg.image, blenderImg.x, blenderImg.y,blenderImg.size)
     image(cuttingBoardImg.image, cuttingBoardImg.x - cuttingBoardImg.size / 2, cuttingBoardImg.y - cuttingBoardImg.size / 2, cuttingBoardImg.size, cuttingBoardImg.size);
-
     image(frozenBerriesImg.image, frozenBerriesImg.x - frozenBerriesImg.size / 2, frozenBerriesImg.y - frozenBerriesImg.size / 2, frozenBerriesImg.size, frozenBerriesImg.size);
     image(milkImg.image, milkImg.x - milkImg.size / 2, milkImg.y - milkImg.size / 2, milkImg.size, milkImg.size);
     image(honeyjarImg.image, honeyjarImg.x - honeyjarImg.size / 2, honeyjarImg.y - honeyjarImg.size / 2, honeyjarImg.size, honeyjarImg.size);
@@ -126,12 +138,22 @@ function drawCounterItems() {
     image(orangeImg.image, orangeImg.x - orangeImg.size / 2, orangeImg.y - orangeImg.size / 2, orangeImg.size, orangeImg.size);
     image(bananaImg.image, bananaImg.x - bananaImg.size / 2, bananaImg.y - bananaImg.size / 2, bananaImg.size, bananaImg.size);
     image(yogurtImg.image, yogurtImg.x - yogurtImg.size / 2, yogurtImg.y - yogurtImg.size / 2, yogurtImg.size, yogurtImg.size);
+
+    image(blenderImg, gameBlender.x - gameBlender.size / 2, gameBlender.y - gameBlender.size / 2, gameBlender.size, gameBlender.size)
+
+
 }
 
+
+
+
+/**
+ * Draws the order section at the top left of the screen
+ */
 function drawOrder() {
     let yStartPos = 150; // default y position
     let yIncrement = 20; // space between each line
-    activeSmoothie = randomizeElement(smoothies.drinks)
+    activeSmoothie = randomizeElement(smoothies.drinks) // selects random drink object from the smoothies array
     push();
     stroke('white');
     strokeWeight(2);
@@ -160,7 +182,7 @@ function drawOrder() {
     pop();
 
     push();
-    activeSmoothie.ingredients.forEach((element, index) => {
+    activeSmoothie.ingredients.sort().forEach((element, index) => { // displays all the ingredients for the randomized drink
         textSize(20);
         fill('white')
         stroke('black')
@@ -169,7 +191,9 @@ function drawOrder() {
     pop()
 }
 
-
+/**
+ * Creates the action button (either cut or pour) for the food element
+ */
 function foodActionBtn(action) {
 
     if (!foodBtn) {
@@ -187,8 +211,9 @@ function foodActionBtn(action) {
 
 }
 
-
-
+/**
+ * Play specific sound bite
+ */
 function playActionSound() {
     if (foodAction == 'cut') {
         numOfChops++
@@ -197,6 +222,7 @@ function playActionSound() {
             activeFoodElement.image = activeFoodElement.openImage;
             foodAction = null;
             numOfChops = 0;
+            foodAction = 'blend';
             foodBtn.elt.remove();
             foodBtn = null;
         };
@@ -205,49 +231,117 @@ function playActionSound() {
         pouringSound.play();
         if (numOfPours == 2) {
             activeFoodElement.image = activeFoodElement.openImage;
-            foodAction = null;
+            foodAction = 'blend';
             numOfPours = 0;
             foodBtn.elt.remove();
             foodBtn = null;
+
         };
     }
 }
+let smoothieCup = {
 
+    lid: {
+        x: 400,
+        y: 530,
+        size: {
+            x: 180,
+            y: 100
+        }
+    },
+    cup: {
+        x: 310,
+        y: 530,
+        size: {
+            x: 180,
+            y: 200
+        }
+    },
+    straw: {
+        x: 390,
+        y: 370,
+        size: {
+            x: 20,
+            y: 330
+        }
+    },
+    color: '#ebe6d9'
+}
 
-
-
-
+/**
+ * Draws the smoothie's cup 
+ */
 function drawSmoothieCup() {
     push();
     stroke('#c0c0c0')
     strokeWeight(3) // the lid of the cup
     fill('#ebe6d9');
-    ellipse(225, 490, 180, 100)
+    ellipse(smoothieCup.lid.x, smoothieCup.lid.y, smoothieCup.lid.size.x, smoothieCup.lid.size.y)
 
     pop();
+
     push()
-    beginShape();
-    fill('#ebe6d9');
+    fill(smoothieCup.color);
     stroke('#c0c0c0')
     strokeWeight(3)
-
-    vertex(150, 700); // Bottom left
-    vertex(300, 700); // Bottom right
-    vertex(315, 500); // Top right
-    vertex(135, 500); // Top left
-
-    endShape(CLOSE);
+    rect(smoothieCup.cup.x, smoothieCup.cup.y, smoothieCup.cup.size.x, smoothieCup.cup.size.y)
     pop()
 
     push()
     strokeWeight(0.1)
-    rect(220, 370, 20, 330)
+    rect(smoothieCup.straw.x, smoothieCup.straw.y, smoothieCup.straw.size.x, smoothieCup.straw.size.y)
     pop()
 }
+
+
+function resetGameSettings() {
+    gameInProgress = false;
+    foodAction = null;
+    numOfChops = 0; // max amount of time the player can chop 
+    numOfPours = 0;
+    originalFoodData = { x: 0, y: 0, image: undefined }
+    chosenFoods = [];
+    ingredientsCount = 0
+    smoothieCup = {
+
+            lid: {
+                x: 400,
+                y: 530,
+                size: {
+                    x: 180,
+                    y: 100
+                }
+            },
+            cup: {
+                x: 310,
+                y: 530,
+                size: {
+                    x: 180,
+                    y: 200
+                }
+            },
+            straw: {
+                x: 390,
+                y: 370,
+                size: {
+                    x: 20,
+                    y: 330
+                }
+            },
+            color: '#ebe6d9'
+        }
+        // smooVeesLayout();
+
+
+}
+
+
+
 /**
  * Shows the selected food element up close and makes sure the user actually want to select it
  */
 function previewFoodSelection() {
+
     if (foodAction == 'preview') {
         clear();
         push();
@@ -264,11 +358,38 @@ function previewFoodSelection() {
 
         foodActionBtn(activeFoodElement.action)
 
-    } else if (foodAction === 'cut' || foodAction === 'pour' || foodAction === 'blend') {
+    } else if (foodAction === 'cut' || foodAction === 'pour' && !match) {
         actionFoodSelection();
+    } else if (foodAction === 'blend') {
+
+        switchMouseToFood();
+
+        //  console.log('blendddd')
+    } else if (foodAction == 'serve') {
+        console.log('okk')
+        serveDrink()
     }
 
 
+}
+
+/**
+ * Function to handle the blending functionality
+ */
+function clickToBlend() {
+    if (foodAction == 'blend' && checkOverlap(mouseX, mouseY, gameBlender.x, gameBlender.y, gameBlender.size)) {
+        blenderSound.play()
+
+        chosenFoods.push(activeFoodElement.name)
+        activeFoodElement.x = originalFoodData.x;
+        activeFoodElement.y = originalFoodData.y;
+        activeFoodElement.image = originalFoodData.image
+        ingredientsCount++
+        mouseX = 0;
+        mouseY = 0;
+
+        foodAction = null
+    }
 }
 
 
@@ -282,7 +403,9 @@ function drawCuttingScreen() {
     image(activeFoodElement.image, 200, 100, 500, 500);
 
 }
-
+/**
+ * Function to handle the 'pour' action scenery 
+ */
 function drawPouringScreen() {
     background('#fffff2');
     push()
@@ -295,19 +418,21 @@ function drawPouringScreen() {
 
 function actionFoodSelection() {
     clear()
-
     if (foodAction === 'cut') {
         drawCuttingScreen();
     } else if (foodAction === 'pour') {
         drawPouringScreen();
-    } else if (foodAction === 'blend') {
-        drawBlendingScreen();
     }
-
 
 }
 
-
+/**
+ * Adds the modified food element to the mouse 
+ */
+function switchMouseToFood() {
+    activeFoodElement.x = mouseX;
+    activeFoodElement.y = mouseY;
+}
 
 
 /**
@@ -315,12 +440,46 @@ function actionFoodSelection() {
  */
 function selectFood() {
     foods.forEach((element) => {
-        if (checkOverlap(mouseX, mouseY, element.x, element.y, element.size) && foodAction == null) {
+        if (checkOverlap(mouseX, mouseY, element.x, element.y, element.size) && foodAction == null && ingredientsCount < 4) {
             console.log(element)
             activeFoodElement = element; // assigns the selected food to the activeFoodElement variable
+            originalFoodData.x = activeFoodElement.x;
+            originalFoodData.y = activeFoodElement.y;
+            originalFoodData.image = activeFoodElement.image
             foodAction = 'preview'; // focused screen for the selected food 
 
         }
     })
+
+}
+
+/**
+ * Changes the drink colour
+ */
+function serveDrink() {
+    let equalArray = (chosenFoods.length === activeSmoothie.ingredients.length) && (chosenFoods.every(val => activeSmoothie.ingredients.includes(val)));
+    if (equalArray && ingredientsCount == 4) {
+
+        smoothieCup.color = activeSmoothie.color
+    } else if (!equalArray && ingredientsCount == 4) {
+        // simulate a spilled over cup 
+        smoothieCup.cup.x = 100
+        smoothieCup.cup.y = 575 //base of smoothie cup
+        smoothieCup.cup.size.x = 300
+        smoothieCup.cup.size.y = 200
+
+        smoothieCup.lid.x = 100
+        smoothieCup.lid.y = 675 //lid of smoothie cup
+        smoothieCup.lid.size.x = 100
+        smoothieCup.lid.size.y = 200
+
+        smoothieCup.straw.x = 0
+        smoothieCup.straw.y = 750 //straw of smoothie cup
+        smoothieCup.straw.size.x = 400
+        smoothieCup.straw.size.y = 25
+        smoothieCup.color = '#ebe6d9'
+    }
+
+
 
 }
