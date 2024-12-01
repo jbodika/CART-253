@@ -279,40 +279,24 @@ function drawOrder(inputText) {
     let yStartPos = 105; // default y position
     let yIncrement = 20; // space between each line
     activeSmoothie = randomizeElement(smoothies.drinks) // selects random drink object from the smoothies array
-    push();
-    stroke('white');
-    strokeWeight(2);
-    fill('#c0c0c0');
-    rect(10, 10, 300, 185, 20);
-    pop();
+
+    let textArea = new TextArea(10, 10, 300, 185, 20)
+    textArea.addText(`${inputText}\n`, 150, 50, 30, '#8e7cc3')
+    textArea.addText(`${inputText}\n`, 153, 52, 30, '#b4a7d6')
+    textArea.addText(`${activeSmoothie.name}\n`, 160, 80, 25, activeSmoothie.color)
+
+    textArea.display('#c0c0c0')
 
     push();
-    textSize(30);
-    stroke('white');
 
-    textAlign(CENTER);
-    fill('#8e7cc3')
-    text(`${inputText}\n`, 150, 50);
-
-    stroke('white');
-    fill('#b4a7d6')
-    strokeWeight(2);
-    text(`${inputText}\n`, 153, 52);
-    stroke('white');
-
-    textSize(25);
-
-    fill(`${activeSmoothie.color}`);
-    text(`${activeSmoothie.name}`, 160, 80);
-    pop();
-
-    push();
     activeSmoothie.ingredients.sort().forEach((element, index) => { // displays all the ingredients for the randomized drink
         textSize(20);
-        console.log(chosenFoods)
+
         if (chosenFoods.includes(element)) {
             fill('lightgreen')
             stroke('black')
+            textArea.addText(`${index + 1}. ${element}`, 80, yStartPos + index * yIncrement, 25, activeSmoothie.color)
+
             text(`${index + 1}. ${element}`, 80, yStartPos + index * yIncrement);
         } else {
             fill('white')
@@ -326,64 +310,17 @@ function drawOrder(inputText) {
 }
 
 function drawIncorrectIngredientCount() {
-    push();
-    stroke('white');
-    strokeWeight(2);
-    fill('#c0c0c0');
-    rect(500, 10, 275, 75, 20);
-    pop();
-
-    push();
-    textSize(30);
-
-    textAlign(CENTER);
-
-
-    stroke('white');
-    fill('black')
-    strokeWeight(2);
-    stroke('white');
-
-    textSize(25);
-
-    // fill(`${activeSmoothie.color}`);
-    text(`Incorrect Ingredients`, 640, 40);
-    text(`${incorrectIngredientsCount}`, 640, 70);
-
-    pop();
-
-
+    let textArea = new TextArea(500, 10, 275, 75, 20)
+    textArea.addText(`Incorrect Ingredients`, 640, 40, 25, 'black');
+    textArea.addText(`${incorrectIngredientsCount}`, 640, 70, 25, 'black');
+    textArea.display('#c0c0c0')
 }
 
 
 function drawMovesLeft() {
-    push();
-    stroke('white');
-    strokeWeight(2);
-    fill('#c0c0c0');
-    rect(500, 100, 275, 75, 20);
-    pop();
-
-    push();
-    textSize(30);
-
-    textAlign(CENTER);
-
-
-    stroke('white');
-    fill('#c27ba0')
-    strokeWeight(2);
-    stroke('white');
-
-    textSize(25);
-
-    // fill(`${activeSmoothie.color}`);
-    console.log(activeSmoothie)
-    text(`Moves Left\n${activeSmoothie.ingredients.length- ingredientsCount}`, 640, 130);
-
-
-    pop();
-
+    let textArea = new TextArea(500, 100, 275, 75, 20)
+    textArea.addText(`Moves Left\n${activeSmoothie.ingredients.length- ingredientsCount}`, 640, 130, 25, '#c27ba0');
+    textArea.display('#c0c0c0')
 }
 
 /**

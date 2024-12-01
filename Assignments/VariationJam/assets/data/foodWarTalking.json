@@ -1,18 +1,17 @@
 {
     "description": "This file contains the dialog for the solids and liquids who are at war",
-    "dialog": [{
-        "solids": {
-            "1": "We've been waiting a long time for this day, we are SICK and TIRED of sharing the kitchen with the liquids",
-            "2": "We cannot stand the liquids",
-            "3": "Splashing everyone"
+    "dialog": {
+        "solids": ["We've been waiting a long time for this day, we are SICK and TIRED of sharing the kitchen with the liquids",
+            "We cannot stand the liquids",
+            "Splashing everyone"
+        ],
 
-        },
-        "liquids": {
-            "1": "The solids need to get brought down a few pegs..",
-            "2": "We will no longer tolerate those solidified fools",
-            "3": "The solids need to get brought down a few pegs.."
+        "liquids": ["The solids need to get brought down a few pegs..",
+            "We will no longer tolerate those solidified fools",
+            "Today there will be solidshed!!"
+        ]
 
 
-        }
-    }]
+
+    }
 }

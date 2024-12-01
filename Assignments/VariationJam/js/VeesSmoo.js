@@ -14,34 +14,56 @@
 
 
 let warDialog;
+let liquids = [coconutImg, honeyjarImg, orangeJuiceImg, peanutButterImg, waterImg, yogurtImg]
+
+let solids = [appleImg, avocadoImg, bananaImg, chiaSeedsImg, cocoaPowderImg, frozenBerriesImg, mangoImg, orangeImg, pineappleImg, spinachImg, strawberryImg]
 
 function moveFood() {
 
 }
 
 function drawDialog() {
-    console.log(warDialog)
+    console.log(warDialog.dialog)
 }
 
 
+let solidLeaderImg = {
+    x: 350,
+    y: -10,
+    size: 175
+};
 
+
+let liquidsLeaderImg = {
+    x: 350, //350
+    y: 800, //420
+    size: 175
+};
 
 function drawAliveItems() {
-    // image(cuttingBoardImg.image, cuttingBoardImg.x - cuttingBoardImg.size / 2, cuttingBoardImg.y - cuttingBoardImg.size / 2, cuttingBoardImg.size, cuttingBoardImg.size);
-
-    //All liquids 
-    image(milkImg.image, 0, 0);
-    image(honeyjarImg.image, 100, honeyjarImg.y - honeyjarImg.size / 2, honeyjarImg.size, honeyjarImg.size);
-    image(yogurtImg.image, 100, yogurtImg.y - yogurtImg.size / 2, yogurtImg.size, yogurtImg.size);
-
-
+    let xPos = 10
+        //All liquids 
+    solids.forEach((el) => {
+        image(el.image, xPos, 50, el.size, el.size);
+        xPos += 70;
+    });
+    xPos = 95
+    image(watermelonImg.image, solidLeaderImg.x, solidLeaderImg.y, solidLeaderImg.size, solidLeaderImg.size);
 
     // All solids
-    image(frozenBerriesImg.image, frozenBerriesImg.x - frozenBerriesImg.size / 2, frozenBerriesImg.y - frozenBerriesImg.size / 2, frozenBerriesImg.size, frozenBerriesImg.size);
-    image(watermelonImg.image, 300, 350);
-    image(orangeImg.image, orangeImg.x - orangeImg.size / 2, orangeImg.y - orangeImg.size / 2, orangeImg.size, orangeImg.size);
-    image(bananaImg.image, bananaImg.x - bananaImg.size / 2, bananaImg.y - bananaImg.size / 2, bananaImg.size, bananaImg.size);
+    liquids.forEach((el) => {
+        image(el.image, xPos, 630, el.size, el.size);
+        xPos += 125;
+    });
+    image(milkImg.image, liquidsLeaderImg.x, liquidsLeaderImg.y, liquidsLeaderImg.size, liquidsLeaderImg.size);
 
-    //   image(blenderImg, gameBlender.x - gameBlender.size / 2, gameBlender.y - gameBlender.size / 2, gameBlender.size, gameBlender.size)
+}
 
+/**
+ * Function to move the leader ingredients on the screen
+ */
+function moveLeaders() {
+    liquidsLeaderImg.y = constrain(liquidsLeaderImg.y, liquidsLeaderImg.y - 2.5, 420);
+    solidLeaderImg.y = constrain(solidLeaderImg.y + 1, -10, 145);
+    console.log(liquidsLeaderImg.y);
 }
