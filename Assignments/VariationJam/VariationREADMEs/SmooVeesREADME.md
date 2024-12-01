@@ -42,6 +42,7 @@ This project uses
 - Cut Mango from ArtStation by Sally Lee [Link to image](https://www.artstation.com/artwork/qQRYGN)
 - Strawberry from DeviantArt by PixelDonutofCanada91 [Link to image](https://www.deviantart.com/pixeldonutofcanada91/art/Farm-Fresh-Strawberry-Pixel-994848178) 
 - Cut Strawberry from ArtStation by Sally Lee [Link to image](https://www.artstation.com/artwork/B3QoKl)
+- Orange juice imge from Independent grocer [Link to original image](https://www.yourindependentgrocer.ca/pulp-free-orange-juice-bottle/p/21086068_EA)
 
 
 #### Pixel Art by me

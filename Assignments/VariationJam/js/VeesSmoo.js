@@ -15,8 +15,8 @@
 
 let warDialog;
 let liquids = [coconutImg, honeyjarImg, orangeJuiceImg, peanutButterImg, waterImg, yogurtImg]
-
 let solids = [appleImg, avocadoImg, bananaImg, chiaSeedsImg, cocoaPowderImg, frozenBerriesImg, mangoImg, orangeImg, pineappleImg, spinachImg, strawberryImg]
+
 
 function moveFood() {
 
@@ -65,5 +65,18 @@ function drawAliveItems() {
 function moveLeaders() {
     liquidsLeaderImg.y = constrain(liquidsLeaderImg.y, liquidsLeaderImg.y - 2.5, 420);
     solidLeaderImg.y = constrain(solidLeaderImg.y + 1, -10, 145);
-    console.log(liquidsLeaderImg.y);
+    if (dialogActive) {
+        let textArea = new TextArea(300, 325, 275, 75, 20);
+
+        // Display current dialog
+        if (isLiquidTurn && warDialog.dialog.liquids[currSpeechIndex]) {
+            textArea.addText(warDialog.dialog.liquids[currSpeechIndex], 430, 355, 20, 'black');
+            textArea.display('lightblue');
+        } else if (!isLiquidTurn && warDialog.dialog.solids[currSpeechIndex]) {
+            textArea.addText(warDialog.dialog.solids[currSpeechIndex], 430, 355, 20, 'black');
+            textArea.display('lightgreen');
+        }
+
+
+    }
 }

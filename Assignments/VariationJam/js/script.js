@@ -133,6 +133,7 @@ function smooVeesLayout() {
         drawMovesLeft();
         previewFoodSelection();
     } else if (gameState == 'playWarGame') {
+
         background('#fffff2');
         drawAliveItems()
         drawMenu();
@@ -272,6 +273,8 @@ function mainScreenLayout() {
 
     }
 }
+let isLiquidTurn = true
+let dialogActive = true;
 
 function mouseClicked() {
     // allows the user to read what Vee has to say over and over again
@@ -280,6 +283,17 @@ function mouseClicked() {
         if (currSpeechIndex >= veeTalking.speech.length) {
             currSpeechIndex = 0; // restarts the speech 
         }
+    } else if (gameState === "playWarGame") {
+        currSpeechIndex++;
+        if (isLiquidTurn && currSpeechIndex >= warDialog.dialog.liquids.length) {
+            // switch to solids when liquids are done talking
+            currSpeechIndex = 0;
+            isLiquidTurn = false;
+        } else if (!isLiquidTurn && currSpeechIndex >= warDialog.dialog.solids.length) {
+            // stop dialog when solids are done talking
+            dialogActive = false; // stop showing dialog
+        }
+
     }
 
 }
@@ -300,7 +314,7 @@ function keyPressed() {
         console.log('orignal');
     } else if (key.toUpperCase() === 'R' && gameState == 'main') {
         gameState = 'playWarGame';
-
+        currSpeechIndex = 0;
         console.log('reverse');
 
     } else if (key.toUpperCase() === 'Z' && gameState == 'main') {
