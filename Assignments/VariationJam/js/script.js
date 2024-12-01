@@ -42,30 +42,64 @@ function setup() {
  * Function to load assets before the page is loaded
  */
 function preload() {
-    watermelonImg.image = loadImage('./assets/images/watermelon.png');
-    watermelonImg.openImage = loadImage('./assets/images/openWatermelon.png')
-    frozenBerriesImg.image = loadImage('./assets/images/frozenBerries.png');
-    frozenBerriesImg.openImage = loadImage('./assets/images/openFrozenBerries.png');
+    //font
+    bagelFatOneFont = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
 
-    cuttingBoardImg.image = loadImage('./assets/images/cuttingBoard.png')
+    // all food elements, image is the image we see on the counter and openImage is the cut or poured version of the food element
+    appleImg.image = loadImage('./assets/images/apple.png');
+    appleImg.openImage = loadImage('./assets/images/openApple.png');
+    avocadoImg.image = loadImage('./assets/images/avocado.png');
+    avocadoImg.openImage = loadImage('./assets/images/openAvocado.png');
     bananaImg.image = loadImage('./assets/images/banana.png');
     bananaImg.openImage = loadImage('./assets/images/openBanana.png');
-
-    orangeImg.image = loadImage('./assets/images/orange.png');
+    chiaSeedsImg.image = loadImage('./assets/images/chiaSeeds.png');
+    chiaSeedsImg.openImage = loadImage('./assets/images/openChiaSeeds.png')
+    cocoaPowderImg.image = loadImage('./assets/images/cocoaPowder.png');
+    cocoaPowderImg.openImage = loadImage('./assets/images/openCocoaPowder.png');
+    coconutImg.image = loadImage('./assets/images/coconut.png');
+    coconutImg.openImage = loadImage('./assets/images/openCoconut.png');
+    frozenBerriesImg.image = loadImage('./assets/images/frozenBerries.png');
+    frozenBerriesImg.openImage = loadImage('./assets/images/openFrozenBerries.png');
     honeyjarImg.image = loadImage('./assets/images/honeyjar.png');
+    honeyjarImg.openImage = loadImage('./assets/images/openHoney.png');
+    mangoImg.image = loadImage('./assets/images/mango.png');
+    mangoImg.openImage = loadImage('./assets/images/openMango.png')
     milkImg.image = loadImage('./assets/images/milk.png');
-    milkImg.openImage = loadImage('./assets/images/pouredMilk.png')
+    milkImg.openImage = loadImage('./assets/images/openMilk.png')
+    orangeImg.image = loadImage('./assets/images/orange.png');
+    orangeImg.openImage = loadImage('./assets/images/openOrange.png');
+    orangeJuiceImg.image = loadImage('./assets/images/orangeJuice.png');
+    orangeJuiceImg.openImage = loadImage('./assets/images/openOrangeJuice.png');
+    peanutButterImg.image = loadImage('./assets/images/peanutButter.png');
+    peanutButterImg.openImage = loadImage('./assets/images/openPeanutButter.png');
+    pineappleImg.image = loadImage('./assets/images/pineapple.png');
+    pineappleImg.openImage = loadImage('./assets/images/openPineapple.png');
+    spinachImg.image = loadImage('./assets/images/spinach.png');
+    spinachImg.openImage = loadImage('./assets/images/openSpinach.png')
+    strawberryImg.image = loadImage('./assets/images/strawberry.png');
+    strawberryImg.openImage = loadImage('./assets/images/openStrawberry.png');
+    waterImg.image = loadImage('./assets/images/water.png');
+    waterImg.openImage = loadImage('./assets/images/openWater.png');
+    watermelonImg.image = loadImage('./assets/images/watermelon.png');
+    watermelonImg.openImage = loadImage('./assets/images/openWatermelon.png')
     yogurtImg.image = loadImage('./assets/images/yogurt.png');
-    veeImg = loadImage('./assets/images/Vee.png');
-    veeTalking = loadJSON("./assets/data/veeTalking.json");
-    bagelFatOneFont = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
+    yogurtImg.openImage = loadImage('./assets/images/openYogurt.png');
+
+    cuttingBoardImg = loadImage('./assets/images/cuttingBoard.png')
+
+    // main screen images
     blenderImg = loadImage("./assets/images/blender.png");
     cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png");
     limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png");
     orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png");
+    veeImg = loadImage('./assets/images/Vee.png');
 
+    // json files
     smoothies = loadJSON('./assets/data/smoothies.json');
+    warDialog = loadJSON('./assets/data/foodWarTalking.json');
+    veeTalking = loadJSON("./assets/data/veeTalking.json");
 
+    // all sounds
     knifeSound = loadSound('./assets/audio/knife.mp3');
     pouringSound = loadSound('./assets/audio/pour.mp3')
     blenderSound = loadSound('./assets/audio/blender.mp3')
@@ -78,22 +112,33 @@ function preload() {
  */
 function draw() {
     textFont(bagelFatOneFont);
-    smooVeesLayout();
     mainScreenLayout();
+    smooVeesLayout();
+
 }
 
 function smooVeesLayout() {
+
+
     if (gameState == 'playOriginalGame') {
         //All functions here can be found in the smooVees.js file
         background('#b4a7d6');
         drawInGameCounter();
         drawCounterItems();
         drawMenu();
-        drawOrder();
+        drawOrder('SmooVee');
         drawSmoothieCup();
         previewFoodSelection();
-
-
+    } else if (gameState == 'playWarGame') {
+        background('#fffff2');
+        drawAliveItems()
+            // drawInGameCounter();
+            // drawCounterItems();
+            // drawMenu();
+            // drawOrder('SmooVee WAR');
+            // drawSmoothieCup();
+            // previewFoodSelection();
+            // drawDialog();
     }
 
 }
@@ -108,8 +153,6 @@ function drawMenu() {
         menuBtn.parent("canvasDiv")
         menuBtn.position(650, 730);
         menuBtn.addClass('btn'); //for styling purposes
-
-
 
         menuBtn.mousePressed(() => {
             if (menuBtn) {
@@ -127,7 +170,6 @@ function drawMenu() {
                 numOfPours = 0;
                 chosenFoods = []
                 smooVeesLayout();
-
 
             }
 
@@ -214,6 +256,8 @@ function keyPressed() {
         gameState = 'playOriginalGame';
         console.log('orignal');
     } else if (key.toUpperCase() === 'R' && gameState == 'main') {
+        gameState = 'playWarGame';
+
         console.log('reverse');
 
     } else if (key.toUpperCase() === 'Z' && gameState == 'main') {

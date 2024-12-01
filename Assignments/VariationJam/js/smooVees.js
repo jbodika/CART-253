@@ -24,83 +24,209 @@ let ingredientsCount = 0
 let smoothies;
 
 // All images 
-let watermelonImg = {
-    name: "Watermelon",
+const appleImg = {
+    name: "Green Apple",
     image: undefined,
     openImage: undefined,
-    x: 630, //630 - 280
-    y: 280,
-    size: 125,
-    action: "cut",
-    colour: '#FD4659'
+    x: 670,
+    y: 450,
+    size: 32,
+    action: "cut"
+}
+
+const avocadoImg = {
+    name: "Avocado",
+    image: undefined,
+    openImage: undefined,
+    x: 700,
+    y: 450,
+    size: 64,
+    action: "cut"
+}
+const bananaImg = {
+    name: "Banana",
+    image: undefined,
+    openImage: undefined,
+    x: 600,
+    y: 430,
+    size: 64,
+    action: "cut"
 };
 
-let frozenBerriesImg = {
+const chiaSeedsImg = {
+    name: "Chia Seeds",
+    image: undefined,
+    x: 740,
+    y: 500,
+    size: 90,
+    action: "pour"
+}
+
+const cocoaPowderImg = {
+    name: "Cocoa Powder",
+    image: undefined,
+    x: 775,
+    y: 350,
+    size: 90,
+    action: "pour"
+}
+
+const coconutImg = {
+    name: "Coconut Water",
+    image: undefined,
+    openImage: undefined,
+    x: 450,
+    y: 375,
+    size: 64,
+    action: "cut"
+}
+
+const frozenBerriesImg = {
     name: "Frozen Berries",
     image: undefined,
     x: 670,
-    y: 200,
+    y: 260,
     size: 125,
     action: "pour"
 }
 
-let cuttingBoardImg = {
-    name: "Board",
-    image: undefined,
-    x: 650,
-    y: 550,
-    size: 200
-};
 
-let bananaImg = {
-    name: "Banana",
+
+
+const honeyjarImg = {
+    name: "Honey",
     image: undefined,
     openImage: undefined,
-    x: 520,
-    y: 300,
+    x: 510,
+    y: 450,
+    size: 90,
+    action: "pour"
+};
+const mangoImg = {
+    name: "Mango",
+    image: undefined,
+    openImage: undefined,
+    x: 500,
+    y: 375,
     size: 64,
     action: "cut"
-
 };
 
-let orangeImg = {
+const milkImg = {
+    name: "Milk",
+    image: undefined,
+    openImage: undefined,
+
+    x: 450,
+    y: 290,
+    size: 85,
+    action: "pour"
+};
+
+const orangeImg = {
     name: "Orange",
     image: undefined,
+    openImage: undefined,
     x: 630,
     y: 400,
     size: 32,
     action: "cut"
 
 };
-let honeyjarImg = {
-    name: "Honey",
+
+const orangeJuiceImg = {
+    name: "Orange Juice",
     image: undefined,
-    x: 700,
-    y: 320,
+    openImage: undefined,
+    x: 325,
+    y: 300,
+    size: 80,
+    action: "pour"
+
+};
+const peanutButterImg = {
+    name: "Peanut Butter",
+    image: undefined,
+    openImage: undefined,
+    x: 550,
+    y: 400,
+    size: 64,
+    action: "pour"
+}
+
+
+const pineappleImg = {
+    name: "Pineapple Chunks",
+    image: undefined,
+    openImage: undefined,
+    x: 720,
+    y: 375,
+    size: 125,
+    action: "cut"
+}
+
+
+const spinachImg = {
+    name: "Spinach Leaves",
+    image: undefined,
+    openImage: undefined,
+
+    x: 635,
+    y: 350,
+    size: 64,
+    action: "cut"
+}
+
+const strawberryImg = {
+    name: "Strawberry",
+    image: undefined,
+    openImage: undefined,
+
+    x: 635,
+    y: 480,
+    size: 32,
+    action: "cut"
+}
+
+const waterImg = {
+    name: "Water",
+    image: undefined,
+    openImage: undefined,
+    x: 400,
+    y: 300,
+    size: 80,
+    action: "pour"
+}
+
+const watermelonImg = {
+    name: "Watermelon",
+    image: undefined,
+    openImage: undefined,
+    x: 550, //630 - 280
+    y: 300,
+    size: 125,
+    action: "cut",
+    colour: '#FD4659'
+};
+
+
+
+const yogurtImg = {
+    name: "Yogurt",
+    image: undefined,
+    x: 750,
+    y: 280,
     size: 64,
     action: "pour"
 };
 
-let milkImg = {
-    name: "Milk",
-    image: undefined,
-    x: 500,
-    y: 250,
-    size: 85,
-    action: "pour"
-};
 
 
-let yogurtImg = {
-    name: "Yogurt",
-    image: undefined,
-    x: 600,
-    y: 400,
-    size: 20,
-    action: "pour"
-};
 
-let gameBlender = {
+
+
+
+const gameBlender = {
     name: "Blender",
     image: orangeImg.image,
     x: 150,
@@ -111,7 +237,7 @@ let gameBlender = {
 
 
 
-let foods = [orangeImg, yogurtImg, honeyjarImg, watermelonImg, bananaImg, frozenBerriesImg, milkImg]
+let foods = [appleImg, avocadoImg, bananaImg, chiaSeedsImg, cocoaPowderImg, coconutImg, frozenBerriesImg, honeyjarImg, mangoImg, milkImg, orangeImg, orangeJuiceImg, peanutButterImg, pineappleImg, spinachImg, strawberryImg, waterImg, watermelonImg, yogurtImg]
 
 
 
@@ -126,21 +252,19 @@ function drawInGameCounter() {
 
 }
 
+let cuttingBoardImg = undefined
+
 /**
  * Displays the pixelated foods on the counter top and centers them within their bounding box 
  */
 function drawCounterItems() {
-    image(cuttingBoardImg.image, cuttingBoardImg.x - cuttingBoardImg.size / 2, cuttingBoardImg.y - cuttingBoardImg.size / 2, cuttingBoardImg.size, cuttingBoardImg.size);
-    image(frozenBerriesImg.image, frozenBerriesImg.x - frozenBerriesImg.size / 2, frozenBerriesImg.y - frozenBerriesImg.size / 2, frozenBerriesImg.size, frozenBerriesImg.size);
-    image(milkImg.image, milkImg.x - milkImg.size / 2, milkImg.y - milkImg.size / 2, milkImg.size, milkImg.size);
-    image(honeyjarImg.image, honeyjarImg.x - honeyjarImg.size / 2, honeyjarImg.y - honeyjarImg.size / 2, honeyjarImg.size, honeyjarImg.size);
-    image(watermelonImg.image, watermelonImg.x - watermelonImg.size / 2, watermelonImg.y - watermelonImg.size / 2, watermelonImg.size, watermelonImg.size);
-    image(orangeImg.image, orangeImg.x - orangeImg.size / 2, orangeImg.y - orangeImg.size / 2, orangeImg.size, orangeImg.size);
-    image(bananaImg.image, bananaImg.x - bananaImg.size / 2, bananaImg.y - bananaImg.size / 2, bananaImg.size, bananaImg.size);
-    image(yogurtImg.image, yogurtImg.x - yogurtImg.size / 2, yogurtImg.y - yogurtImg.size / 2, yogurtImg.size, yogurtImg.size);
-
+    image(cuttingBoardImg, 530, 520, 230, 180);
     image(blenderImg, gameBlender.x - gameBlender.size / 2, gameBlender.y - gameBlender.size / 2, gameBlender.size, gameBlender.size)
 
+    foods.forEach(foodObj => {
+        image(foodObj.image, foodObj.x - foodObj.size / 2, foodObj.y - foodObj.size / 2, foodObj.size, foodObj.size);
+
+    });
 
 }
 
@@ -150,7 +274,7 @@ function drawCounterItems() {
 /**
  * Draws the order section at the top left of the screen
  */
-function drawOrder() {
+function drawOrder(inputText) {
     let yStartPos = 150; // default y position
     let yIncrement = 20; // space between each line
     activeSmoothie = randomizeElement(smoothies.drinks) // selects random drink object from the smoothies array
@@ -167,12 +291,12 @@ function drawOrder() {
 
     textAlign(CENTER);
     fill('#8e7cc3')
-    text(`SmooVee\n`, 200, 90);
+    text(`${inputText}\n`, 200, 90);
 
     stroke('white');
     fill('#b4a7d6')
     strokeWeight(2);
-    text(`SmooVee\n`, 203, 92);
+    text(`${inputText}\n`, 203, 92);
     stroke('white');
 
     textSize(25);
@@ -399,9 +523,15 @@ function clickToBlend() {
 function drawCuttingScreen() {
 
     background('#BA8963');
+    push()
+    noStroke()
     rect(20, 280, 70, 300, 20);
     image(activeFoodElement.image, 200, 100, 500, 500);
 
+    fill('#fffff2')
+
+    rect(width - 100, 0, 100, height);
+    pop()
 }
 /**
  * Function to handle the 'pour' action scenery 
@@ -440,7 +570,7 @@ function switchMouseToFood() {
  */
 function selectFood() {
     foods.forEach((element) => {
-        if (checkOverlap(mouseX, mouseY, element.x, element.y, element.size) && foodAction == null && ingredientsCount < 4) {
+        if (checkOverlap(mouseX, mouseY, element.x, element.y, element.size) && foodAction == null && ingredientsCount < activeSmoothie.ingredients.length) {
             console.log(element)
             activeFoodElement = element; // assigns the selected food to the activeFoodElement variable
             originalFoodData.x = activeFoodElement.x;
@@ -458,13 +588,13 @@ function selectFood() {
  */
 function serveDrink() {
     let equalArray = (chosenFoods.length === activeSmoothie.ingredients.length) && (chosenFoods.every(val => activeSmoothie.ingredients.includes(val)));
-    if (equalArray && ingredientsCount == 4) {
+    if (equalArray && ingredientsCount == activeSmoothie.ingredients.length) {
 
         smoothieCup.color = activeSmoothie.color
 
         cashRegisterSound.play()
 
-    } else if (!equalArray && ingredientsCount == 4) {
+    } else if (!equalArray && ingredientsCount == activeSmoothie.ingredients.length) {
         // simulate a spilled over cup 
         smoothieCup.cup.x = 100
         smoothieCup.cup.y = 575 //base of smoothie cup
