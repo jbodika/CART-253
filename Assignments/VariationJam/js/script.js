@@ -124,10 +124,13 @@ function smooVeesLayout() {
         //All functions here can be found in the smooVees.js file
         background('#b4a7d6');
         drawInGameCounter();
+        drawIncorrectIngredientCount();
+
         drawCounterItems();
         drawMenu();
         drawOrder('SmooVee');
         drawSmoothieCup();
+        drawMovesLeft();
         previewFoodSelection();
     } else if (gameState == 'playWarGame') {
         background('#fffff2');

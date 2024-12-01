@@ -22,6 +22,7 @@ let numOfPours = 0;
 let chosenFoods = []
 let ingredientsCount = 0
 let smoothies;
+let incorrectIngredientsCount = 0
 
 // All images 
 const appleImg = {
@@ -103,7 +104,7 @@ const honeyjarImg = {
     action: "pour"
 };
 const mangoImg = {
-    name: "Mango",
+    name: "Mango Chunks",
     image: undefined,
     openImage: undefined,
     x: 500,
@@ -275,14 +276,14 @@ function drawCounterItems() {
  * Draws the order section at the top left of the screen
  */
 function drawOrder(inputText) {
-    let yStartPos = 150; // default y position
+    let yStartPos = 105; // default y position
     let yIncrement = 20; // space between each line
     activeSmoothie = randomizeElement(smoothies.drinks) // selects random drink object from the smoothies array
     push();
     stroke('white');
     strokeWeight(2);
     fill('#c0c0c0');
-    rect(50, 50, 300, 185, 20);
+    rect(10, 10, 300, 185, 20);
     pop();
 
     push();
@@ -291,28 +292,98 @@ function drawOrder(inputText) {
 
     textAlign(CENTER);
     fill('#8e7cc3')
-    text(`${inputText}\n`, 200, 90);
+    text(`${inputText}\n`, 150, 50);
 
     stroke('white');
     fill('#b4a7d6')
     strokeWeight(2);
-    text(`${inputText}\n`, 203, 92);
+    text(`${inputText}\n`, 153, 52);
     stroke('white');
 
     textSize(25);
 
     fill(`${activeSmoothie.color}`);
-    text(`${activeSmoothie.name}`, 200, 120);
+    text(`${activeSmoothie.name}`, 160, 80);
     pop();
 
     push();
     activeSmoothie.ingredients.sort().forEach((element, index) => { // displays all the ingredients for the randomized drink
         textSize(20);
-        fill('white')
-        stroke('black')
-        text(`${index + 1}. ${element}`, 100, yStartPos + index * yIncrement);
+        console.log(chosenFoods)
+        if (chosenFoods.includes(element)) {
+            fill('lightgreen')
+            stroke('black')
+            text(`${index + 1}. ${element}`, 80, yStartPos + index * yIncrement);
+        } else {
+            fill('white')
+            stroke('black')
+            text(`${index + 1}. ${element}`, 80, yStartPos + index * yIncrement);
+
+        }
+
     });
     pop()
+}
+
+function drawIncorrectIngredientCount() {
+    push();
+    stroke('white');
+    strokeWeight(2);
+    fill('#c0c0c0');
+    rect(500, 10, 275, 75, 20);
+    pop();
+
+    push();
+    textSize(30);
+
+    textAlign(CENTER);
+
+
+    stroke('white');
+    fill('black')
+    strokeWeight(2);
+    stroke('white');
+
+    textSize(25);
+
+    // fill(`${activeSmoothie.color}`);
+    text(`Incorrect Ingredients`, 640, 40);
+    text(`${incorrectIngredientsCount}`, 640, 70);
+
+    pop();
+
+
+}
+
+
+function drawMovesLeft() {
+    push();
+    stroke('white');
+    strokeWeight(2);
+    fill('#c0c0c0');
+    rect(500, 100, 275, 75, 20);
+    pop();
+
+    push();
+    textSize(30);
+
+    textAlign(CENTER);
+
+
+    stroke('white');
+    fill('#c27ba0')
+    strokeWeight(2);
+    stroke('white');
+
+    textSize(25);
+
+    // fill(`${activeSmoothie.color}`);
+    console.log(activeSmoothie)
+    text(`Moves Left\n${activeSmoothie.ingredients.length- ingredientsCount}`, 640, 130);
+
+
+    pop();
+
 }
 
 /**
@@ -426,6 +497,8 @@ function resetGameSettings() {
     originalFoodData = { x: 0, y: 0, image: undefined }
     chosenFoods = [];
     ingredientsCount = 0
+    incorrectIngredientsCount = 0
+
     smoothieCup = {
 
             lid: {
@@ -503,8 +576,13 @@ function previewFoodSelection() {
 function clickToBlend() {
     if (foodAction == 'blend' && checkOverlap(mouseX, mouseY, gameBlender.x, gameBlender.y, gameBlender.size)) {
         blenderSound.play()
+        console.log(activeFoodElement)
+        if (activeSmoothie.ingredients.includes(activeFoodElement.name)) {
+            chosenFoods.push(activeFoodElement.name)
+        } else {
+            incorrectIngredientsCount++;
+        }
 
-        chosenFoods.push(activeFoodElement.name)
         activeFoodElement.x = originalFoodData.x;
         activeFoodElement.y = originalFoodData.y;
         activeFoodElement.image = originalFoodData.image
