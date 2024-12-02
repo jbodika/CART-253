@@ -294,10 +294,10 @@ function drawCounterItems() {
 /**
  * Draws the order section at the top left of the screen
  */
-function drawOrder(inputText) {
+function drawOrder(inputText, smoothieArr) {
     let yStartPos = 105; // default y position
     let yIncrement = 20; // space between each line
-    activeSmoothie = randomizeElement(smoothies.drinks) // selects random drink object from the smoothies array
+    activeSmoothie = randomizeElement(smoothieArr) // selects random drink object from the smoothies array
 
     let textArea = new TextArea(10, 10, 300, 185, 20)
     textArea.addText(`${inputText}\n`, 150, 50, 30, '#8e7cc3')
@@ -308,7 +308,7 @@ function drawOrder(inputText) {
 
     push();
 
-    activeSmoothie.ingredients.sort().forEach((element, index) => { // displays all the ingredients for the randomized drink
+    activeSmoothie.ingredients.forEach((element, index) => { // displays all the ingredients for the randomized drink
         textSize(20);
 
         if (chosenFoods.includes(element)) {
@@ -494,8 +494,9 @@ function resetGameSettings() {
  * Shows the selected food element up close and makes sure the user actually want to select it
  */
 function previewFoodSelection() {
-
+    // console.log(foodAction)
     if (foodAction == 'preview') {
+
         clear();
         push();
         background('#fffff2'); //counter top
@@ -511,11 +512,15 @@ function previewFoodSelection() {
 
         foodActionBtn(activeFoodElement.action)
 
+
     } else if (foodAction === 'cut' || foodAction === 'pour' && !match) {
         actionFoodSelection();
+        displayVee();
+
     } else if (foodAction === 'blend') {
 
         switchMouseToFood();
+
 
         //  console.log('blendddd')
     } else if (foodAction == 'serve') {
@@ -606,12 +611,15 @@ function switchMouseToFood() {
 function selectFood() {
     foods.forEach((element) => {
         if (checkOverlap(mouseX, mouseY, element.x, element.y, element.size) && foodAction == null && ingredientsCount < activeSmoothie.ingredients.length) {
-            console.log(element)
+            //console.log(element)
             activeFoodElement = element; // assigns the selected food to the activeFoodElement variable
             originalFoodData.x = activeFoodElement.x;
             originalFoodData.y = activeFoodElement.y;
             originalFoodData.image = activeFoodElement.image
             foodAction = 'preview'; // focused screen for the selected food 
+            console.log(activeFoodElement)
+            console.log(foodAction)
+
 
         }
     })

@@ -1,0 +1,16 @@
+{
+    "description": "Different weirdly named smoothies offered at the shop",
+    "drinks": [{
+            "id": 1,
+            "name": "THE BARRY",
+            "ingredients": [
+                "HonEy",
+                "green AppLe",
+                "Pineapple chunks"
+            ],
+            "color": "#8E4585"
+        }
+
+
+    ]
+}

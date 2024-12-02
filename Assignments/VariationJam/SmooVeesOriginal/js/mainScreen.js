@@ -137,7 +137,7 @@ function drawSpeechBubble() {
     stroke('pink');
     fill('#FBF9D3');
     strokeWeight(5);
-    rect(600, 120, 175, 180, 20); // rectangle speech bubble with rounded borders
+    rect(600, 120, 175, 190, 20); // rectangle speech bubble with rounded borders
     pop();
 }
 
@@ -146,13 +146,13 @@ function drawSpeechBubble() {
  */
 function drawVeesSpeech() {
     push();
-    fill('#546DA6');
-    stroke('white');
+    fill('#ffbcda');
+    stroke('#946656');
     strokeWeight(3);
     textSize(30);
     // if theres a value that matches the current speech index it will change the text value in the speech bubble
     if (veeTalking.speech[currSpeechIndex]) {
-        text(veeTalking.speech[currSpeechIndex].text, 605, 150);
+        text(veeTalking.speech[currSpeechIndex].text, 610, 150);
     }
     pop();
 }
@@ -289,7 +289,7 @@ function drawStoreCounter() {
     // Drawcounter colour
     push();
     noStroke();
-    fill('#b4a7d6');
+    fill('#c79274');
     rect(0, 420, width, 200);
     pop();
 
@@ -311,7 +311,7 @@ function drawStoreCounter() {
     //Shade on purple countertop 
     push();
     noStroke();
-    fill('#8e7cc3');
+    fill('#946656');
     rect(0, height - 330, width, 10);
     pop();
 

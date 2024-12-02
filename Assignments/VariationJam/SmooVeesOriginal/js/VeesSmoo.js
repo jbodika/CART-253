@@ -244,10 +244,10 @@ function drawAliveItems() {
  * Remove offscreen solids and liquids
  */
 function removeOffscreenItems() {
-    // Remove solids that are fully offscreen (below the screen)
+    // Remove solids that are fully offscreen
     solids = solids.filter(el => el.y <= height + el.size);
 
-    // Remove liquids that are fully offscreen (above the screen)
+    // Remove liquids that are fully offscreen 
     liquids = liquids.filter(el => el.y >= -el.size);
 }
 

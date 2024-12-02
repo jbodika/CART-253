@@ -12,3 +12,13 @@
 *
 
  */
+let evilSmoothies;
+
+
+function displayVee() {
+    image(veeImg, 0, 500)
+    let textArea = new TextArea(20, 675, 300, 80, 20)
+
+
+    textArea.display('#fff', '#000')
+}

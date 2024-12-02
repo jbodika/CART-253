@@ -156,6 +156,8 @@ function preload() {
 
     // json files
     smoothies = loadJSON('./assets/data/smoothies.json');
+    evilSmoothies = loadJSON('./assets/data/evilSmoothies.json');
+
     warDialog = loadJSON('./assets/data/foodWarTalking.json');
     veeTalking = loadJSON("./assets/data/veeTalking.json");
 
@@ -183,13 +185,14 @@ function smooVeesLayout() {
     if (gameState == 'playOriginalGame') {
         //All functions here can be found in the smooVees.js file
 
-        background('#b4a7d6');
+
+        background('#c79274');
         drawInGameCounter();
         drawIncorrectIngredientCount();
 
         drawCounterItems();
         drawMenu();
-        drawOrder('SmooVee');
+        drawOrder('SmooVee', smoothies.drinks);
         drawSmoothieCup();
         drawMovesLeft();
         previewFoodSelection();
@@ -208,6 +211,32 @@ function smooVeesLayout() {
             // drawSmoothieCup();
             // previewFoodSelection();
             // drawDialog();
+    } else if (gameState == 'playEvilGame') {
+        // resetGameSettings()
+        // background('#8e7cc3');
+        // drawInGameCounter();
+        // drawIncorrectIngredientCount();
+
+        // drawCounterItems();
+        // drawMenu();
+        // drawOrder('SmooVee', evilSmoothies.drinks);
+        // drawSmoothieCup();
+        // drawMovesLeft();
+        // previewFoodSelection();
+
+        // displayVee()
+
+        background('#946656');
+        drawInGameCounter();
+        drawIncorrectIngredientCount();
+
+        drawCounterItems();
+        drawMenu();
+        drawOrder('SmooVee', evilSmoothies.drinks);
+        drawSmoothieCup();
+        displayVee();
+        drawMovesLeft();
+        previewFoodSelection();
     }
 
 }
@@ -227,9 +256,9 @@ class TextArea {
 
 
     }
-    display(bgCol = 255) {
+    display(bgCol = '#fff', stkCol = '#fff') {
         push();
-        stroke('white');
+        stroke(stkCol);
         strokeWeight(2);
         fill(bgCol);
         rect(this.x, this.y, this.w, this.h, this.r);
@@ -289,9 +318,11 @@ function drawMenu() {
             if (menuBtn) {
                 menuBtn.elt.remove();
                 menuBtn = null;
+                resetGameSettings()
 
             }
             if (restartBtn) {
+                resetGameSettings()
                 restartBtn.elt.remove();
                 restartBtn = null;
                 activeSmoothie = randomizeElement(smoothies.drinks)
@@ -341,12 +372,12 @@ function drawMenu() {
 
 function mainScreenLayout() {
     if (gameState == 'main') {
-        background('#b4a7d6');
+        background('#946656');
         drawWindow();
         drawReflectiveGlass();
         drawBackgroundCounter();
 
-        image(veeImg, width / 2, 150)
+        image(veeImg, width / 2, 120, 200, 500)
         drawFloor();
 
         drawStoreCounter();
@@ -390,6 +421,10 @@ function mousePressed() {
         selectFood();
         clickToBlend();
         serveDrink();
+    } else if (gameState == "playEvilGame") {
+        selectFood();
+        clickToBlend();
+        serveDrink();
     } else if (gameState == "playWarGame") {
         pushIngredient()
     }
@@ -407,7 +442,8 @@ function keyPressed() {
         console.log('reverse');
 
     } else if (key.toUpperCase() === 'Z' && gameState == 'main') {
-        console.log('z gravity');
+        gameState = 'playEvilGame';
+
 
     }
 }
