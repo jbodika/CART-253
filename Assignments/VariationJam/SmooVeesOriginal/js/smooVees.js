@@ -31,8 +31,9 @@ const appleImg = {
     openImage: undefined,
     x: 670,
     y: 450,
+    originalY: 450,
     size: 32,
-    action: "cut"
+    action: "cut",
 }
 
 const avocadoImg = {
@@ -41,6 +42,7 @@ const avocadoImg = {
     openImage: undefined,
     x: 700,
     y: 450,
+    originalY: 450,
     size: 64,
     action: "cut"
 }
@@ -50,6 +52,7 @@ const bananaImg = {
     openImage: undefined,
     x: 600,
     y: 430,
+    originalY: 430,
     size: 64,
     action: "cut"
 };
@@ -59,6 +62,7 @@ const chiaSeedsImg = {
     image: undefined,
     x: 740,
     y: 500,
+    originalY: 500,
     size: 90,
     action: "pour"
 }
@@ -68,6 +72,7 @@ const cocoaPowderImg = {
     image: undefined,
     x: 775,
     y: 350,
+    originalY: 350,
     size: 90,
     action: "pour"
 }
@@ -78,6 +83,7 @@ const coconutImg = {
     openImage: undefined,
     x: 450,
     y: 375,
+    originalY: 375,
     size: 64,
     action: "cut"
 }
@@ -87,6 +93,7 @@ const frozenBerriesImg = {
     image: undefined,
     x: 670,
     y: 260,
+    originalY: 260,
     size: 125,
     action: "pour"
 }
@@ -100,6 +107,7 @@ const honeyjarImg = {
     openImage: undefined,
     x: 510,
     y: 450,
+    originalY: 450,
     size: 90,
     action: "pour"
 };
@@ -109,6 +117,7 @@ const mangoImg = {
     openImage: undefined,
     x: 500,
     y: 375,
+    originalY: 375,
     size: 64,
     action: "cut"
 };
@@ -120,6 +129,7 @@ const milkImg = {
 
     x: 450,
     y: 290,
+    originalY: 290,
     size: 85,
     action: "pour"
 };
@@ -130,6 +140,7 @@ const orangeImg = {
     openImage: undefined,
     x: 630,
     y: 400,
+    originalY: 400,
     size: 32,
     action: "cut"
 
@@ -141,6 +152,9 @@ const orangeJuiceImg = {
     openImage: undefined,
     x: 325,
     y: 300,
+    originalY: 300,
+    originalX: 325,
+
     size: 80,
     action: "pour"
 
@@ -151,6 +165,7 @@ const peanutButterImg = {
     openImage: undefined,
     x: 550,
     y: 400,
+    originalY: 400,
     size: 64,
     action: "pour"
 }
@@ -162,6 +177,7 @@ const pineappleImg = {
     openImage: undefined,
     x: 720,
     y: 375,
+    originalY: 375,
     size: 125,
     action: "cut"
 }
@@ -174,6 +190,7 @@ const spinachImg = {
 
     x: 635,
     y: 350,
+    originalY: 350,
     size: 64,
     action: "cut"
 }
@@ -185,6 +202,7 @@ const strawberryImg = {
 
     x: 635,
     y: 480,
+    originalY: 480,
     size: 32,
     action: "cut"
 }
@@ -195,6 +213,7 @@ const waterImg = {
     openImage: undefined,
     x: 400,
     y: 300,
+    originalY: 300,
     size: 80,
     action: "pour"
 }
@@ -205,6 +224,7 @@ const watermelonImg = {
     openImage: undefined,
     x: 550, //630 - 280
     y: 300,
+    originalY: 300,
     size: 125,
     action: "cut",
     colour: '#FD4659'
@@ -217,6 +237,7 @@ const yogurtImg = {
     image: undefined,
     x: 750,
     y: 280,
+    originalY: 280,
     size: 64,
     action: "pour"
 };
@@ -239,8 +260,6 @@ const gameBlender = {
 
 
 let foods = [appleImg, avocadoImg, bananaImg, chiaSeedsImg, cocoaPowderImg, coconutImg, frozenBerriesImg, honeyjarImg, mangoImg, milkImg, orangeImg, orangeJuiceImg, peanutButterImg, pineappleImg, spinachImg, strawberryImg, waterImg, watermelonImg, yogurtImg]
-
-
 
 
 function drawInGameCounter() {
@@ -577,6 +596,7 @@ function actionFoodSelection() {
 function switchMouseToFood() {
     activeFoodElement.x = mouseX;
     activeFoodElement.y = mouseY;
+    console.log(activeFoodElement.y)
 }
 
 
