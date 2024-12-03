@@ -433,7 +433,7 @@ function playActionSound() {
 function drawSmoothieCup() {
     push();
     stroke('#c0c0c0')
-    strokeWeight(3) // the lid of the cup
+    strokeWeight(0.75) // the lid of the cup
     fill('#ebe6d9');
     ellipse(smoothieCup.lid.x, smoothieCup.lid.y, smoothieCup.lid.size.x, smoothieCup.lid.size.y)
 
@@ -441,13 +441,15 @@ function drawSmoothieCup() {
 
     push()
     fill(smoothieCup.color);
+
     stroke('#c0c0c0')
-    strokeWeight(3)
+    strokeWeight(0.75)
     rect(smoothieCup.cup.x, smoothieCup.cup.y, smoothieCup.cup.size.x, smoothieCup.cup.size.y)
     pop()
 
     push()
-    strokeWeight(0.1)
+    strokeWeight(0.10)
+    fill("#ffbcda80");
     rect(smoothieCup.straw.x, smoothieCup.straw.y, smoothieCup.straw.size.x, smoothieCup.straw.size.y)
     pop()
 }
@@ -483,7 +485,7 @@ function resetGameSettings() {
             },
             straw: {
                 x: 390,
-                y: 370,
+                y: 400,
                 size: {
                     x: 20,
                     y: 330
@@ -502,7 +504,7 @@ function resetGameSettings() {
  * Shows the selected food element up close and makes sure the user actually want to select it
  */
 function previewFoodSelection() {
-    // console.log(foodAction)
+
     if (foodAction == 'preview') {
 
         clear();
