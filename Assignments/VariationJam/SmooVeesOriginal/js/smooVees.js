@@ -24,225 +24,6 @@ let ingredientsCount = 0
 let smoothies;
 let incorrectIngredientsCount = 0
 
-// All images 
-const appleImg = {
-    name: "Green Apple",
-    image: undefined,
-    openImage: undefined,
-    x: 670,
-    y: 450,
-    originalY: 450,
-    size: 32,
-    action: "cut",
-    actionBtnLbl: "cut"
-}
-
-const avocadoImg = {
-    name: "Avocado",
-    image: undefined,
-    openImage: undefined,
-    x: 700,
-    y: 450,
-    originalY: 450,
-    size: 64,
-    action: "cut",
-    actionBtnLbl: "cut"
-}
-const bananaImg = {
-    name: "Banana",
-    image: undefined,
-    openImage: undefined,
-    x: 600,
-    y: 430,
-    originalY: 430,
-    size: 64,
-    action: "cut",
-    actionBtnLbl: "cut"
-};
-
-const chiaSeedsImg = {
-    name: "Chia Seeds",
-    image: undefined,
-    x: 740,
-    y: 500,
-    originalY: 500,
-    size: 90,
-    action: "plop",
-    actionBtnLbl: "scoop"
-}
-
-const cocoaPowderImg = {
-    name: "Cocoa Powder",
-    image: undefined,
-    x: 775,
-    y: 350,
-    originalY: 350,
-    size: 90,
-    action: "plop",
-    actionBtnLbl: "scoop"
-}
-
-const coconutImg = {
-    name: "Coconut Water",
-    image: undefined,
-    openImage: undefined,
-    x: 450,
-    y: 375,
-    originalY: 375,
-    size: 64,
-    action: "cut",
-    actionBtnLbl: "cut"
-}
-
-const frozenBerriesImg = {
-    name: "Frozen Berries",
-    image: undefined,
-    x: 670,
-    y: 260,
-    size: 125,
-    action: "solidPour",
-    actionBtnLbl: "scoop"
-}
-
-
-
-
-const honeyjarImg = {
-    name: "Honey",
-    image: undefined,
-    openImage: undefined,
-    x: 510,
-    y: 450,
-    size: 90,
-    action: "plop",
-    actionBtnLbl: "scoop"
-};
-const mangoImg = {
-    name: "Mango Chunks",
-    image: undefined,
-    openImage: undefined,
-    x: 500,
-    y: 375,
-    size: 64,
-    action: "cut",
-    actionBtnLbl: "cut"
-};
-
-const milkImg = {
-    name: "Milk",
-    image: undefined,
-    openImage: undefined,
-    x: 450,
-    y: 290,
-    size: 85,
-    action: "liquidPour",
-    actionBtnLbl: "pour"
-};
-
-const orangeImg = {
-    name: "Orange",
-    image: undefined,
-    openImage: undefined,
-    x: 630,
-    y: 400,
-    size: 32,
-    action: "cut",
-    actionBtnLbl: "cut"
-
-};
-
-const orangeJuiceImg = {
-    name: "Orange Juice",
-    image: undefined,
-    openImage: undefined,
-    x: 325,
-    y: 300,
-    size: 80,
-    action: "liquidPour",
-    actionBtnLbl: "pour"
-
-};
-const peanutButterImg = {
-    name: "Peanut Butter",
-    image: undefined,
-    openImage: undefined,
-    x: 550,
-    y: 400,
-    size: 64,
-    action: "plop",
-    actionBtnLbl: "scoop"
-}
-
-
-const pineappleImg = {
-    name: "Pineapple Chunks",
-    image: undefined,
-    openImage: undefined,
-    x: 720,
-    y: 375,
-    size: 125,
-    action: "cut",
-    actionBtnLbl: "cut"
-}
-
-
-const spinachImg = {
-    name: "Spinach Leaves",
-    image: undefined,
-    openImage: undefined,
-    x: 635,
-    y: 350,
-    size: 64,
-    action: "cut",
-    actionBtnLbl: "cut"
-}
-
-const strawberryImg = {
-    name: "Strawberry",
-    image: undefined,
-    openImage: undefined,
-    x: 635,
-    y: 480,
-    size: 32,
-    action: "cut",
-    actionBtnLbl: "cut"
-}
-
-const waterImg = {
-    name: "Water",
-    image: undefined,
-    openImage: undefined,
-    x: 400,
-    y: 300,
-    size: 80,
-    actionBtnLbl: "pour",
-    action: "liquidPour"
-}
-
-const watermelonImg = {
-    name: "Watermelon",
-    image: undefined,
-    openImage: undefined,
-    x: 550,
-    y: 300,
-    size: 125,
-    action: 'cut',
-    actionBtnLbl: "cut",
-    colour: '#FD4659'
-};
-
-
-
-const yogurtImg = {
-    name: "Yogurt",
-    image: undefined,
-    x: 750,
-    y: 280,
-    size: 64,
-    action: "plop",
-    actionBtnLbl: "scoop"
-};
-
 
 const gameBlender = {
     name: "Blender",
@@ -253,37 +34,26 @@ const gameBlender = {
     action: "blend"
 }
 
-let smoothieCup = {
-
-    lid: {
-        x: 400,
-        y: 530,
-        size: {
-            x: 180,
-            y: 100
-        }
-    },
-    cup: {
-        x: 310,
-        y: 530,
-        size: {
-            x: 180,
-            y: 200,
-        }
-    },
-    straw: {
-        x: 390,
-        y: 370,
-        size: {
-            x: 20,
-            y: 330
-        }
-    },
-    color: '#ebe6d9'
-}
-
-
-let foods = [appleImg, avocadoImg, bananaImg, chiaSeedsImg, cocoaPowderImg, coconutImg, frozenBerriesImg, honeyjarImg, mangoImg, milkImg, orangeImg, orangeJuiceImg, peanutButterImg, pineappleImg, spinachImg, strawberryImg, waterImg, watermelonImg, yogurtImg]
+const apple = new Ingredient("Green Apple", undefined, undefined, 670, 450, 32, "cut", "cut");
+const avocado = new Ingredient("Avocado", undefined, undefined, 700, 450, 64, "cut", "cut");
+const banana = new Ingredient("Banana", undefined, undefined, 600, 430, 64, "cut", "cut");
+const chiaSeeds = new Ingredient("Chia Seeds", undefined, undefined, 740, 500, 90, "plop", "scoop");
+const cocoaPowder = new Ingredient("Cocoa Powder", undefined, undefined, 775, 350, 90, "plop", "scoop");
+const coconut = new Ingredient("Coconut Water", undefined, undefined, 450, 375, 64, "cut", "cut");
+const frozenBerries = new Ingredient("Frozen Berries", undefined, undefined, 670, 260, 125, "solidPour", "scoop");
+const honeyjar = new Ingredient("Honey", undefined, undefined, 510, 450, 90, "plop", "scoop");
+const mango = new Ingredient("Mango Chunks", undefined, undefined, 500, 375, 64, "cut", "cut");
+const milk = new Ingredient("Milk", undefined, undefined, 450, 290, 85, "liquidPour", "pour");
+const orange = new Ingredient("Orange", undefined, undefined, 630, 400, 32, "cut", "cut");
+const orangeJuice = new Ingredient("Orange Juice", undefined, undefined, 325, 300, 80, "liquidPour", "pour");
+const peanutButter = new Ingredient("Peanut Butter", undefined, undefined, 550, 400, 64, "plop", "scoop");
+const pineapple = new Ingredient("Pineapple Chunks", undefined, undefined, 720, 375, 125, "cut", "cut");
+const spinach = new Ingredient("Spinach Leaves", undefined, undefined, 635, 350, 64, "cut", "cut");
+const strawberry = new Ingredient("Strawberry", undefined, undefined, 635, 480, 32, "cut", "cut");
+const water = new Ingredient("Water", undefined, undefined, 400, 300, 80, "liquidPour", "pour");
+const watermelon = new Ingredient("Watermelon", undefined, undefined, 550, 300, 125, "cut", "cut");
+const yogurt = new Ingredient("Yogurt", undefined, undefined, 750, 280, 64, "plop", "scoop");
+const ingredients = [yogurt, apple, avocado, banana, chiaSeeds, cocoaPowder, coconut, frozenBerries, honeyjar, mango, milk, orange, orangeJuice, peanutButter, pineapple, spinach, strawberry, water, watermelon];
 
 
 function drawInGameCounter() {
@@ -307,10 +77,9 @@ function drawCounterItems() {
         image(gameBlender.image, gameBlender.x - gameBlender.size / 2, gameBlender.y - gameBlender.size / 2, gameBlender.size, gameBlender.size)
     }
 
-
-    foods.forEach(foodObj => {
-        image(foodObj.image, foodObj.x - foodObj.size / 2, foodObj.y - foodObj.size / 2, foodObj.size, foodObj.size);
-
+    // loop through ingredients array to display the ingredient images
+    ingredients.forEach(foodObj => {
+        foodObj.display()
     });
 
 }
@@ -365,7 +134,7 @@ function drawIncorrectIngredientCount() {
 
 function drawMovesLeft() {
     let textArea = new TextArea(500, 100, 275, 75, 20)
-    textArea.addText(`Moves Left\n${activeSmoothie.ingredients.length- ingredientsCount}`, 640, 130, 25, '#c27ba0');
+    textArea.addText(`Moves Left\n${activeSmoothie.ingredients.length - ingredientsCount}`, 640, 130, 25, '#c27ba0');
     textArea.display('#c0c0c0')
 }
 
@@ -442,32 +211,24 @@ function playActionSound() {
     }
 
 }
-
+let smoothie = new Smoothie(
+    400, 530, 180, 100, // Lid properties
+    310, 530, 180, 200, // Cup properties
+    390, 400, 20, 330, // Straw properties
+    '#ebe6d9' // Cup color
+);
 /**
  * Draws the smoothie's cup 
  */
 function drawSmoothieCup() {
-    push();
-    stroke('#c0c0c0')
-    strokeWeight(0.75) // the lid of the cup
-    fill('#ebe6d9');
-    ellipse(smoothieCup.lid.x, smoothieCup.lid.y, smoothieCup.lid.size.x, smoothieCup.lid.size.y)
+    if (!smoothie) {
+        console.error('Smoothie object is not initialized.');
+        return;
+    }
 
-    pop();
+    smoothie.display();
 
-    push()
-    fill(smoothieCup.color);
 
-    stroke('#c0c0c0')
-    strokeWeight(0.75)
-    rect(smoothieCup.cup.x, smoothieCup.cup.y, smoothieCup.cup.size.x, smoothieCup.cup.size.y)
-    pop()
-
-    push()
-    strokeWeight(0.10)
-    fill("#ffbcda80");
-    rect(smoothieCup.straw.x, smoothieCup.straw.y, smoothieCup.straw.size.x, smoothieCup.straw.size.y)
-    pop()
 }
 
 
@@ -480,35 +241,13 @@ function resetGameSettings() {
     ingredientsCount = 0
     incorrectIngredientsCount = 0
 
-    smoothieCup = {
-
-            lid: {
-                x: 400,
-                y: 530,
-                size: {
-                    x: 180,
-                    y: 100
-                }
-            },
-            cup: {
-                x: 310,
-                y: 530,
-                size: {
-                    x: 180,
-                    y: 200,
-                }
-            },
-            straw: {
-                x: 390,
-                y: 400,
-                size: {
-                    x: 20,
-                    y: 330
-                }
-            },
-            color: '#ebe6d9'
-        }
-        // smooVeesLayout();
+    smoothie = new Smoothie(
+        400, 530, 180, 100, // Lid properties
+        310, 530, 180, 200, // Cup properties
+        390, 400, 20, 330, // Straw properties
+        '#ebe6d9' // Cup color
+    );
+    // smooVeesLayout();
 
 
 }
@@ -609,9 +348,9 @@ function clickToBlend() {
 
 
 function pourSmoothie() {
-    const lidRadius = Math.min(smoothieCup.lid.size.x, smoothieCup.lid.size.y) / 2;
+    const lidRadius = Math.min(smoothie.lid.size.x, smoothie.lid.size.y) / 2;
 
-    if (checkOverlap(mouseX, mouseY, smoothieCup.lid.x, smoothieCup.lid.y, lidRadius * 2)) {
+    if (checkOverlap(mouseX, mouseY, smoothie.lid.x, smoothie.lid.y, lidRadius * 2)) {
 
         foodAction = 'serve';
         serveDrink(); // changes colour of the cup and plays sound
@@ -670,7 +409,7 @@ function switchMouseToFood() {
  * Interaction that allows the user to select one the food elements on the counter top
  */
 function selectFood() {
-    foods.forEach((element) => {
+    ingredients.forEach((element) => {
         if (checkOverlap(mouseX, mouseY, element.x, element.y, element.size) && foodAction == null && ingredientsCount < activeSmoothie.ingredients.length) {
             activeFoodElement = element; // assigns the selected food to the activeFoodElement variable
             originalFoodData.x = activeFoodElement.x;
@@ -710,11 +449,13 @@ function blendIngredients() {
         gameBlender.x = mouseX;
         gameBlender.y = mouseY;
         pourSmoothie()
+
     }
 
 
 
 }
+
 
 
 /**
@@ -723,33 +464,35 @@ function blendIngredients() {
 function serveDrink() {
     let equalArray = (chosenFoods.length === activeSmoothie.ingredients.length) && (chosenFoods.every(val => activeSmoothie.ingredients.includes(val)));
 
-
+    console.log(foodAction)
 
     if (equalArray && ingredientsCount == activeSmoothie.ingredients.length) {
 
-        smoothieCup.color = activeSmoothie.color
+
+        smoothie.changeColor(activeSmoothie.color)
+            //  smoothie.display()
 
         cashRegisterSound.play()
 
     } else if (!equalArray && ingredientsCount == activeSmoothie.ingredients.length) {
         cupFalling.play()
+        console.log(smoothie)
+            // simulate a spilled over cup 
+        smoothie.cup.x = 100
+        smoothie.cup.y = 575 //base of smoothie cup
+        smoothie.cup.size.x = 300
+        smoothie.cup.size.y = 200
 
-        // simulate a spilled over cup 
-        smoothieCup.cup.x = 100
-        smoothieCup.cup.y = 575 //base of smoothie cup
-        smoothieCup.cup.size.x = 300
-        smoothieCup.cup.size.y = 200
+        smoothie.lid.x = 100
+        smoothie.lid.y = 675 //lid of smoothie cup
+        smoothie.lid.size.x = 100
+        smoothie.lid.size.y = 200
 
-        smoothieCup.lid.x = 100
-        smoothieCup.lid.y = 675 //lid of smoothie cup
-        smoothieCup.lid.size.x = 100
-        smoothieCup.lid.size.y = 200
-
-        smoothieCup.straw.x = 0
-        smoothieCup.straw.y = 750 //straw of smoothie cup
-        smoothieCup.straw.size.x = 400
-        smoothieCup.straw.size.y = 25
-        smoothieCup.color = '#ebe6d9'
+        smoothie.straw.x = 0
+        smoothie.straw.y = 750 //straw of smoothie cup
+        smoothie.straw.size.x = 400
+        smoothie.straw.size.y = 25
+        smoothie.color = '#ebe6d9'
         sadTromboneSound.play()
 
 

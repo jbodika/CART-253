@@ -52,104 +52,100 @@ function preload() {
     bagelFatOneFont = loadFont('./assets/fonts/BagelFatOne-Regular.ttf');
 
     // all food elements, image is the image we see on the counter and openImage is the cut or poured version of the food element
-    //appleImg.image = loadImage('./assets/images/apple.png');
-    //warAppleImg.image = loadImage('./assets/images/apple.png');
-    //USE THIS LATER
-    // Apple
-    warAppleImg.image = loadImage('./assets/images/apple.png');
-    appleImg.image = loadImage('./assets/images/apple.png');
-    appleImg.openImage = loadImage('./assets/images/openApple.png');
+    warApple.image = loadImage('./assets/images/apple.png');
+    apple.image = loadImage('./assets/images/apple.png');
+    apple.openImage = loadImage('./assets/images/openApple.png');
 
     // Avocado
-    warAvocadoImg.image = loadImage('./assets/images/avocado.png');
-    avocadoImg.image = loadImage('./assets/images/avocado.png');
-    avocadoImg.openImage = loadImage('./assets/images/openAvocado.png');
+    warAvocado.image = loadImage('./assets/images/avocado.png');
+    avocado.image = loadImage('./assets/images/avocado.png');
+    avocado.openImage = loadImage('./assets/images/openAvocado.png');
 
     // Banana
-    warBananaImg.image = loadImage('./assets/images/banana.png');
-    bananaImg.image = loadImage('./assets/images/banana.png');
-    bananaImg.openImage = loadImage('./assets/images/openBanana.png');
+    warBanana.image = loadImage('./assets/images/banana.png');
+    banana.image = loadImage('./assets/images/banana.png');
+    banana.openImage = loadImage('./assets/images/openBanana.png');
 
     // Chia Seeds
-    warChiaSeedsImg.image = loadImage('./assets/images/chiaSeeds.png');
-    chiaSeedsImg.image = loadImage('./assets/images/chiaSeeds.png');
-    chiaSeedsImg.openImage = loadImage('./assets/images/openChiaSeeds.png');
+    warChiaSeeds.image = loadImage('./assets/images/chiaSeeds.png');
+    chiaSeeds.image = loadImage('./assets/images/chiaSeeds.png');
+    chiaSeeds.openImage = loadImage('./assets/images/openChiaSeeds.png');
 
     // Cocoa Powder
-    warCocoaPowderImg.image = loadImage('./assets/images/cocoaPowder.png');
-    cocoaPowderImg.image = loadImage('./assets/images/cocoaPowder.png');
-    cocoaPowderImg.openImage = loadImage('./assets/images/openCocoaPowder.png');
+    warCocoaPowder.image = loadImage('./assets/images/cocoaPowder.png');
+    cocoaPowder.image = loadImage('./assets/images/cocoaPowder.png');
+    cocoaPowder.openImage = loadImage('./assets/images/openCocoaPowder.png');
 
     // Coconut
-    warCoconutImg.image = loadImage('./assets/images/coconut.png');
-    coconutImg.image = loadImage('./assets/images/coconut.png');
-    coconutImg.openImage = loadImage('./assets/images/openCoconut.png');
+    warCoconut.image = loadImage('./assets/images/coconut.png');
+    coconut.image = loadImage('./assets/images/coconut.png');
+    coconut.openImage = loadImage('./assets/images/openCoconut.png');
 
     // Frozen Berries
-    warFrozenBerriesImg.image = loadImage('./assets/images/frozenBerries.png');
-    frozenBerriesImg.image = loadImage('./assets/images/frozenBerries.png');
-    frozenBerriesImg.openImage = loadImage('./assets/images/openFrozenBerries.png');
+    warFrozenBerries.image = loadImage('./assets/images/frozenBerries.png');
+    frozenBerries.image = loadImage('./assets/images/frozenBerries.png');
+    frozenBerries.openImage = loadImage('./assets/images/openFrozenBerries.png');
 
     // Honey Jar
-    warHoneyjarImg.image = loadImage('./assets/images/honeyjar.png');
-    honeyjarImg.image = loadImage('./assets/images/honeyjar.png');
-    honeyjarImg.openImage = loadImage('./assets/images/openHoney.png');
+    warHoneyjar.image = loadImage('./assets/images/honeyjar.png');
+    honeyjar.image = loadImage('./assets/images/honeyjar.png');
+    honeyjar.openImage = loadImage('./assets/images/openHoney.png');
 
     // Mango
-    warMangoImg.image = loadImage('./assets/images/mango.png');
-    mangoImg.image = loadImage('./assets/images/mango.png');
-    mangoImg.openImage = loadImage('./assets/images/openMango.png');
+    warMango.image = loadImage('./assets/images/mango.png');
+    mango.image = loadImage('./assets/images/mango.png');
+    mango.openImage = loadImage('./assets/images/openMango.png');
 
     // Milk
-    warMilkImg.image = loadImage('./assets/images/milk.png');
-    milkImg.image = loadImage('./assets/images/milk.png');
-    milkImg.openImage = loadImage('./assets/images/openMilk.png');
+    warMilk.image = loadImage('./assets/images/milk.png');
+    milk.image = loadImage('./assets/images/milk.png');
+    milk.openImage = loadImage('./assets/images/openMilk.png');
 
     // Orange
-    warOrangeImg.image = loadImage('./assets/images/orange.png');
-    orangeImg.image = loadImage('./assets/images/orange.png');
-    orangeImg.openImage = loadImage('./assets/images/openOrange.png');
+    warOrange.image = loadImage('./assets/images/orange.png');
+    orange.image = loadImage('./assets/images/orange.png');
+    orange.openImage = loadImage('./assets/images/openOrange.png');
 
     // Orange Juice
-    warOrangeJuiceImg.image = loadImage('./assets/images/orangeJuice.png');
-    orangeJuiceImg.image = loadImage('./assets/images/orangeJuice.png');
-    orangeJuiceImg.openImage = loadImage('./assets/images/openOrangeJuice.png');
+    warOrangeJuice.image = loadImage('./assets/images/orangeJuice.png');
+    orangeJuice.image = loadImage('./assets/images/orangeJuice.png');
+    orangeJuice.openImage = loadImage('./assets/images/openOrangeJuice.png');
 
     // Peanut Butter
-    warPeanutButterImg.image = loadImage('./assets/images/peanutButter.png');
-    peanutButterImg.image = loadImage('./assets/images/peanutButter.png');
-    peanutButterImg.openImage = loadImage('./assets/images/openPeanutButter.png');
+    warPeanutButter.image = loadImage('./assets/images/peanutButter.png');
+    peanutButter.image = loadImage('./assets/images/peanutButter.png');
+    peanutButter.openImage = loadImage('./assets/images/openPeanutButter.png');
 
     // Pineapple
-    warPineappleImg.image = loadImage('./assets/images/pineapple.png');
-    pineappleImg.image = loadImage('./assets/images/pineapple.png');
-    pineappleImg.openImage = loadImage('./assets/images/openPineapple.png');
+    warPineapple.image = loadImage('./assets/images/pineapple.png');
+    pineapple.image = loadImage('./assets/images/pineapple.png');
+    pineapple.openImage = loadImage('./assets/images/openPineapple.png');
 
     // Spinach
 
-    warSpinachImg.image = loadImage('./assets/images/spinach.png');
-    spinachImg.image = loadImage('./assets/images/spinach.png');
-    spinachImg.openImage = loadImage('./assets/images/openSpinach.png');
+    warSpinach.image = loadImage('./assets/images/spinach.png');
+    spinach.image = loadImage('./assets/images/spinach.png');
+    spinach.openImage = loadImage('./assets/images/openSpinach.png');
 
     // Strawberry
-    warStrawberryImg.image = loadImage('./assets/images/strawberry.png');
-    strawberryImg.image = loadImage('./assets/images/strawberry.png');
-    strawberryImg.openImage = loadImage('./assets/images/openStrawberry.png');
+    warStrawberry.image = loadImage('./assets/images/strawberry.png');
+    strawberry.image = loadImage('./assets/images/strawberry.png');
+    strawberry.openImage = loadImage('./assets/images/openStrawberry.png');
 
     // Water
-    warWaterImg.image = loadImage('./assets/images/water.png');
-    waterImg.image = loadImage('./assets/images/water.png');
-    waterImg.openImage = loadImage('./assets/images/openWater.png');
+    warWater.image = loadImage('./assets/images/water.png');
+    water.image = loadImage('./assets/images/water.png');
+    water.openImage = loadImage('./assets/images/openWater.png');
 
     // Watermelon
-    warWatermelonImg.image = loadImage('./assets/images/watermelon.png');
-    watermelonImg.image = loadImage('./assets/images/watermelon.png');
-    watermelonImg.openImage = loadImage('./assets/images/openWatermelon.png');
+    warWatermelon.image = loadImage('./assets/images/watermelon.png');
+    watermelon.image = loadImage('./assets/images/watermelon.png');
+    watermelon.openImage = loadImage('./assets/images/openWatermelon.png');
 
     // Yogurt
-    warYogurtImg.image = loadImage('./assets/images/yogurt.png');
-    yogurtImg.image = loadImage('./assets/images/yogurt.png');
-    yogurtImg.openImage = loadImage('./assets/images/openYogurt.png');
+    warYogurt.image = loadImage('./assets/images/yogurt.png');
+    yogurt.image = loadImage('./assets/images/yogurt.png');
+    yogurt.openImage = loadImage('./assets/images/openYogurt.png');
 
     cuttingBoardImg = loadImage('./assets/images/cuttingBoard.png')
 
@@ -171,7 +167,6 @@ function preload() {
 
     // all sounds
     knifeSound = loadSound('./assets/audio/knife.mp3');
-    // pouringSound = loadSound('./assets/audio/pour.mp3')
     blenderSound = loadSound('./assets/audio/blender.mp3')
     cashRegisterSound = loadSound('./assets/audio/cash-register.mp3')
     sadTromboneSound = loadSound('./assets/audio/sad-trombone.mp3')
@@ -180,11 +175,6 @@ function preload() {
     solidPourSound = loadSound('./assets/audio/solidPour.mp3')
     plopSound = loadSound('./assets/audio/plop.mp3')
     cupFalling = loadSound('./assets/audio/cupFalling.mp3')
-
-
-
-
-
 }
 
 /**
@@ -206,14 +196,16 @@ function smooVeesLayout() {
 
         background('#c79274');
         drawInGameCounter();
-        drawIncorrectIngredientCount();
         drawSmoothieCup();
+        drawIncorrectIngredientCount();
+
         drawCounterItems();
         drawMenu();
         drawOrder('SmooVee', smoothies.drinks);
 
         drawMovesLeft();
         previewFoodSelection();
+
         // blendIngredients()
     } else if (gameState == 'playWarGame') {
 
@@ -262,66 +254,6 @@ function smooVeesLayout() {
     }
 
 }
-// Class to handle all text boxes displayed on the screen
-class TextArea {
-    constructor(x, y, w, h, r) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.r = r;
-        this.texts = [];
-
-    }
-    addText(txt, txtX, txtY, txtSize, txtCol = 'white') {
-        this.texts.push({ txt, txtX, txtY, txtSize, txtCol })
-
-
-    }
-    display(bgCol = '#fff', stkCol = '#fff') {
-        push();
-        stroke(stkCol);
-        strokeWeight(2);
-        fill(bgCol);
-        rect(this.x, this.y, this.w, this.h, this.r);
-
-        for (let textData of this.texts) {
-            fill(textData.txtCol);
-            textSize(textData.txtSize);
-            textAlign(CENTER);
-            text(textData.txt, textData.txtX, textData.txtY);
-        }
-
-        pop();
-
-
-    }
-}
-
-class Ingredients {
-    constructor(name, image, x, y, width, height) {
-        this.name = name;
-        this.image = image; // Loaded image from preload()
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-    }
-
-    draw() {
-        if (this.image) {
-            image(this.image, this.x, this.y, this.width, this.height);
-        } else {
-            console.warn(`Image not defined for fruit: ${this.name}`);
-        }
-    }
-
-    move(dx = 0, dy = 0) {
-        this.x += dx;
-        this.y += dy;
-    }
-}
-
 
 
 
@@ -379,7 +311,6 @@ function drawMenu() {
             if (restartBtn) {
                 restartBtn.elt.remove();
                 restartBtn = null;
-                // activeSmoothie = randomizeElement(smoothies.drinks)
                 resetGameSettings()
             }
 
@@ -445,13 +376,14 @@ function mousePressed() {
         clickToBlend();
 
 
-        //blendIngredients()
-        // serveDrink();
+        blendIngredients()
+
     } else if (gameState == "playEvilGame") {
         selectFood();
         clickToBlend();
 
         blendIngredients()
+
 
         // serveDrink();
     } else if (gameState == "playWarGame") {

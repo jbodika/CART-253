@@ -13,173 +13,33 @@
  */
 
 
-
-// All images 
-const warAppleImg = {
-    name: "Green Apple",
-    image: undefined,
-    x: 50,
-    y: -200,
-    size: 80
-}
-
-const warAvocadoImg = {
-    name: "Avocado",
-    image: undefined,
-    x: 130,
-    y: -200,
-    size: 125,
-}
-const warBananaImg = {
-    name: "Banana",
-    image: undefined,
-    x: 210,
-    y: -200,
-    size: 80
-};
-
-const warChiaSeedsImg = {
-    name: "Chia Seeds",
-    image: undefined,
-    x: 290,
-    y: -200,
-    size: 80
-}
-
-const warCocoaPowderImg = {
-    name: "Cocoa Powder",
-    image: undefined,
-    x: 775,
-    y: -200,
-    size: 80
-}
-
-const warCoconutImg = {
-    name: "Coconut Water",
-    image: undefined,
-    x: 450,
-    y: 800,
-    size: 80
-}
-
-const warFrozenBerriesImg = {
-    name: "Frozen Berries",
-    image: undefined,
-    x: 670,
-    y: -200,
-    size: 80
-}
-
-
-
-
-const warHoneyjarImg = {
-    name: "Honey",
-    image: undefined,
-    x: 510,
-    y: 800,
-    size: 80
-};
-const warMangoImg = {
-    name: "Mango Chunks",
-    image: undefined,
-    x: 500,
-    y: -200,
-    size: 80,
-};
-
-const warMilkImg = {
-    name: "Milk",
-    image: undefined,
-    x: 450,
-    y: 800,
-    size: 85
-};
-
-const warOrangeImg = {
-    name: "Orange",
-    image: undefined,
-    x: 630,
-    y: -200,
-    size: 80,
-
-};
-
-const warOrangeJuiceImg = {
-    name: "Orange Juice",
-    image: undefined,
-    x: 325,
-    y: 800,
-    size: 125
-};
-const warPeanutButterImg = {
-    name: "Peanut Butter",
-    image: undefined,
-    x: 550,
-    y: 800,
-    size: 80
-}
-
-
-const warPineappleImg = {
-    name: "Pineapple Chunks",
-    image: undefined,
-    x: 720,
-    y: -200,
-    size: 80
-}
-
-
-const warSpinachImg = {
-    name: "Spinach Leaves",
-    image: undefined,
-    x: 635,
-    y: -200,
-    size: 80
-}
-
-const warStrawberryImg = {
-    name: "Strawberry",
-    image: undefined,
-    x: 635,
-    y: -200,
-    size: 80
-}
-
-const warWaterImg = {
-    name: "Water",
-    image: undefined,
-    x: 400,
-    y: 800,
-    size: 80
-}
-
-const warWatermelonImg = {
-    name: "Watermelon",
-    image: undefined,
-    x: 550, //630 - 280
-    y: -10,
-    size: 125
-};
-
-
-
-const warYogurtImg = {
-    name: "Yogurt",
-    image: undefined,
-    x: 750,
-    y: 800,
-    size: 80
-};
-
-
-
 let warDialog;
-let liquids = [warCoconutImg, warHoneyjarImg, warOrangeJuiceImg, warPeanutButterImg, warWaterImg, warYogurtImg]
-let solids = [warAppleImg, warAvocadoImg, warBananaImg, warChiaSeedsImg, warCocoaPowderImg, warFrozenBerriesImg, warMangoImg, warOrangeImg, warPineappleImg, warSpinachImg, warStrawberryImg]
+let warApple = new Ingredient("Green Apple", undefined, null, 670, 450, 32);
+let warAvocado = new Ingredient("Avocado", undefined, null, 700, 450, 64);
+let warBanana = new Ingredient("Banana", undefined, null, 600, 430, 64);
+let warChiaSeeds = new Ingredient("Chia Seeds", undefined, null, 740, 500, 90);
+let warCocoaPowder = new Ingredient("Cocoa Powder", undefined, null, 775, 350, 90);
+let warCoconut = new Ingredient("Coconut Water", undefined, null, 450, 375, 64);
+let warFrozenBerries = new Ingredient("Frozen Berries", undefined, null, 670, 260, 125);
+let warHoneyjar = new Ingredient("Honey", undefined, null, 510, 450, 90);
+let warMango = new Ingredient("Mango Chunks", undefined, null, 500, 375, 64);
+let warMilk = new Ingredient("Milk", undefined, null, 450, 290, 85);
+let warOrange = new Ingredient("Orange", undefined, null, 630, 400, 32);
+let warOrangeJuice = new Ingredient("Orange Juice", undefined, null, 325, 300, 80);
+let warPeanutButter = new Ingredient("Peanut Butter", undefined, null, 550, 400, 64);
+let warPineapple = new Ingredient("Pineapple Chunks", undefined, null, 720, 375, 125);
+let warSpinach = new Ingredient("Spinach Leaves", undefined, null, 635, 350, 64);
+let warStrawberry = new Ingredient("Strawberry", undefined, null, 635, 480, 32);
+let warWater = new Ingredient("Water", undefined, null, 400, 300, 80);
+let warWatermelon = new Ingredient("Watermelon", undefined, null, 550, 300, 125);
+let warYogurt = new Ingredient("Yogurt", undefined, null, 750, 280, 64);
 
+let warIngredients = [warYogurt, warApple, warAvocado, warBanana, warChiaSeeds, warCocoaPowder, warCoconut, warFrozenBerries, warHoneyjar, warMango, warMilk, warOrange, warOrangeJuice, warPeanutButter, warPineapple, warSpinach, warStrawberry, warWater, warWatermelon];
 
+let liquids = [warCoconut, warHoneyjar, warOrangeJuice, warPeanutButter, warWater, warYogurt];
+let solids = [warApple, warAvocado, warBanana, warChiaSeeds, warCocoaPowder, warFrozenBerries, warMango, warOrange, warPineapple, warSpinach, warStrawberry];
 
+console.log(solids)
 
 let solidLeaderImg = {
     x: 350,
@@ -224,7 +84,8 @@ function drawDialog() {
 function drawAliveItems() {
     // Display all solids
     solids.forEach((el) => {
-        image(el.image, el.x - el.size / 2, el.y - el.size / 2, el.size, el.size);
+        el.display()
+            // image(el.image, el.x - el.size / 2, el.y - el.size / 2, el.size, el.size);
     });
 
     // Display all liquids
@@ -233,8 +94,8 @@ function drawAliveItems() {
     });
 
     // Leaders
-    image(watermelonImg.image, solidLeaderImg.x, solidLeaderImg.y, solidLeaderImg.size, solidLeaderImg.size);
-    image(milkImg.image, liquidsLeaderImg.x, liquidsLeaderImg.y, liquidsLeaderImg.size, liquidsLeaderImg.size);
+    image(watermelon.image, solidLeaderImg.x, solidLeaderImg.y, solidLeaderImg.size, solidLeaderImg.size);
+    image(milk.image, liquidsLeaderImg.x, liquidsLeaderImg.y, liquidsLeaderImg.size, liquidsLeaderImg.size);
 
     // Remove offscreen items
     removeOffscreenItems();
