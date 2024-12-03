@@ -515,7 +515,7 @@ function previewFoodSelection() {
 
     } else if (foodAction === 'cut' || foodAction === 'pour' && !match) {
         actionFoodSelection();
-        displayVee();
+        //displayVee();
 
     } else if (foodAction === 'blend') {
 
