@@ -401,59 +401,30 @@ function playActionSound() {
     if (foodAction == 'cut') {
         numOfChops++
         knifeSound.play();
-        if (numOfChops == 4) {
+        if (numOfChops == 2) {
             activeFoodElement.image = activeFoodElement.openImage;
-            foodAction = null;
             numOfChops = 0;
             foodAction = 'putInBlender';
             foodBtn.elt.remove();
             foodBtn = null;
         };
-    } else if (foodAction == 'pour') {
-        numOfPours++
-        // pouringSound.play();
-        if (numOfPours == 2) {
-            activeFoodElement.image = activeFoodElement.openImage;
-            foodAction = 'putInBlender';
-            numOfPours = 0;
-            foodBtn.elt.remove();
-            foodBtn = null;
+    } else if (foodAction === 'plop' || foodAction === 'liquidPour' || foodAction === 'solidPour') {
 
-        };
-    } else if (foodAction == 'plop') {
+        if (foodAction === 'plop') plopSound.play();
+        if (foodAction === 'liquidPour') liquidPourSound.play();
+        if (foodAction === 'solidPour') solidPourSound.play();
         numOfPours++
-        plopSound.play();
-        if (numOfPours == 2) {
-            activeFoodElement.image = activeFoodElement.openImage;
-            foodAction = 'putInBlender';
-            numOfPours = 0;
-            foodBtn.elt.remove();
-            foodBtn = null;
 
-        };
-    } else if (foodAction == 'solidPour') {
-        numOfPours++
-        solidPourSound.play();
         if (numOfPours == 2) {
             activeFoodElement.image = activeFoodElement.openImage;
-            foodAction = 'putInBlender';
             numOfPours = 0;
-            foodBtn.elt.remove();
-            foodBtn = null;
-
-        };
-    } else if (foodAction == 'liquidPour') {
-        numOfPours++
-        liquidPourSound.play();
-        if (numOfPours == 2) {
-            activeFoodElement.image = activeFoodElement.openImage;
             foodAction = 'putInBlender';
-            numOfPours = 0;
             foodBtn.elt.remove();
             foodBtn = null;
 
         };
     }
+
 }
 
 /**
@@ -551,7 +522,7 @@ function previewFoodSelection() {
         foodActionBtn(activeFoodElement.actionBtnLbl) // creates a button with the name of the action
         pop()
 
-    } else if (foodAction === 'cut' || foodAction === 'pour') {
+    } else if (foodAction === 'cut' || foodAction === 'solidPour' || foodAction === 'liquidPour' || foodAction === 'plop') {
         actionFoodSelection();
 
     } else if (foodAction === 'putInBlender') {
@@ -645,7 +616,7 @@ function drawPouringScreen() {
 function actionFoodSelection() {
     if (foodAction === 'cut') {
         drawCuttingScreen();
-    } else if (foodAction === ('pour' || 'plop' || 'solidPour' || 'liquidPour')) {
+    } else if (foodAction === 'solidPour' || foodAction === 'liquidPour' || foodAction === 'plop') {
         drawPouringScreen();
     }
 
