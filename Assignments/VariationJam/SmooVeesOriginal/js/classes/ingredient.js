@@ -11,28 +11,13 @@ class Ingredient {
     }
 
     /**
-     * Display the ingredient on the canvas.
+     * display the ingredient on the canvas
      */
     display() {
         if (this.image) {
             image(this.image, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
-        } //foodObj.x - foodObj.size / 2, foodObj.y - foodObj.size / 2, foodObj.size, foodObj.size
+        }
     }
 
-    /**
-     * Update the position of the ingredient.
-     * @param {number} newX - New x-coordinate
-     * @param {number} newY - New y-coordinate
-     */
-    updatePosition(newX, newY) {
-        this.x = newX;
-        this.y = newY;
-    }
 
-    /**
-     * Trigger the ingredient's action.
-     */
-    triggerAction() {
-        console.log(`${this.name} performs the action: ${this.action}`);
-    }
 }

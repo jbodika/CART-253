@@ -33,7 +33,7 @@ let menuBtn;
 let restartBtn;
 
 
-let foodBtn;
+let ingredientActionBtn;
 let backBtn;
 
 /**
@@ -283,9 +283,9 @@ function drawMenu() {
 
             }
 
-            if (foodBtn) {
-                foodBtn.elt.remove();
-                foodBtn = null;
+            if (ingredientActionBtn) {
+                ingredientActionBtn.elt.remove();
+                ingredientActionBtn = null;
             }
 
 
@@ -303,9 +303,9 @@ function drawMenu() {
         restartBtn.addClass('btn'); //for styling purposes
 
         restartBtn.mousePressed(() => {
-            if (foodBtn) {
-                foodBtn.elt.remove();
-                foodBtn = null;
+            if (ingredientActionBtn) {
+                ingredientActionBtn.elt.remove();
+                ingredientActionBtn = null;
             }
 
             if (restartBtn) {
@@ -374,18 +374,11 @@ function mousePressed() {
     if (gameState == "playOriginalGame") {
         selectFood();
         clickToBlend();
-
-
         blendIngredients()
-
     } else if (gameState == "playEvilGame") {
         selectFood();
         clickToBlend();
-
         blendIngredients()
-
-
-        // serveDrink();
     } else if (gameState == "playWarGame") {
         pushIngredient()
     }
