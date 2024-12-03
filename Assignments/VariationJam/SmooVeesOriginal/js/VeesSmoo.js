@@ -14,25 +14,27 @@
 
 
 let warDialog;
-let warApple = new Ingredient("Green Apple", undefined, null, 670, 450, 32);
-let warAvocado = new Ingredient("Avocado", undefined, null, 700, 450, 64);
-let warBanana = new Ingredient("Banana", undefined, null, 600, 430, 64);
-let warChiaSeeds = new Ingredient("Chia Seeds", undefined, null, 740, 500, 90);
-let warCocoaPowder = new Ingredient("Cocoa Powder", undefined, null, 775, 350, 90);
-let warCoconut = new Ingredient("Coconut Water", undefined, null, 450, 375, 64);
-let warFrozenBerries = new Ingredient("Frozen Berries", undefined, null, 670, 260, 125);
-let warHoneyjar = new Ingredient("Honey", undefined, null, 510, 450, 90);
-let warMango = new Ingredient("Mango Chunks", undefined, null, 500, 375, 64);
-let warMilk = new Ingredient("Milk", undefined, null, 450, 290, 85);
-let warOrange = new Ingredient("Orange", undefined, null, 630, 400, 32);
-let warOrangeJuice = new Ingredient("Orange Juice", undefined, null, 325, 300, 80);
-let warPeanutButter = new Ingredient("Peanut Butter", undefined, null, 550, 400, 64);
-let warPineapple = new Ingredient("Pineapple Chunks", undefined, null, 720, 375, 125);
-let warSpinach = new Ingredient("Spinach Leaves", undefined, null, 635, 350, 64);
-let warStrawberry = new Ingredient("Strawberry", undefined, null, 635, 480, 32);
-let warWater = new Ingredient("Water", undefined, null, 400, 300, 80);
-let warWatermelon = new Ingredient("Watermelon", undefined, null, 550, 300, 125);
-let warYogurt = new Ingredient("Yogurt", undefined, null, 750, 280, 64);
+
+let warApple = new Ingredient("Green Apple", undefined, null, 30, -100, 32, 'solid');
+let warAvocado = new Ingredient("Avocado", undefined, null, 75, -100, 64, 'solid');
+let warBanana = new Ingredient("Banana", undefined, null, 600, -100, 64, 'solid');
+let warChiaSeeds = new Ingredient("Chia Seeds", undefined, null, 740, -100, 90, 'solid');
+let warCocoaPowder = new Ingredient("Cocoa Powder", undefined, null, 775, -100, 90, 'solid');
+let warMango = new Ingredient("Mango Chunks", undefined, null, 500, -100, 64, 'solid');
+let warOrange = new Ingredient("Orange", undefined, null, 630, -100, 32, 'solid');
+let warPineapple = new Ingredient("Pineapple", undefined, null, 720, -100, 125, 'solid');
+let warSpinach = new Ingredient("Spinach Leaves", undefined, null, 635, -100, 64, 'solid');
+let warStrawberry = new Ingredient("Strawberry", undefined, null, 635, -100, 32, 'solid');
+let warWatermelon = new Ingredient("Watermelon", undefined, null, 550, -100, 125, 'solid');
+let warFrozenBerries = new Ingredient("Frozen Berries", undefined, null, 670, -100, 125, 'solid');
+
+let warCoconut = new Ingredient("Coconut Water", undefined, null, Math.random(20, 600), 830, 64, 'liquid');
+let warHoneyjar = new Ingredient("Honey", undefined, null, 510, 845, 90, 'liquid');
+let warMilk = new Ingredient("Milk", undefined, null, 450, 830, 85, 'liquid');
+let warOrangeJuice = new Ingredient("Orange Juice", undefined, null, 325, 845, 80, 'liquid');
+let warPeanutButter = new Ingredient("Peanut Butter", undefined, null, 550, 830, 64, 'liquid');
+let warWater = new Ingredient("Water", undefined, null, 400, 830, 80, 'liquid');
+let warYogurt = new Ingredient("Yogurt", undefined, null, 750, 830, 64, 'liquid');
 
 let warIngredients = [warYogurt, warApple, warAvocado, warBanana, warChiaSeeds, warCocoaPowder, warCoconut, warFrozenBerries, warHoneyjar, warMango, warMilk, warOrange, warOrangeJuice, warPeanutButter, warPineapple, warSpinach, warStrawberry, warWater, warWatermelon];
 
@@ -85,12 +87,13 @@ function drawAliveItems() {
     // Display all solids
     solids.forEach((el) => {
         el.display()
-            // image(el.image, el.x - el.size / 2, el.y - el.size / 2, el.size, el.size);
+
     });
 
     // Display all liquids
     liquids.forEach((el) => {
-        image(el.image, el.x - el.size / 2, el.y - el.size / 2, el.size, el.size);
+        el.display()
+
     });
 
     // Leaders
@@ -113,36 +116,42 @@ function removeOffscreenItems() {
 }
 
 /**
- * Function to move the pawn ingredients on the screen
+ * Function to move the pawn ingredients on the screen on their own
  */
 function movePawns() {
     if (!dialogActive) {
-        // Move solids
-        solids.forEach(el => {
-            el.y += 1; // Move downward
+        // Move liquids snd solids with their randomized speeds
+
+        solids.forEach(ingredient => {
+            ingredient.y += ingredient.speed; // Move downward with random speed
         });
 
-        // Move liquids
-        liquids.forEach(el => {
-            el.y -= 1; // Move upward
+
+        liquids.forEach(ingredient => {
+            ingredient.y -= ingredient.speed; // Move upward with random speed
         });
     }
 }
 
 function pushIngredient() {
-    solids.forEach((ingredient) => {
-        if (checkOverlap(mouseX, mouseY, ingredient.x, ingredient.y, ingredient.size)) {
-            ingredient.y -= 30; // Push upward
-        }
-    });
+    angryCrowdSound.play()
+    if (!dialogActive) {
+        solids.forEach((ingredient) => {
+            if (checkOverlap(mouseX, mouseY, ingredient.x, ingredient.y, ingredient.size)) {
+                ingredient.y -= 30; //  upwards
+            }
+        });
 
-    liquids.forEach((ingredient) => {
-        if (checkOverlap(mouseX, mouseY, ingredient.x, ingredient.y, ingredient.size)) {
-            ingredient.y += 30; // Push downward
-        }
-    });
+        liquids.forEach((ingredient) => {
+            if (checkOverlap(mouseX, mouseY, ingredient.x, ingredient.y, ingredient.size)) {
+                ingredient.y += 30; //  downwards
+            }
+        });
+    }
 }
-
+/**
+ * War is over
+ */
 function retractSituation() {
 
 }

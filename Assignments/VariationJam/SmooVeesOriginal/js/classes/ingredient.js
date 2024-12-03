@@ -1,5 +1,5 @@
 class Ingredient {
-    constructor(name, image, openImage = null, x, y, size, action = null, actionBtnLbl = null) {
+    constructor(name, image, openImage = null, x, y, size, action = null, actionBtnLbl = null, type = null) {
         this.name = name;
         this.image = image;
         this.openImage = openImage;
@@ -8,6 +8,13 @@ class Ingredient {
         this.size = size;
         this.action = action;
         this.actionBtnLbl = actionBtnLbl;
+        this.type = type
+
+        this.speed = Math.random() * 2 + 1; // randomized speed for solid ingredients
+
+        if (this.type === 'liquid') {
+            this.speed = -(Math.random() * 2 + 1); // randomized speed for liquid ingredients
+        }
     }
 
     /**

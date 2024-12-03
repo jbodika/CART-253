@@ -23,10 +23,12 @@ let solidPourSound;
 let blenderSound;
 let cashRegisterSound;
 let putSound;
+let angryCrowdSound;
 let plopSound;
 let sadTromboneSound;
 let cupFalling;
-
+let isLiquidTurn = true
+let dialogActive = true;
 
 
 let menuBtn;
@@ -175,6 +177,7 @@ function preload() {
     solidPourSound = loadSound('./assets/audio/solidPour.mp3')
     plopSound = loadSound('./assets/audio/plop.mp3')
     cupFalling = loadSound('./assets/audio/cupFalling.mp3')
+    angryCrowdSound = loadSound('./assets/audio/angryCrowd.mp3')
 }
 
 /**
@@ -215,27 +218,9 @@ function smooVeesLayout() {
         drawDialog()
         moveLeaders()
         movePawns()
-            // drawInGameCounter();
-            // drawCounterItems();
-            // drawMenu();
-            // drawOrder('SmooVee WAR');
-            // drawSmoothieCup();
-            // previewFoodSelection();
-            // drawDialog();
+
     } else if (gameState == 'playEvilGame') {
-        // resetGameSettings()
-        // background('#8e7cc3');
-        // drawInGameCounter();
-        // drawIncorrectIngredientCount();
 
-        // drawCounterItems();
-        // drawMenu();
-        // drawOrder('SmooVee', evilSmoothies.drinks);
-        // drawSmoothieCup();
-        // drawMovesLeft();
-        // previewFoodSelection();
-
-        // displayVee()
 
         background('#946656');
         drawInGameCounter();
@@ -345,8 +330,7 @@ function mainScreenLayout() {
 
     }
 }
-let isLiquidTurn = true
-let dialogActive = true;
+
 
 function mouseClicked() {
     // allows the user to read what Vee has to say over and over again
@@ -387,15 +371,15 @@ function mousePressed() {
 
 
 function keyPressed() {
-    if (key.toUpperCase() === 'O' && gameState == 'main') {
+    if (key.toUpperCase() === 'L' && gameState == 'main') {
         gameState = 'playOriginalGame';
         console.log('orignal');
-    } else if (key.toUpperCase() === 'R' && gameState == 'main') {
+    } else if (key.toUpperCase() === 'I' && gameState == 'main') {
         gameState = 'playWarGame';
         currSpeechIndex = 0;
         console.log('reverse');
 
-    } else if (key.toUpperCase() === 'Z' && gameState == 'main') {
+    } else if (key.toUpperCase() === 'E' && gameState == 'main') {
         gameState = 'playEvilGame';
 
 

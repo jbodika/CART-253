@@ -257,7 +257,7 @@ function previewFoodSelection() {
         textSize(40)
         textAlign(CENTER)
         image(activeIngredientElement.image, 200, 120, 500, 500);
-        text('You chose the ' + activeIngredientElement.name + '\nclick the button to ' + activeIngredientElement.action + ' it!', width / 2, 50);
+        text('You chose the ' + activeIngredientElement.name + '\nclick the button to ' + activeIngredientElement.actionBtnLbl + ' it!', width / 2, 50);
 
         console.log(activeIngredientElement)
         foodActionBtn(activeIngredientElement.actionBtnLbl) // creates a button with the name of the action
