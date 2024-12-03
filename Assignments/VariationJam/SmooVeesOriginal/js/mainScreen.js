@@ -290,7 +290,7 @@ function drawStoreCounter() {
     push();
     noStroke();
     fill('#c79274');
-    rect(0, 420, width, 200);
+    rect(0, 420, width, 285);
     pop();
 
 

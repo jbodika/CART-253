@@ -54,3 +54,6 @@ This project uses
 - Blender Sound Effect by freesound_community from [Pixabay]("https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=82391")
 - Cash Register Sound Effect by Modestas123123 from [Pixabay]("https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=125042")
 - Sad Trombone Sound Effect by freesound_community from [Pixabay]("https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6347")
+- Thud Sound Effect by freesound_community from [Pixabay](https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=83043")
+- Liquid Sound Effect by <a href="https://pixabay.com/users/universfield-28281460/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=191999">Vasyl Sakal</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=191999">Pixabay</a>
+- Solid pour (ice cubes) by husky70 (Freesound) https://pixabay.com/sound-effects/icecubes-106485/

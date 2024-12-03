@@ -64,7 +64,7 @@ const chiaSeedsImg = {
     y: 500,
     originalY: 500,
     size: 90,
-    action: "pour"
+    action: "plop"
 }
 
 const cocoaPowderImg = {
@@ -74,7 +74,7 @@ const cocoaPowderImg = {
     y: 350,
     originalY: 350,
     size: 90,
-    action: "pour"
+    action: "plop"
 }
 
 const coconutImg = {
@@ -95,7 +95,7 @@ const frozenBerriesImg = {
     y: 260,
     originalY: 260,
     size: 125,
-    action: "pour"
+    action: "solidPour"
 }
 
 
@@ -109,7 +109,7 @@ const honeyjarImg = {
     y: 450,
     originalY: 450,
     size: 90,
-    action: "pour"
+    action: "plop"
 };
 const mangoImg = {
     name: "Mango Chunks",
@@ -131,7 +131,7 @@ const milkImg = {
     y: 290,
     originalY: 290,
     size: 85,
-    action: "pour"
+    action: "liquidPour"
 };
 
 const orangeImg = {
@@ -156,7 +156,7 @@ const orangeJuiceImg = {
     originalX: 325,
 
     size: 80,
-    action: "pour"
+    action: "liquidPour"
 
 };
 const peanutButterImg = {
@@ -167,7 +167,7 @@ const peanutButterImg = {
     y: 400,
     originalY: 400,
     size: 64,
-    action: "pour"
+    action: "plop"
 }
 
 
@@ -215,7 +215,7 @@ const waterImg = {
     y: 300,
     originalY: 300,
     size: 80,
-    action: "pour"
+    action: "liquidPour"
 }
 
 const watermelonImg = {
@@ -239,7 +239,7 @@ const yogurtImg = {
     y: 280,
     originalY: 280,
     size: 64,
-    action: "pour"
+    action: "plop"
 };
 
 
@@ -379,7 +379,40 @@ function playActionSound() {
         };
     } else if (foodAction == 'pour') {
         numOfPours++
-        pouringSound.play();
+        // pouringSound.play();
+        if (numOfPours == 2) {
+            activeFoodElement.image = activeFoodElement.openImage;
+            foodAction = 'blend';
+            numOfPours = 0;
+            foodBtn.elt.remove();
+            foodBtn = null;
+
+        };
+    } else if (foodAction == 'plop') {
+        numOfPours++
+        plopSound.play();
+        if (numOfPours == 2) {
+            activeFoodElement.image = activeFoodElement.openImage;
+            foodAction = 'blend';
+            numOfPours = 0;
+            foodBtn.elt.remove();
+            foodBtn = null;
+
+        };
+    } else if (foodAction == 'solidPour') {
+        numOfPours++
+        solidPourSound.play();
+        if (numOfPours == 2) {
+            activeFoodElement.image = activeFoodElement.openImage;
+            foodAction = 'blend';
+            numOfPours = 0;
+            foodBtn.elt.remove();
+            foodBtn = null;
+
+        };
+    } else if (foodAction == 'liquidPour') {
+        numOfPours++
+        liquidPourSound.play();
         if (numOfPours == 2) {
             activeFoodElement.image = activeFoodElement.openImage;
             foodAction = 'blend';
@@ -536,7 +569,7 @@ function previewFoodSelection() {
  */
 function clickToBlend() {
     if (foodAction == 'blend' && checkOverlap(mouseX, mouseY, gameBlender.x, gameBlender.y, gameBlender.size)) {
-        blenderSound.play()
+        putSound.play()
         console.log(activeFoodElement)
         if (activeSmoothie.ingredients.includes(activeFoodElement.name)) {
             chosenFoods.push(activeFoodElement.name)
@@ -589,7 +622,7 @@ function actionFoodSelection() {
     clear()
     if (foodAction === 'cut') {
         drawCuttingScreen();
-    } else if (foodAction === 'pour') {
+    } else if (foodAction === ('pour' || 'plop' || 'solidPour' || 'liquidPour')) {
         drawPouringScreen();
     }
 

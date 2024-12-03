@@ -19,9 +19,12 @@ let isMouseOverlapping;
 
 
 let knifeSound;
-let pouringSound;
+let liquidPourSound;
+let solidPourSound;
 let blenderSound;
 let cashRegisterSound;
+let putSound;
+let plopSound;
 let sadTromboneSound;
 
 
@@ -163,10 +166,16 @@ function preload() {
 
     // all sounds
     knifeSound = loadSound('./assets/audio/knife.mp3');
-    pouringSound = loadSound('./assets/audio/pour.mp3')
+    // pouringSound = loadSound('./assets/audio/pour.mp3')
     blenderSound = loadSound('./assets/audio/blender.mp3')
     cashRegisterSound = loadSound('./assets/audio/cash-register.mp3')
     sadTromboneSound = loadSound('./assets/audio/sad-trombone.mp3')
+    putSound = loadSound('./assets/audio/thud.mp3')
+    liquidPourSound = loadSound('./assets/audio/liquidPour.mp3')
+    solidPourSound = loadSound('./assets/audio/solidPour.mp3')
+    plopSound = loadSound('./assets/audio/plop.mp3')
+
+
 }
 
 /**
@@ -237,6 +246,9 @@ function smooVeesLayout() {
         displayVee();
         drawMovesLeft();
         previewFoodSelection();
+    } else if (gameState == 'main') {
+        resetGameSettings()
+
     }
 
 }
@@ -375,9 +387,10 @@ function mainScreenLayout() {
         background('#946656');
         drawWindow();
         drawReflectiveGlass();
-        drawBackgroundCounter();
 
-        image(veeImg, width / 2, 120, 200, 500)
+        drawBackgroundCounter();
+        image(veeImg, width / 2, 145, 200, 600)
+
         drawFloor();
 
         drawStoreCounter();
