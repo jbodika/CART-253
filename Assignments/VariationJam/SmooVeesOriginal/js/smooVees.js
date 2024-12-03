@@ -244,11 +244,6 @@ const yogurtImg = {
 };
 
 
-
-
-
-
-
 const gameBlender = {
     name: "Blender",
     image: undefined,
@@ -390,6 +385,27 @@ function foodActionBtn(action) {
 
         playActionSound()
 
+        backBtn.hide();
+
+
+    });
+
+}
+
+function drawBackBtn() {
+    if (!backBtn) {
+        backBtn = createButton('Go Back');
+        backBtn.parent("canvasDiv")
+        backBtn.position(0, 50);
+        backBtn.addClass('btn'); //for styling purposes
+    }
+    backBtn.mousePressed(() => {
+        foodAction = null
+
+        playActionSound()
+
+        backBtn.hide();
+        foodBtn.hide();
     });
 
 }
@@ -460,7 +476,6 @@ function resetGameSettings() {
     foodAction = null;
     numOfChops = 0; // max amount of time the player can chop 
     numOfPours = 0;
-    originalFoodData = { x: 0, y: 0, image: undefined }
     chosenFoods = [];
     ingredientsCount = 0
     incorrectIngredientsCount = 0
@@ -498,6 +513,11 @@ function resetGameSettings() {
 
 }
 
+function showPreviewScreenButtons() {
+    backBtn.show();
+    foodBtn.show();
+
+}
 
 
 /**
@@ -522,7 +542,10 @@ function previewFoodSelection() {
 
 
         foodActionBtn(activeFoodElement.actionBtnLbl) // creates a button with the name of the action
+        drawBackBtn()
+        showPreviewScreenButtons()
         pop()
+
 
     } else if (foodAction === 'cut' || foodAction === 'solidPour' || foodAction === 'liquidPour' || foodAction === 'plop') {
         actionFoodSelection();
@@ -551,16 +574,25 @@ function previewFoodSelection() {
 function clickToBlend() {
     if (foodAction == 'putInBlender' && checkOverlap(mouseX, mouseY, gameBlender.x, gameBlender.y, gameBlender.size)) {
         putSound.play()
-        if (activeSmoothie.ingredients.includes(activeFoodElement.name)) {
-            chosenFoods.push(activeFoodElement.name)
-        } else {
-            incorrectIngredientsCount++;
+
+        // check if the ingredient is not in the recipe, increment the incorrect ingredient count
+        if (!activeSmoothie.ingredients.includes(activeFoodElement.name)) {
+            incorrectIngredientsCount++
         }
+
+        // check if the ingredient has not already been selected
+        if (!chosenFoods.includes(activeFoodElement.name)) {
+            chosenFoods.push(activeFoodElement.name); // add it to the chosen fruit array
+
+        }
+
 
         activeFoodElement.x = originalFoodData.x;
         activeFoodElement.y = originalFoodData.y;
         activeFoodElement.image = originalFoodData.image
         ingredientsCount++
+        console.log(originalFoodData)
+
         mouseX = 0;
         mouseY = 0;
         foodAction = null
@@ -644,15 +676,20 @@ function selectFood() {
             originalFoodData.x = activeFoodElement.x;
             originalFoodData.y = activeFoodElement.y;
             originalFoodData.image = activeFoodElement.image
-            foodAction = 'preview'; // focused screen for the selected food 
-            console.log(activeFoodElement)
-            console.log(foodAction)
+
+            // check if the ingredient has not already been selected
+            if (!chosenFoods.includes(activeFoodElement.name)) {
+
+                foodAction = 'preview'; // Focused screen for the selected food
+            }
 
 
         }
     })
 
 }
+
+
 
 function blendIngredients() {
     if (foodAction == 'blend') {

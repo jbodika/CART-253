@@ -34,6 +34,8 @@ let restartBtn;
 
 
 let foodBtn;
+let backBtn;
+
 /**
  * Creates the canvas
  */
@@ -342,16 +344,10 @@ function drawMenu() {
 
             }
             if (restartBtn) {
-                resetGameSettings()
                 restartBtn.elt.remove();
                 restartBtn = null;
-                activeSmoothie = randomizeElement(smoothies.drinks)
-                gameInProgress = false;
-                foodAction = null;
-                numOfChops = 0; // max amount of time the player can chop 
-                numOfPours = 0;
-                chosenFoods = []
-                smooVeesLayout();
+                resetGameSettings()
+
 
             }
 
@@ -359,6 +355,7 @@ function drawMenu() {
                 foodBtn.elt.remove();
                 foodBtn = null;
             }
+
 
 
             gameState = "main";
@@ -374,6 +371,10 @@ function drawMenu() {
         restartBtn.addClass('btn'); //for styling purposes
 
         restartBtn.mousePressed(() => {
+            if (foodBtn) {
+                foodBtn.elt.remove();
+                foodBtn = null;
+            }
 
             if (restartBtn) {
                 restartBtn.elt.remove();
@@ -381,6 +382,7 @@ function drawMenu() {
                 // activeSmoothie = randomizeElement(smoothies.drinks)
                 resetGameSettings()
             }
+
 
         });
 
