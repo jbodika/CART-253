@@ -15,7 +15,6 @@
 "use strict"
 
 let bagelFatOneFont;
-let isMouseOverlapping;
 
 
 let knifeSound;
@@ -152,6 +151,8 @@ function preload() {
 
     // main screen images
     blenderImg = loadImage("./assets/images/blender.png");
+    gameBlender.image = loadImage("./assets/images/blender.png");
+
     cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png");
     limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png");
     orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png");
@@ -198,13 +199,14 @@ function smooVeesLayout() {
         background('#c79274');
         drawInGameCounter();
         drawIncorrectIngredientCount();
-
+        drawSmoothieCup();
         drawCounterItems();
         drawMenu();
         drawOrder('SmooVee', smoothies.drinks);
-        drawSmoothieCup();
+
         drawMovesLeft();
         previewFoodSelection();
+        // blendIngredients()
     } else if (gameState == 'playWarGame') {
 
         background('#fffff2');
@@ -433,11 +435,17 @@ function mousePressed() {
     if (gameState == "playOriginalGame") {
         selectFood();
         clickToBlend();
-        serveDrink();
+
+
+        //blendIngredients()
+        // serveDrink();
     } else if (gameState == "playEvilGame") {
         selectFood();
         clickToBlend();
-        serveDrink();
+
+        blendIngredients()
+
+        // serveDrink();
     } else if (gameState == "playWarGame") {
         pushIngredient()
     }
@@ -471,7 +479,7 @@ function keyPressed() {
 function checkOverlap(firstValPosX, firstValPosY, secondValPosX, secondValPosY, secondValSize) {
     const distance = dist(firstValPosX, firstValPosY, secondValPosX, secondValPosY); // code snippet taken from the conditionals challenge
     // calculates the distance between the first value's X position and first value's Y position positions and the second value's X and y positions
-    return isMouseOverlapping = (distance < secondValSize / 2); //checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
+    return distance < secondValSize / 2; //checks if the distance is lower than the radius of the size of the second value if yes then it is overlapping if no then it is not overlapping
 }
 
 
