@@ -25,6 +25,8 @@ let cashRegisterSound;
 let putSound;
 let plopSound;
 let sadTromboneSound;
+let cupFalling;
+
 
 
 let menuBtn;
@@ -175,6 +177,10 @@ function preload() {
     liquidPourSound = loadSound('./assets/audio/liquidPour.mp3')
     solidPourSound = loadSound('./assets/audio/solidPour.mp3')
     plopSound = loadSound('./assets/audio/plop.mp3')
+    cupFalling = loadSound('./assets/audio/cupFalling.mp3')
+
+
+
 
 
 }

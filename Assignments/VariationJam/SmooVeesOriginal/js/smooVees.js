@@ -34,6 +34,7 @@ const appleImg = {
     originalY: 450,
     size: 32,
     action: "cut",
+    actionBtnLbl: "cut"
 }
 
 const avocadoImg = {
@@ -44,7 +45,8 @@ const avocadoImg = {
     y: 450,
     originalY: 450,
     size: 64,
-    action: "cut"
+    action: "cut",
+    actionBtnLbl: "cut"
 }
 const bananaImg = {
     name: "Banana",
@@ -54,7 +56,8 @@ const bananaImg = {
     y: 430,
     originalY: 430,
     size: 64,
-    action: "cut"
+    action: "cut",
+    actionBtnLbl: "cut"
 };
 
 const chiaSeedsImg = {
@@ -64,7 +67,8 @@ const chiaSeedsImg = {
     y: 500,
     originalY: 500,
     size: 90,
-    action: "plop"
+    action: "plop",
+    actionBtnLbl: "scoop"
 }
 
 const cocoaPowderImg = {
@@ -74,7 +78,8 @@ const cocoaPowderImg = {
     y: 350,
     originalY: 350,
     size: 90,
-    action: "plop"
+    action: "plop",
+    actionBtnLbl: "scoop"
 }
 
 const coconutImg = {
@@ -85,7 +90,8 @@ const coconutImg = {
     y: 375,
     originalY: 375,
     size: 64,
-    action: "cut"
+    action: "cut",
+    actionBtnLbl: "cut"
 }
 
 const frozenBerriesImg = {
@@ -93,9 +99,9 @@ const frozenBerriesImg = {
     image: undefined,
     x: 670,
     y: 260,
-    originalY: 260,
     size: 125,
-    action: "solidPour"
+    action: "solidPour",
+    actionBtnLbl: "scoop"
 }
 
 
@@ -107,9 +113,9 @@ const honeyjarImg = {
     openImage: undefined,
     x: 510,
     y: 450,
-    originalY: 450,
     size: 90,
-    action: "plop"
+    action: "plop",
+    actionBtnLbl: "scoop"
 };
 const mangoImg = {
     name: "Mango Chunks",
@@ -117,21 +123,20 @@ const mangoImg = {
     openImage: undefined,
     x: 500,
     y: 375,
-    originalY: 375,
     size: 64,
-    action: "cut"
+    action: "cut",
+    actionBtnLbl: "cut"
 };
 
 const milkImg = {
     name: "Milk",
     image: undefined,
     openImage: undefined,
-
     x: 450,
     y: 290,
-    originalY: 290,
     size: 85,
-    action: "liquidPour"
+    action: "liquidPour",
+    actionBtnLbl: "pour"
 };
 
 const orangeImg = {
@@ -140,9 +145,9 @@ const orangeImg = {
     openImage: undefined,
     x: 630,
     y: 400,
-    originalY: 400,
     size: 32,
-    action: "cut"
+    action: "cut",
+    actionBtnLbl: "cut"
 
 };
 
@@ -152,11 +157,9 @@ const orangeJuiceImg = {
     openImage: undefined,
     x: 325,
     y: 300,
-    originalY: 300,
-    originalX: 325,
-
     size: 80,
-    action: "liquidPour"
+    action: "liquidPour",
+    actionBtnLbl: "pour"
 
 };
 const peanutButterImg = {
@@ -165,9 +168,9 @@ const peanutButterImg = {
     openImage: undefined,
     x: 550,
     y: 400,
-    originalY: 400,
     size: 64,
-    action: "plop"
+    action: "plop",
+    actionBtnLbl: "scoop"
 }
 
 
@@ -177,9 +180,9 @@ const pineappleImg = {
     openImage: undefined,
     x: 720,
     y: 375,
-    originalY: 375,
     size: 125,
-    action: "cut"
+    action: "cut",
+    actionBtnLbl: "cut"
 }
 
 
@@ -187,24 +190,22 @@ const spinachImg = {
     name: "Spinach Leaves",
     image: undefined,
     openImage: undefined,
-
     x: 635,
     y: 350,
-    originalY: 350,
     size: 64,
-    action: "cut"
+    action: "cut",
+    actionBtnLbl: "cut"
 }
 
 const strawberryImg = {
     name: "Strawberry",
     image: undefined,
     openImage: undefined,
-
     x: 635,
     y: 480,
-    originalY: 480,
     size: 32,
-    action: "cut"
+    action: "cut",
+    actionBtnLbl: "cut"
 }
 
 const waterImg = {
@@ -213,8 +214,8 @@ const waterImg = {
     openImage: undefined,
     x: 400,
     y: 300,
-    originalY: 300,
     size: 80,
+    actionBtnLbl: "pour",
     action: "liquidPour"
 }
 
@@ -222,11 +223,11 @@ const watermelonImg = {
     name: "Watermelon",
     image: undefined,
     openImage: undefined,
-    x: 550, //630 - 280
+    x: 550,
     y: 300,
-    originalY: 300,
     size: 125,
-    action: "cut",
+    action: 'cut',
+    actionBtnLbl: "cut",
     colour: '#FD4659'
 };
 
@@ -237,10 +238,9 @@ const yogurtImg = {
     image: undefined,
     x: 750,
     y: 280,
-    originalY: 280,
     size: 64,
     action: "plop",
-    actionBtnLbl: "pour"
+    actionBtnLbl: "scoop"
 };
 
 
@@ -538,17 +538,18 @@ function previewFoodSelection() {
         push();
         background('#fffff2'); //counter top
         pop();
-
-        image(activeFoodElement.image, 200, 100, 500, 500);
-
         push()
+
+
+
         textSize(40)
         textAlign(CENTER)
-        text('You chose the ' + activeFoodElement.name + '\n' + activeFoodElement.action + ' it!', width / 2, 100);
+        image(activeFoodElement.image, 200, 120, 500, 500);
+        text('You chose the ' + activeFoodElement.name + '\nclick the button to ' + activeFoodElement.actionBtnLbl + ' it!', width / 2, 50);
+
+
+        foodActionBtn(activeFoodElement.actionBtnLbl) // creates a button with the name of the action
         pop()
-
-        foodActionBtn(activeFoodElement.action) // creates a button with the name of the action
-
 
     } else if (foodAction === 'cut' || foodAction === 'pour') {
         actionFoodSelection();
@@ -577,7 +578,6 @@ function previewFoodSelection() {
 function clickToBlend() {
     if (foodAction == 'putInBlender' && checkOverlap(mouseX, mouseY, gameBlender.x, gameBlender.y, gameBlender.size)) {
         putSound.play()
-        console.log(activeFoodElement)
         if (activeSmoothie.ingredients.includes(activeFoodElement.name)) {
             chosenFoods.push(activeFoodElement.name)
         } else {
@@ -722,6 +722,8 @@ function serveDrink() {
         cashRegisterSound.play()
 
     } else if (!equalArray && ingredientsCount == activeSmoothie.ingredients.length) {
+        cupFalling.play()
+
         // simulate a spilled over cup 
         smoothieCup.cup.x = 100
         smoothieCup.cup.y = 575 //base of smoothie cup
@@ -741,10 +743,6 @@ function serveDrink() {
         sadTromboneSound.play()
 
 
-
-
     }
-
-
 
 }
