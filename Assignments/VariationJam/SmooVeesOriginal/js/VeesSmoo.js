@@ -1,7 +1,9 @@
 /* Jolene Bodika
+
  * SmooVees - The Big Conflict
  * Like Vee said, she believes the food and appliances are arguing, which is weird, right?
  * Luckily for you, you can put an end to their bickering with the item they fear the most... the blender!
+ * 
  * Controls:
  * Click on the screen to read through the dialog.
  * Once it's over, hurry as quickly as possible to capture as many ingredients as you can with the blender.
@@ -14,32 +16,32 @@
  *https://developers.google.com/fonts
  *
  */
-
-let warDialog;
+"use strict"
+let conflictDialog;
 // All ingredients
-let warApple = new Ingredient("Green Apple", undefined, undefined, 30, -100, 32, 'solid');
-let warAvocado = new Ingredient("Avocado", undefined, undefined, 75, -100, 64, 'solid');
-let warBanana = new Ingredient("Banana", undefined, undefined, 600, -100, 64, 'solid');
-let warChiaSeeds = new Ingredient("Chia Seeds", undefined, undefined, 740, -100, 90, 'solid');
-let warCocoaPowder = new Ingredient("Cocoa Powder", undefined, undefined, 775, -100, 90, 'solid');
-let warMango = new Ingredient("Mango Chunks", undefined, undefined, 500, -100, 64, 'solid');
-let warOrange = new Ingredient("Orange", undefined, undefined, 630, -100, 32, 'solid');
-let warPineapple = new Ingredient("Pineapple", undefined, undefined, 720, -100, 125, 'solid');
-let warSpinach = new Ingredient("Spinach Leaves", undefined, undefined, 635, -100, 64, 'solid');
-let warStrawberry = new Ingredient("Strawberry", undefined, undefined, 635, -100, 32, 'solid');
-let warWatermelon = new Ingredient("Watermelon", undefined, undefined, 550, -100, 125, 'solid');
-let warFrozenBerries = new Ingredient("Frozen Berries", undefined, undefined, 670, -100, 125, 'solid');
+let conflictApple = new Ingredient("Green Apple", undefined, undefined, 30, -100, 32, 'solid');
+let conflictAvocado = new Ingredient("Avocado", undefined, undefined, 75, -100, 64, 'solid');
+let conflictBanana = new Ingredient("Banana", undefined, undefined, 600, -100, 64, 'solid');
+let conflictChiaSeeds = new Ingredient("Chia Seeds", undefined, undefined, 740, -100, 90, 'solid');
+let conflictCocoaPowder = new Ingredient("Cocoa Powder", undefined, undefined, 775, -100, 90, 'solid');
+let conflictMango = new Ingredient("Mango Chunks", undefined, undefined, 500, -100, 64, 'solid');
+let conflictOrange = new Ingredient("Orange", undefined, undefined, 630, -100, 32, 'solid');
+let conflictPineapple = new Ingredient("Pineapple", undefined, undefined, 720, -100, 125, 'solid');
+let conflictSpinach = new Ingredient("Spinach Leaves", undefined, undefined, 635, -100, 64, 'solid');
+let conflictStrawberry = new Ingredient("Strawberry", undefined, undefined, 635, -100, 32, 'solid');
+let conflictWatermelon = new Ingredient("Watermelon", undefined, undefined, 550, -100, 125, 'solid');
+let conflictFrozenBerries = new Ingredient("Frozen Berries", undefined, undefined, 670, -100, 125, 'solid');
 
-let warCoconut = new Ingredient("Coconut Water", undefined, undefined, Math.random(20, 600), 830, 64, 'liquid');
-let warHoneyjar = new Ingredient("Honey", undefined, undefined, 510, 845, 90, 'liquid');
-let warMilk = new Ingredient("Milk", undefined, undefined, 450, 830, 85, 'liquid');
-let warOrangeJuice = new Ingredient("Orange Juice", undefined, undefined, 325, 845, 80, 'liquid');
-let warPeanutButter = new Ingredient("Peanut Butter", undefined, undefined, 550, 830, 64, 'liquid');
-let warWater = new Ingredient("Water", undefined, undefined, 400, 830, 80, 'liquid');
-let warYogurt = new Ingredient("Yogurt", undefined, undefined, 750, 830, 64, 'liquid');
+let conflictCoconut = new Ingredient("Coconut Water", undefined, undefined, Math.random(20, 600), 830, 64, 'liquid');
+let conflictHoneyjar = new Ingredient("Honey", undefined, undefined, 510, 845, 90, 'liquid');
+let conflictMilk = new Ingredient("Milk", undefined, undefined, 450, 830, 85, 'liquid');
+let conflictOrangeJuice = new Ingredient("Orange Juice", undefined, undefined, 325, 845, 80, 'liquid');
+let conflictPeanutButter = new Ingredient("Peanut Butter", undefined, undefined, 550, 830, 64, 'liquid');
+let conflictWater = new Ingredient("Water", undefined, undefined, 400, 830, 80, 'liquid');
+let conflictYogurt = new Ingredient("Yogurt", undefined, undefined, 750, 830, 64, 'liquid');
 
-let liquids = [warCoconut, warHoneyjar, warOrangeJuice, warPeanutButter, warWater, warYogurt];
-let solids = [warApple, warAvocado, warBanana, warChiaSeeds, warCocoaPowder, warFrozenBerries, warMango, warOrange, warPineapple, warSpinach, warStrawberry];
+let liquids = [conflictCoconut, conflictHoneyjar, conflictOrangeJuice, conflictPeanutButter, conflictWater, conflictYogurt];
+let solids = [conflictApple, conflictAvocado, conflictBanana, conflictChiaSeeds, conflictCocoaPowder, conflictFrozenBerries, conflictMango, conflictOrange, conflictPineapple, conflictSpinach, conflictStrawberry];
 let escapedIngredients = [];
 let blended = []; // stores splatter locations
 
@@ -80,24 +82,24 @@ function drawDialog() {
     if (dialogActive) {
         let textBox = new TextArea(300, 325, 275, 120, 20);
         if (solids.length === 0 && liquids.length === 0) {
-            if (currSpeechIndex >= warDialog.dialog2.liquids.length || currSpeechIndex >= warDialog.dialog2.solids.length) {
-                moveLeadersBackwards();
+            if (currSpeechIndex >= conflictDialog.dialog2.liquids.length || currSpeechIndex >= conflictDialog.dialog2.solids.length) {
+                moveLeadersBackconflictds();
             }
             // Display dialog2 for the second phase
-            if (isLiquidTurn && warDialog.dialog2.liquids[currSpeechIndex]) {
-                textBox.addText(warDialog.dialog2.liquids[currSpeechIndex], 430, 355, 20, 'black');
+            if (isLiquidTurn && conflictDialog.dialog2.liquids[currSpeechIndex]) {
+                textBox.addText(conflictDialog.dialog2.liquids[currSpeechIndex], 430, 355, 20, 'black');
                 textBox.display('lightblue');
-            } else if (!isLiquidTurn && warDialog.dialog2.solids[currSpeechIndex]) {
-                textBox.addText(warDialog.dialog2.solids[currSpeechIndex], 430, 355, 20, 'black');
+            } else if (!isLiquidTurn && conflictDialog.dialog2.solids[currSpeechIndex]) {
+                textBox.addText(conflictDialog.dialog2.solids[currSpeechIndex], 430, 355, 20, 'black');
                 textBox.display('lightgreen');
             }
         } else {
             // Display dialog for the first phase
-            if (isLiquidTurn && warDialog.dialog.liquids[currSpeechIndex]) {
-                textBox.addText(warDialog.dialog.liquids[currSpeechIndex], 430, 355, 20, 'black');
+            if (isLiquidTurn && conflictDialog.dialog.liquids[currSpeechIndex]) {
+                textBox.addText(conflictDialog.dialog.liquids[currSpeechIndex], 430, 355, 20, 'black');
                 textBox.display('lightblue');
-            } else if (!isLiquidTurn && warDialog.dialog.solids[currSpeechIndex]) {
-                textBox.addText(warDialog.dialog.solids[currSpeechIndex], 430, 355, 20, 'black');
+            } else if (!isLiquidTurn && conflictDialog.dialog.solids[currSpeechIndex]) {
+                textBox.addText(conflictDialog.dialog.solids[currSpeechIndex], 430, 355, 20, 'black');
                 textBox.display('lightgreen');
             }
         }
@@ -182,14 +184,14 @@ function movePawns() {
     if (!dialogActive) {
         // Move solids with their randomized speeds
         solids.forEach(ingredient => {
-            ingredient.y += ingredient.speed; // moves downward with random speed
+            ingredient.y += ingredient.speed; // moves downconflictd with random speed
             ingredient.x += random(-1, 1); // tiny random horizontal movement
             ingredient.x = constrain(ingredient.x, 0, width - ingredient.size); // in order to keep the xPos within the canvas
         });
 
         // Move liquids with their randomized speeds
         liquids.forEach(ingredient => {
-            ingredient.y -= ingredient.speed; // moves upward with random speed
+            ingredient.y -= ingredient.speed; // moves upconflictd with random speed
             ingredient.x += random(-1, 1); // tiny random horizontal movement
             ingredient.x = constrain(ingredient.x, 0, width - ingredient.size); // in order to keep the xPos within the canvas
         });

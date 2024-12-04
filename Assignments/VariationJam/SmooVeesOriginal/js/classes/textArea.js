@@ -3,6 +3,7 @@
  * Class to handle all text boxes displayed on the screen
  * 
  */
+"use strict"
 class TextArea {
     constructor(x, y, w, h, r) {
         this.x = x;

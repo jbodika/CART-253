@@ -3,6 +3,7 @@
  * Class to handle all ingredients displayed on the screen
  * 
  */
+"use strict"
 class Ingredient {
     constructor(name, image, openImage = null, x, y, size, action = null, actionBtnLbl = null, type = null) {
         this.name = name;

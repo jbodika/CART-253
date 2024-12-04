@@ -1,6 +1,8 @@
 /*  Jolene Bodika
+
  * SmoooVees - Original Game
  * Relax after a long day by playing a smoothie making simulator.  
+ * 
  * Controls:
  * Follow the recipe or don't, who cares really...
  * Click on the ingredient of your choice to start prepping.
@@ -10,6 +12,7 @@
  * Once you make your final move, you're ready to serve your drink.
  * Bring your cursor closer to the smoothie cup by hovering over the lid.
  * Ta-da! You've made a perfect smoothie!... or not.
+ * 
  * Uses:
  * 
  * p5.js library
@@ -18,6 +21,7 @@
  *https://developers.google.com/fonts
  *
  */
+"use strict"
 let activeSmoothie; // current smoothie the player has to make
 let activeIngredientElement; //current food selected
 let originalIngredientData = { x: 0, y: 0, image: undefined }
@@ -115,8 +119,9 @@ function drawSmoothieCup() {
     smoothie.display();
 }
 
+
 /**
- * Reset all the settings for the game
+ * Reset all the settings for the SmooVees game
  */
 function resetGameSettings() {
     gameInProgress = false;
@@ -139,15 +144,15 @@ function resetGameSettings() {
 /**
  * Draws the order section at the top left of the screen
  */
-function drawOrder(inputText, smoothieArr) {
+function drawOrder() {
     let yStartPos = 105; // default y position
     let yIncrement = 20; // space between each line
-    activeSmoothie = randomizeElement(smoothieArr); // selects random drink object from the smoothies array
+    activeSmoothie = randomizeElement(smoothies.drinks); // selects random drink object from the smoothies array
 
     // create textArea object to display a textox with text in it
     let textArea = new TextArea(10, 10, 300, 185, 20);
-    textArea.addText(`${inputText}\n`, 150, 50, 30, '#8e7cc3');
-    textArea.addText(`${inputText}\n`, 153, 52, 30, '#b4a7d6');
+    textArea.addText(`SmooVee`, 150, 50, 30, '#8e7cc3');
+    textArea.addText(`SmooVee`, 153, 52, 30, '#b4a7d6');
     textArea.addText(`${activeSmoothie.name}\n`, 160, 80, 25, activeSmoothie.color);
 
     textArea.display('#c0c0c0');

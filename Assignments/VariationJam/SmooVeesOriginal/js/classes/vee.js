@@ -3,6 +3,7 @@
  * Class to handle all the different variations of Vee displayed on the screen
  * 
  */
+"use strict"
 class Vee {
     constructor(name, image, x, y, width, height) {
         this.name = name
