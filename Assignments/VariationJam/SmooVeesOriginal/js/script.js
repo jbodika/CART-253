@@ -65,6 +65,8 @@ function preload() {
     warApple.openImage = loadImage('./assets/images/openApple.png');
     apple.image = loadImage('./assets/images/apple.png');
     apple.openImage = loadImage('./assets/images/openApple.png');
+    evilApple.image = loadImage('./assets/images/apple.png');
+    evilApple.openImage = loadImage('./assets/images/openApple.png');
 
     // Avocado
     warAvocado.image = loadImage('./assets/images/avocado.png');
@@ -175,7 +177,81 @@ function preload() {
     warYogurt.image = loadImage('./assets/images/yogurt.png');
     warYogurt.openImage = loadImage('./assets/images/openYogurt.png');
     yogurt.image = loadImage('./assets/images/yogurt.png');
-    yogurt.openImage = loadImage('./assets/images/openYogurt.png');
+    yogurt.openImage = loadImage('./assets/images/openYogurt.png'); // Apple
+
+
+    // Avocado
+    evilAvocado.image = loadImage('./assets/images/avocado.png');
+    evilAvocado.openImage = loadImage('./assets/images/openAvocado.png');
+
+    // Banana
+    evilBanana.image = loadImage('./assets/images/banana.png');
+    evilBanana.openImage = loadImage('./assets/images/openBanana.png');
+
+    // Chia Seeds
+    evilChiaSeeds.image = loadImage('./assets/images/chiaSeeds.png');
+    evilChiaSeeds.openImage = loadImage('./assets/images/openChiaSeeds.png');
+
+    // Cocoa Powder
+    evilCocoaPowder.image = loadImage('./assets/images/cocoaPowder.png');
+    evilCocoaPowder.openImage = loadImage('./assets/images/openCocoaPowder.png');
+
+    // Coconut
+    evilCoconut.image = loadImage('./assets/images/coconut.png');
+    evilCoconut.openImage = loadImage('./assets/images/openCoconut.png');
+
+    // Frozen Berries
+    evilFrozenBerries.image = loadImage('./assets/images/frozenBerries.png');
+    evilFrozenBerries.openImage = loadImage('./assets/images/openFrozenBerries.png');
+
+    // Honey Jar
+    evilHoneyjar.image = loadImage('./assets/images/honeyjar.png');
+    evilHoneyjar.openImage = loadImage('./assets/images/openHoney.png');
+
+    // Mango
+    evilMango.image = loadImage('./assets/images/mango.png');
+    evilMango.openImage = loadImage('./assets/images/openMango.png');
+
+    // Milk
+    evilMilk.image = loadImage('./assets/images/milk.png');
+    evilMilk.openImage = loadImage('./assets/images/openMilk.png');
+
+    // Orange
+    evilOrange.image = loadImage('./assets/images/orange.png');
+    evilOrange.openImage = loadImage('./assets/images/openOrange.png');
+
+    // Orange Juice
+    evilOrangeJuice.image = loadImage('./assets/images/orangeJuice.png');
+    evilOrangeJuice.openImage = loadImage('./assets/images/openOrangeJuice.png');
+
+    // Peanut Butter
+    evilPeanutButter.image = loadImage('./assets/images/peanutButter.png');
+    evilPeanutButter.openImage = loadImage('./assets/images/openPeanutButter.png');
+
+    // Pineapple
+    evilPineapple.image = loadImage('./assets/images/pineapple.png');
+    evilPineapple.openImage = loadImage('./assets/images/openPineapple.png');
+
+    // Spinach
+    evilSpinach.image = loadImage('./assets/images/spinach.png');
+    evilSpinach.openImage = loadImage('./assets/images/openSpinach.png');
+
+    // Strawberry
+    evilStrawberry.image = loadImage('./assets/images/strawberry.png');
+    evilStrawberry.openImage = loadImage('./assets/images/openStrawberry.png');
+
+    // Water
+    evilWater.image = loadImage('./assets/images/water.png');
+    evilWater.openImage = loadImage('./assets/images/openWater.png');
+
+    // Watermelon
+    evilWatermelon.image = loadImage('./assets/images/watermelon.png');
+    evilWatermelon.openImage = loadImage('./assets/images/openWatermelon.png');
+
+    // Yogurt
+    evilYogurt.image = loadImage('./assets/images/yogurt.png');
+    evilYogurt.openImage = loadImage('./assets/images/openYogurt.png');
+
 
     cuttingBoardImg = loadImage('./assets/images/cuttingBoard.png')
 
@@ -255,21 +331,28 @@ function smooVeesLayout() {
         movePawns();
         drawSplatters();
         displayEscapedIngredients()
-        checkAndShowDialog(); // Ensure dialogActive is set
-        drawDialog(); // Draw the appropriate dialog
+        checkAndShowDialog();
+        drawDialog();
 
     } else
     if (gameState == 'playEvilGame') {
+
         background('#946656');
         drawInGameCounter();
         drawIncorrectIngredientCount();
-        drawCounterItems();
+
         drawMenu();
         drawOrder('SmooVee', evilSmoothies.drinks);
         drawSmoothieCup();
         drawMovesLeft();
+        displayItems();
         previewFoodSelection();
-        displayVee(); // Make sure this is called when the game state is 'playEvilGame'
+        displayVee();
+        listenToVee()
+        moveVee()
+
+
+
     } else if (gameState == 'main') {
         resetGameSettings()
 
@@ -390,6 +473,8 @@ function mouseClicked() {
             dialogActive = false; // End dialog
 
         }
+    } else if (gameState == "playEvilGame") {
+
     }
 
 }
@@ -424,7 +509,12 @@ function keyPressed() {
     } else if (key.toUpperCase() === 'E' && gameState == 'main') {
         gameState = 'playEvilGame';
 
-
+    }
+    if (key.toUpperCase() === 'D' && gameState == 'playEvilGame') {
+        evilIndex++;
+        if (evilIndex >= evilVeeTalking.speech.length) {
+            evilIndex = 0; // restarts the speech 
+        }
     }
 }
 /* Checks if the cursor overlaps with an object

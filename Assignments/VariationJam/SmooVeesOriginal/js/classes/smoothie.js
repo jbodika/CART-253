@@ -1,3 +1,8 @@
+/*
+ *
+ * Class to handle the smoothie cup display
+ * 
+ */
 class Smoothie {
     constructor(lidX, lidY, lidWidth, lidHeight, cupX, cupY, cupWidth, cupHeight, strawX, strawY, strawWidth, strawHeight, color) {
             this.lid = {

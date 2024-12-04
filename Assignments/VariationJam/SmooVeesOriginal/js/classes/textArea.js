@@ -1,4 +1,8 @@
-// Class to handle all text boxes displayed on the screen
+/*
+ *
+ * Class to handle all text boxes displayed on the screen
+ * 
+ */
 class TextArea {
     constructor(x, y, w, h, r) {
         this.x = x;
@@ -34,5 +38,8 @@ class TextArea {
         pop();
 
 
+    }
+    clearText() {
+        this.text = "";
     }
 }

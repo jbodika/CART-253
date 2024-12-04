@@ -22,6 +22,8 @@ let numOfPours = 0;
 let chosenIngredients = []
 let ingredientsCount = 0
 let smoothies;
+let movesLeft;
+
 let incorrectIngredientsCount = 0
 
 
@@ -131,8 +133,9 @@ function drawIncorrectIngredientCount() {
 
 
 function drawMovesLeft() {
+    movesLeft = activeSmoothie.ingredients.length - ingredientsCount;
     let textArea = new TextArea(500, 100, 275, 75, 20)
-    textArea.addText(`Moves Left\n${activeSmoothie.ingredients.length - ingredientsCount}`, 640, 130, 25, '#c27ba0');
+    textArea.addText(`Moves Left\n${movesLeft}`, 640, 130, 25, '#c27ba0');
     textArea.display('#c0c0c0')
 }
 
@@ -375,7 +378,6 @@ function drawPouringScreen() {
 function switchMouseToFood() {
     activeIngredientElement.x = mouseX;
     activeIngredientElement.y = mouseY;
-    console.log(activeIngredientElement.y)
 }
 
 

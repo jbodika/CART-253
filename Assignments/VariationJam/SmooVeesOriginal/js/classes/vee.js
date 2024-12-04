@@ -1,5 +1,11 @@
+/*
+ *
+ * Class to handle all the different variations of Vee displayed on the screen
+ * 
+ */
 class Vee {
-    constructor(image, x, y, width, height) {
+    constructor(name, image, x, y, width, height) {
+        this.name = name
         this.image = image;
         this.x = x;
         this.y = y;
