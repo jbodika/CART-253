@@ -23,14 +23,14 @@ let solidPourSound;
 let blenderSound;
 let cashRegisterSound;
 let putSound;
-let angryCrowdSound;
+let swordSound;
 let plopSound;
 let sadTromboneSound;
 let cupFalling;
 let isLiquidTurn = true
 let dialogActive = true;
 
-
+let bloodSplatterImg;
 let menuBtn;
 let restartBtn;
 
@@ -55,97 +55,118 @@ function preload() {
 
     // all food elements, image is the image we see on the counter and openImage is the cut or poured version of the food element
     warApple.image = loadImage('./assets/images/apple.png');
+    warApple.openImage = loadImage('./assets/images/openApple.png');
     apple.image = loadImage('./assets/images/apple.png');
     apple.openImage = loadImage('./assets/images/openApple.png');
 
     // Avocado
     warAvocado.image = loadImage('./assets/images/avocado.png');
+    warAvocado.openImage = loadImage('./assets/images/openAvocado.png');
     avocado.image = loadImage('./assets/images/avocado.png');
     avocado.openImage = loadImage('./assets/images/openAvocado.png');
 
     // Banana
     warBanana.image = loadImage('./assets/images/banana.png');
+    warBanana.openImage = loadImage('./assets/images/openBanana.png');
     banana.image = loadImage('./assets/images/banana.png');
     banana.openImage = loadImage('./assets/images/openBanana.png');
 
+
     // Chia Seeds
     warChiaSeeds.image = loadImage('./assets/images/chiaSeeds.png');
+    warChiaSeeds.openImage = loadImage('./assets/images/openChiaSeeds.png');
     chiaSeeds.image = loadImage('./assets/images/chiaSeeds.png');
     chiaSeeds.openImage = loadImage('./assets/images/openChiaSeeds.png');
 
     // Cocoa Powder
     warCocoaPowder.image = loadImage('./assets/images/cocoaPowder.png');
+    warCocoaPowder.openImage = loadImage('./assets/images/openCocoaPowder.png');
     cocoaPowder.image = loadImage('./assets/images/cocoaPowder.png');
     cocoaPowder.openImage = loadImage('./assets/images/openCocoaPowder.png');
 
     // Coconut
     warCoconut.image = loadImage('./assets/images/coconut.png');
+    warCoconut.openImage = loadImage('./assets/images/openCoconut.png');
     coconut.image = loadImage('./assets/images/coconut.png');
     coconut.openImage = loadImage('./assets/images/openCoconut.png');
 
     // Frozen Berries
     warFrozenBerries.image = loadImage('./assets/images/frozenBerries.png');
+    warFrozenBerries.openImage = loadImage('./assets/images/openFrozenBerries.png');
     frozenBerries.image = loadImage('./assets/images/frozenBerries.png');
     frozenBerries.openImage = loadImage('./assets/images/openFrozenBerries.png');
 
     // Honey Jar
     warHoneyjar.image = loadImage('./assets/images/honeyjar.png');
+    warHoneyjar.openImage = loadImage('./assets/images/openHoney.png');
     honeyjar.image = loadImage('./assets/images/honeyjar.png');
     honeyjar.openImage = loadImage('./assets/images/openHoney.png');
 
     // Mango
     warMango.image = loadImage('./assets/images/mango.png');
+    warMango.openImage = loadImage('./assets/images/openMango.png');
     mango.image = loadImage('./assets/images/mango.png');
     mango.openImage = loadImage('./assets/images/openMango.png');
 
     // Milk
     warMilk.image = loadImage('./assets/images/milk.png');
+    warMilk.openImage = loadImage('./assets/images/openMilk.png');
     milk.image = loadImage('./assets/images/milk.png');
     milk.openImage = loadImage('./assets/images/openMilk.png');
 
     // Orange
     warOrange.image = loadImage('./assets/images/orange.png');
+    warOrange.openImage = loadImage('./assets/images/openOrange.png');
     orange.image = loadImage('./assets/images/orange.png');
     orange.openImage = loadImage('./assets/images/openOrange.png');
 
     // Orange Juice
     warOrangeJuice.image = loadImage('./assets/images/orangeJuice.png');
+    warOrangeJuice.openImage = loadImage('./assets/images/openOrangeJuice.png');
     orangeJuice.image = loadImage('./assets/images/orangeJuice.png');
     orangeJuice.openImage = loadImage('./assets/images/openOrangeJuice.png');
 
     // Peanut Butter
     warPeanutButter.image = loadImage('./assets/images/peanutButter.png');
+    warPeanutButter.openImage = loadImage('./assets/images/openPeanutButter.png');
     peanutButter.image = loadImage('./assets/images/peanutButter.png');
     peanutButter.openImage = loadImage('./assets/images/openPeanutButter.png');
 
     // Pineapple
     warPineapple.image = loadImage('./assets/images/pineapple.png');
+    warPineapple.openImage = loadImage('./assets/images/openPineapple.png');
     pineapple.image = loadImage('./assets/images/pineapple.png');
     pineapple.openImage = loadImage('./assets/images/openPineapple.png');
 
     // Spinach
 
     warSpinach.image = loadImage('./assets/images/spinach.png');
+    warSpinach.openImage = loadImage('./assets/images/openSpinach.png');
     spinach.image = loadImage('./assets/images/spinach.png');
     spinach.openImage = loadImage('./assets/images/openSpinach.png');
 
     // Strawberry
     warStrawberry.image = loadImage('./assets/images/strawberry.png');
+    warStrawberry.openImage = loadImage('./assets/images/openStrawberry.png');
     strawberry.image = loadImage('./assets/images/strawberry.png');
     strawberry.openImage = loadImage('./assets/images/openStrawberry.png');
 
     // Water
     warWater.image = loadImage('./assets/images/water.png');
+    warWater.openImage = loadImage('./assets/images/openWater.png');
     water.image = loadImage('./assets/images/water.png');
     water.openImage = loadImage('./assets/images/openWater.png');
 
     // Watermelon
     warWatermelon.image = loadImage('./assets/images/watermelon.png');
+    warWatermelon.openImage = loadImage('./assets/images/openWatermelon.png');
+
     watermelon.image = loadImage('./assets/images/watermelon.png');
     watermelon.openImage = loadImage('./assets/images/openWatermelon.png');
 
     // Yogurt
     warYogurt.image = loadImage('./assets/images/yogurt.png');
+    warYogurt.openImage = loadImage('./assets/images/openYogurt.png');
     yogurt.image = loadImage('./assets/images/yogurt.png');
     yogurt.openImage = loadImage('./assets/images/openYogurt.png');
 
@@ -158,6 +179,8 @@ function preload() {
     cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png");
     limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png");
     orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png");
+    bloodSplatterImg = loadImage("./assets/images/bloodSplatter.png");
+
     veeImg = loadImage('./assets/images/Vee.png');
 
     // json files
@@ -177,7 +200,7 @@ function preload() {
     solidPourSound = loadSound('./assets/audio/solidPour.mp3')
     plopSound = loadSound('./assets/audio/plop.mp3')
     cupFalling = loadSound('./assets/audio/cupFalling.mp3')
-    angryCrowdSound = loadSound('./assets/audio/angryCrowd.mp3')
+    swordSound = loadSound('./assets/audio/sword.mp3')
 }
 
 /**
@@ -210,14 +233,16 @@ function smooVeesLayout() {
         previewFoodSelection();
 
         // blendIngredients()
-    } else if (gameState == 'playWarGame') {
-
+    } else if (gameState === "playWarGame") {
+        drawMenu()
         background('#fffff2');
-        drawAliveItems()
-        drawMenu();
-        drawDialog()
-        moveLeaders()
-        movePawns()
+        drawAliveItems();
+        moveLeaders();
+        movePawns();
+        drawSplatters();
+        displayEscapedIngredients()
+        checkAndShowDialog(); // Ensure dialogActive is set
+        drawDialog(); // Draw the appropriate dialog
 
     } else if (gameState == 'playEvilGame') {
 
@@ -341,15 +366,18 @@ function mouseClicked() {
         }
     } else if (gameState === "playWarGame") {
         currSpeechIndex++;
-        if (isLiquidTurn && currSpeechIndex >= warDialog.dialog.liquids.length) {
-            // switch to solids when liquids are done talking
+        if (
+            isLiquidTurn &&
+            currSpeechIndex >= warDialog.dialog2.liquids.length
+        ) {
             currSpeechIndex = 0;
-            isLiquidTurn = false;
-        } else if (!isLiquidTurn && currSpeechIndex >= warDialog.dialog.solids.length) {
-            // stop dialog when solids are done talking
-            dialogActive = false; // stop showing dialog
+            isLiquidTurn = false; // Switch turn
+        } else if (!isLiquidTurn &&
+            currSpeechIndex >= warDialog.dialog2.solids.length
+        ) {
+            dialogActive = false; // End dialog
+            moveLeadersBack = true; // Trigger movement
         }
-
     }
 
 }
@@ -365,6 +393,8 @@ function mousePressed() {
         blendIngredients()
     } else if (gameState == "playWarGame") {
         pushIngredient()
+        checkAndShowDialog();
+
     }
 
 }
