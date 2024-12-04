@@ -4,14 +4,24 @@ Jolene Bodika
 ## [View the project online](https://jbodika.github.io/CART-253/Assignments/VariationJam/)
 
 ## Description
+Welcome to Vee's Smoothie Shop!! This program is a smoothie making simulator that incorporates a bit of randomness and weirdnesss. Have a relaxing time making nivery satisfying smoothies. or test try out your responsiveness skills with a quick response mini game. ANd unwind with a peculiar short story. 
+
+
+
+### SmooVees Original Game
+### SmooVees Conflict Game
+### SmooVees Story Game
+
+
 
 
 ### Controls
-- Read the ingredients on the top left of the screen 
-- Start picking the ingredients needed to make the smoothie
-- Chop chop chop or pourrrrr the ingredient
-- Once done click on the blend to mix everything together
-- after you've added check your cup and wait for a mystery sound to play to know how well you did!
+Once you open up the game you must click on the screen to read thropough the text.
+* Press either 'L','I','E' to explore one of the variations of Vee's smoovee shop
+
+
+#####
+
 
 
 ## Credits
@@ -31,7 +41,7 @@ This project uses
 
 - Pixel Blender from FREEPIK by kaleb-silva [Link to image](https://www.freepik.com/premium-vector/pixel-art-blender-kitchen-equipment-vector-icon-8bit-game-white-background_27462079.htm)
 - Milk image from PNGKey [Link to image](https://www.pngkey.com/detail/u2q8y3t4e6i1a9a9_nes-milk-milk-carton-pixel-art/)
-- Yogurt image by illustrAc [Link to image](https://ac-illust.com/clip-art/25647847/this-is-pixelated-yogurt-)
+- Yogurt from DeviantArt by PixelDonutofCanada91 [Link to image](https://www.deviantart.com/pixeldonutofcanada91/art/Blueberry-Yogurt-Pixel-964800093)
 - Pineapple from DeviantArt by PixelDonutofCanada91 [Link to image](https://www.deviantart.com/pixeldonutofcanada91/art/Pineapple-8-Bit-Icon-Pixel-993971585) 
 - Coconut from DeviantArt by PixelDonutofCanada91 [Link to image](https://www.deviantart.com/pixeldonutofcanada91/art/Coconuts-Pixel-964633209) 
 - Orange cut by Theta7274 from [Pixelart](https://www.pixilart.com/art/a-cut-orange-sr256b6dbb49377)
@@ -43,10 +53,11 @@ This project uses
 - Strawberry from DeviantArt by PixelDonutofCanada91 [Link to image](https://www.deviantart.com/pixeldonutofcanada91/art/Farm-Fresh-Strawberry-Pixel-994848178) 
 - Cut Strawberry from ArtStation by Sally Lee [Link to image](https://www.artstation.com/artwork/B3QoKl)
 - Orange juice imge from Independent grocer [Link to original image](https://www.yourindependentgrocer.ca/pulp-free-orange-juice-bottle/p/21086068_EA)
+- Smoothies by Jeklin from Pixilart [Link to image](https://www.pixilart.com/art/fruit-smoothie-sr237a9eccf8daws3?ft=tags&ft_id=)
 
 
 #### Pixel Art by me
--Frozen Berries, Open water, open honey, open coca, cocoa powder, (https://www.pixilart.com/howboutno0)
+-Frozen Berries, Open water,Open honey, Open coca, Cocoa powder, Watermelon, Orange, Banana, Open banana, Honey, Cutting board, Open milk, Open pineapple, open apple, avocado, open peanut butter, open yogurt, and more (https://www.pixilart.com/howboutno0)
 
 ### Sounds
 - Cut Sound Effect by floraphonic from [Pixabay]("https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=184692)
@@ -55,5 +66,6 @@ This project uses
 - Cash Register Sound Effect by Modestas123123 from [Pixabay]("https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=125042")
 - Sad Trombone Sound Effect by freesound_community from [Pixabay]("https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6347")
 - Thud Sound Effect by freesound_community from [Pixabay](https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=83043")
-- Liquid Sound Effect by <a href="https://pixabay.com/users/universfield-28281460/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=191999">Vasyl Sakal</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=191999">Pixabay</a>
-- Solid pour (ice cubes) by husky70 (Freesound) https://pixabay.com/sound-effects/icecubes-106485/
+- Liquid Sound Effect by Vasyl Sakal from Pixabay [Link to module]("https://pixabay.com/users/universfield-28281460/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=191999")
+- Solid pour (ice cubes) by husky70 (Freesound) [Link to module](https://pixabay.com/sound-effects/icecubes-106485/)
+- Sword Sound Effect byCyberwave Orchestra from[Pixabay]("https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=234987")

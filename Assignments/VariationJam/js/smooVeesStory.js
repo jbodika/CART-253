@@ -16,8 +16,7 @@
  *
  * Check README for full attribution list
  */
-"use strict"
-let evilSmoothies;
+"use strict";
 let evilIndex = 0;
 let answerBtn;
 let vee = new Vee(undefined, 0, 10, 200, 600);

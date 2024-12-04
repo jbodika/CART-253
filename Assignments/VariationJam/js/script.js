@@ -228,7 +228,7 @@ function preload() {
 
     // json files
     smoothies = loadJSON('./assets/data/smoothies.json');
-    evilSmoothies = loadJSON('./assets/data/evilSmoothies.json');
+
 
     conflictDialog = loadJSON('./assets/data/foodWarTalking.json');
     veeTalking = loadJSON("./assets/data/veeTalking.json");
