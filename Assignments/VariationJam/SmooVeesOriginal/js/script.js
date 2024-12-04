@@ -339,14 +339,14 @@ function smooVeesLayout() {
 
         background('#946656');
         drawInGameCounter();
-        drawIncorrectIngredientCount();
+
 
         drawMenu();
-        drawOrder('SmooVee', evilSmoothies.drinks);
-        drawSmoothieCup();
-        drawMovesLeft();
+        // drawOrder('SmooVee', evilSmoothies.drinks);
+
+
         displayItems();
-        previewFoodSelection();
+        //previewFoodSelection();
         displayVee();
         listenToVee()
         moveVee()
@@ -484,11 +484,7 @@ function mousePressed() {
         selectFood();
         clickToBlend();
         blendIngredients()
-    } else if (gameState == "playEvilGame") {
-        selectFood();
-        clickToBlend();
-        blendIngredients()
-    } else if (gameState == "playWarGame") {
+    } else if (gameState == "playEvilGame") {} else if (gameState == "playWarGame") {
         pushIngredient()
         checkAndShowDialog();
 
