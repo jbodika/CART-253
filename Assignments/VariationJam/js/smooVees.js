@@ -374,9 +374,7 @@ function drawCuttingScreen() {
     rect(20, 280, 70, 300, 20);
     image(activeIngredientElement.image, 200, 100, 500, 500);
 
-    fill('#fffff2');
 
-    rect(width - 100, 0, 100, height);
     pop();
 }
 /**
