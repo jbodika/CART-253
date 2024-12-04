@@ -16,6 +16,7 @@
 
 let bagelFatOneFont;
 
+let evilVeeTalking;
 
 let knifeSound;
 let liquidPourSound;
@@ -30,7 +31,13 @@ let cupFalling;
 let isLiquidTurn = true
 let dialogActive = true;
 
-let bloodSplatterImg;
+let veeHappy;
+let veeSad;
+let veeCrazy;
+let veeAngry;
+
+
+
 let menuBtn;
 let restartBtn;
 
@@ -179,7 +186,6 @@ function preload() {
     cherrySmoothieImg = loadImage("./assets/images/cherrySmoothie.png");
     limeSmoothieImg = loadImage("./assets/images/limeSmoothie.png");
     orangeSmoothieImg = loadImage("./assets/images/orangeSmoothie.png");
-    bloodSplatterImg = loadImage("./assets/images/bloodSplatter.png");
 
     veeImg = loadImage('./assets/images/Vee.png');
 
@@ -189,6 +195,14 @@ function preload() {
 
     warDialog = loadJSON('./assets/data/foodWarTalking.json');
     veeTalking = loadJSON("./assets/data/veeTalking.json");
+    evilVeeTalking = loadJSON("./assets/data/evilVeeTalking.json");
+
+
+    veeAngry = loadImage("./assets/images/veeAngry.png");
+    veeCrazy = loadImage("./assets/images/veeCrazy.png");
+    veeHappy = loadImage("./assets/images/veeHappy.png");
+    veeSad = loadImage("./assets/images/veeSad.png");
+
 
     // all sounds
     knifeSound = loadSound('./assets/audio/knife.mp3');
@@ -244,20 +258,18 @@ function smooVeesLayout() {
         checkAndShowDialog(); // Ensure dialogActive is set
         drawDialog(); // Draw the appropriate dialog
 
-    } else if (gameState == 'playEvilGame') {
-
-
+    } else
+    if (gameState == 'playEvilGame') {
         background('#946656');
         drawInGameCounter();
         drawIncorrectIngredientCount();
-
         drawCounterItems();
         drawMenu();
         drawOrder('SmooVee', evilSmoothies.drinks);
         drawSmoothieCup();
-        displayVee();
         drawMovesLeft();
         previewFoodSelection();
+        displayVee(); // Make sure this is called when the game state is 'playEvilGame'
     } else if (gameState == 'main') {
         resetGameSettings()
 
@@ -376,7 +388,7 @@ function mouseClicked() {
             currSpeechIndex >= warDialog.dialog2.solids.length
         ) {
             dialogActive = false; // End dialog
-            moveLeadersBack = true; // Trigger movement
+
         }
     }
 

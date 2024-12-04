@@ -248,7 +248,7 @@ function previewFoodSelection() {
 
     if (ingredientAction == 'preview') {
 
-        clear();
+        //  clear();
         push();
         background('#fffff2'); //counter top
         pop();
