@@ -1,19 +1,19 @@
 /*
-* Vee's Smoothie Shop - Main Screen
-* Jolene Bodika
-* This is the main screen that the user sees upon loading the game for the first time. 
-*
-* Controls:
-* Click anywhere on the canvas to see what Vee has to say.
-* Press 'O', 'Z', or 'R' to play one of the game variations 
-*
-* Uses:
-* p5.js library
-* https://p5js.org
-* GoogleFonts API
-*https://developers.google.com/fonts
-*
-
+ * Vee's Smoothie Shop - Main Screen
+ * Jolene Bodika
+ * This is the main screen that the user sees upon loading the game for the first time. 
+ *
+ * Controls:
+ * Click anywhere on the canvas to see what Vee has to say.
+ * Press 'L', 'I', or 'E' to play one of the game variations 
+ *
+ * Uses:
+ * p5.js library
+ * https://p5js.org
+ * GoogleFonts API
+ *https://developers.google.com/fonts
+ *
+ * View the README for the complete attribution list
  */
 "use strict"
 
@@ -29,7 +29,7 @@ let blenderImg = {
 };
 let gameState = 'main';
 
-
+// Cabinets that are drawn at top of the canvas
 const cabinets = {
     x: 0, // starting position for the first cabinet, this will change for the others
     y: 10,
@@ -44,7 +44,7 @@ const cabinetHandles = {
 
 };
 
-// created an object that holds the default values used when displaying an image on the main screen to avoid repetition in code 
+// Created an object that holds the default values used when displaying an image on the main screen to avoid repetition in code 
 const defaultImg = {
     size: {
         x: 50,
@@ -54,6 +54,7 @@ const defaultImg = {
 
 };
 
+// Object variable for the chairs at the counter
 const chairs = {
     baseRing: {
         x: 100,
@@ -97,7 +98,9 @@ function drawDecorations() {
 
 }
 
-
+/**
+ * Displays the short text for the user to read
+ */
 function drawWelcomeMessage() {
     //  Create the up-down movement for the hearts with the sin() function
     let speed = 0.05;
@@ -111,7 +114,6 @@ function drawWelcomeMessage() {
 
     textSize(80);
     text('Vee\'s\nSmoothie\nShop!', 50, 205 + yOffset);
-
     pop();
 
     // displays the main pink for the text
@@ -119,14 +121,12 @@ function drawWelcomeMessage() {
     stroke('pink');
     strokeWeight(5);
 
+    // displays the secondary pink for the text
     fill('#c27ba0');
     textSize(80);
     text('Vee\'s\nSmoothie\nShop!', 55, 200 + yOffset);
-
     pop();
-
 }
-
 
 
 /**
@@ -205,10 +205,8 @@ function drawWindow() {
     rect(50, 170, 700, 140);
     pop();
 
-
-
-
 }
+
 /**
  * Draws the counter that shows up behind Vee
  */
@@ -226,6 +224,7 @@ function drawBackgroundCounter() {
     pop();
 
 }
+
 /**
  * Draws the 3 cabinets at top 
  */
@@ -255,7 +254,9 @@ function drawCabinets() {
     }
 }
 
-
+/**
+ * Draws the chairs for the store
+ */
 function drawChairs() {
     for (let i = 0; i < 800; i += 200) {
         // base of the chair ring
@@ -283,10 +284,12 @@ function drawChairs() {
     }
 
 }
-// Counter of the store 
+/*
+ *   Draws Counter of the store 
+ */
 function drawStoreCounter() {
 
-    // Drawcounter colour
+    // Draw counter colour
     push();
     noStroke();
     fill('#c79274');
@@ -294,14 +297,14 @@ function drawStoreCounter() {
     pop();
 
 
-    //WHITE COUNTER 
+    //White counter
     push();
     noStroke();
     fill('#fffff2');
     rect(0, height - 400, width, 50);
     pop();
 
-    //WHITE BORDER 
+    //White border
     push();
     noStroke();
     fill('#D4D4D4');

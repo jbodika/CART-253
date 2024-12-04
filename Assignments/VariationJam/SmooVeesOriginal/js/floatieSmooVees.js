@@ -1,14 +1,12 @@
 /*
  * Jolene Bodika
  * SmooVees - Right Place Bad Time
- * In this 'mini-game' story you are very hungry after your shift and you notice all the food on the counter so you decided to eat it all.
- * 
- * Jolene Bodika
+ * In this 'mini-game' story, you’re very hungry after your shift and notice all the food on the counter, so you decide to eat it all.
  *
  * Controls:
- * Hover on all the ingredients to collect them,
- * Wait for the reading screen to pass
- * Respond to a prompt by clicking on the button. 
+ * Hover over all the ingredients to collect them.
+ * Wait for the reading screen to pass.
+ * Respond to a prompt by clicking on the button.
  *
  * Uses:
  * p5.js library
@@ -51,8 +49,8 @@ let currentScene = null // trigger variable for the different scenes
      * Function to switch picture of the character
      */
 function displayVee() {
-    vee.height = 600
-    vee.width = 200
+    vee.height = 600;
+    vee.width = 200;
     if (veeMood === 'neutral') {
         vee.image = veeImg;
 
@@ -69,10 +67,10 @@ function displayVee() {
     }
     vee.display();
 
-    veeTextArea = new TextArea(200, 600, 400, 100, 20)
+    veeTextArea = new TextArea(200, 600, 400, 100, 20);
 
     evilVeeTalking.speech.forEach((el) => {
-        veeTextArea.addText(el.text, 410, 630, 20)
+        veeTextArea.addText(el.text, 410, 630, 20);
     })
     veeTextArea.display('black', '#000');
 }
@@ -98,7 +96,7 @@ function removeIngredients() {
  */
 function displayItems() {
     evilIngredients.forEach((element) => {
-        element.display()
+        element.display();
     });
 }
 
@@ -187,7 +185,7 @@ function changeOfScenery() {
 function drawAnswerBtn() {
     if (!answerBtn) {
         answerBtn = createButton('I got hungry 😅');
-        answerBtn.parent("canvasDiv")
+        answerBtn.parent("canvasDiv");
         answerBtn.position(30, 650);
         answerBtn.addClass('btn'); //for styling purposes
     }
@@ -212,8 +210,8 @@ function endScene() {
     veeMood = 'angry';
 
     // set height and width to make her appear very up close
-    vee.height = 2000
-    vee.width = width
+    vee.height = 2000;
+    vee.width = width;
 
     vee.display();
 
@@ -242,16 +240,16 @@ function redScene() {
     // Reset Vee's position and display
     vee.x = 200;
     // set height and width to make her appear very up close
-    vee.height = 2000
-    vee.width = width
+    vee.height = 2000;
+    vee.width = width;
 
     vee.display();
 
-    push()
+    push();
     fill('white');
     textSize(32); // display Vee's answer
     textAlign(CENTER);
     text(`${textBlock.text}`, 270, textBlock.y);
-    pop()
-    drawAnswerBtn()
+    pop();
+    drawAnswerBtn();
 }

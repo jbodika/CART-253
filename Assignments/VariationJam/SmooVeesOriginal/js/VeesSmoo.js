@@ -1,8 +1,11 @@
-/*
- * The Big Conflict
- * Jolene Bodika
- *
+/* Jolene Bodika
+ * SmooVees - The Big Conflict
+ * Like Vee said, she believes the food and appliances are arguing, which is weird, right?
+ * Luckily for you, you can put an end to their bickering with the item they fear the most... the blender!
  * Controls:
+ * Click on the screen to read through the dialog.
+ * Once it's over, hurry as quickly as possible to capture as many ingredients as you can with the blender.
+ * Click on the screen to read through the dialog again.
  * 
  * Uses:
  * p5.js library
@@ -13,7 +16,7 @@
  */
 
 let warDialog;
-
+// All ingredients
 let warApple = new Ingredient("Green Apple", undefined, undefined, 30, -100, 32, 'solid');
 let warAvocado = new Ingredient("Avocado", undefined, undefined, 75, -100, 64, 'solid');
 let warBanana = new Ingredient("Banana", undefined, undefined, 600, -100, 64, 'solid');
@@ -40,13 +43,14 @@ let solids = [warApple, warAvocado, warBanana, warChiaSeeds, warCocoaPowder, war
 let escapedIngredients = [];
 let blended = []; // stores splatter locations
 
+// watermelon leader object
 let solidLeaderImg = {
     x: 350,
     y: -10,
     size: 175
 };
 
-
+// milk leader object
 let liquidsLeaderImg = {
     x: 350,
     y: 800,
@@ -74,8 +78,7 @@ function moveLeaders() {
  */
 function drawDialog() {
     if (dialogActive) {
-        let textBox = new TextArea(300, 325, 275, 75, 20);
-
+        let textBox = new TextArea(300, 325, 275, 120, 20);
         if (solids.length === 0 && liquids.length === 0) {
             if (currSpeechIndex >= warDialog.dialog2.liquids.length || currSpeechIndex >= warDialog.dialog2.solids.length) {
                 moveLeadersBackwards();
@@ -108,7 +111,7 @@ function displayEscapedIngredients() {
     let x = width - 200; // set starting values for x and y positions
     let y = 50;
 
-    push()
+    push();
     textSize(16);
     fill(0);
     textAlign(LEFT, TOP); // align at th top left of the canvas
@@ -128,14 +131,14 @@ function displayEscapedIngredients() {
  */
 function drawAliveItems() {
     // Display all solids
-    solids.forEach((el) => {
-        el.display()
+    solids.forEach((element) => {
+        element.display();
 
     });
 
     // Display all liquids
-    liquids.forEach((el) => {
-        el.display()
+    liquids.forEach((element) => {
+        element.display();
 
     });
 
